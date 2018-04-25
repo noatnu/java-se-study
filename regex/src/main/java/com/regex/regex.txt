@@ -1,0 +1,45 @@
+
+1 字符匹配
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(str); // 操作的字符串
+boolean b = m.matches(); // 返回是否匹配的结果
+System.out.println(b);
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(str); // 操作的字符串
+boolean b = m. lookingAt (); // 返回是否匹配的结果
+System.out.println(b);
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(str); // 操作的字符串
+boolean b = m..find (); // 返回是否匹配的结果
+System.out.println(b);
+
+2 分割字符串
+Pattern pattern = Pattern.compile(expression); // 正则表达式
+String[] strs = pattern.split(str); // 操作字符串 得到返回的字符串数组
+
+3 替换字符串
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(text); // 操作的字符串
+String s = m.replaceAll(str); // 替换后的字符串
+
+4 查找替换指定字符串
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(text); // 操作的字符串
+StringBuffer sb = new StringBuffer();
+int i = 0;
+while (m.find()) {
+    m.appendReplacement(sb, str);
+    i++; // 字符串出现次数
+}
+m.appendTail(sb);// 从截取点将后面的字符串接上
+m.appendTail(sb);// 从截取点将后面的字符串接上
+String s = sb.toString();
+
+5 查找输出字符串
+Pattern p = Pattern.compile(expression); // 正则表达式
+Matcher m = p.matcher(text); // 操作的字符串
+while (m.find()) {
+    //m.start() 返回匹配到的子字符串在字符串中的索引位置 .
+    //m.end() 返回匹配到的子字符串的最后一个字符在字符串中的索引位置 .
+    //m.group() 返回匹配到的子字符串
+}
