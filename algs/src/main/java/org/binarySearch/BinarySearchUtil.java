@@ -1,6 +1,7 @@
 package org.binarySearch;
 
-import zch.pojo.User;
+
+import entiyi.User;
 
 public class BinarySearchUtil {
 
@@ -66,7 +67,7 @@ public class BinarySearchUtil {
         return null;
     }
 
-    public static Integer binarySearch(User[] arr,User user){
+    public static Integer binarySearch(User[] arr, User user){
         int low = 0,high = arr.length-1;
         while (low<=high){
             int mid = (low+high)/2;

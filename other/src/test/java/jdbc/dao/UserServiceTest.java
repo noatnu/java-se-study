@@ -1,11 +1,10 @@
 package jdbc.dao;
 
+import help.Zhou_StdRandom;
+import help.Zhou_Word;
 import org.testng.annotations.Test;
 import other.jdbc.domin.User;
 import other.jdbc.service.UserService;
-import zch.help.Zhou_StdRandom;
-import zch.help.Zhou_String;
-import zch.help.Zhou_Word;
 
 import java.util.ArrayList;
 import java.util.List;

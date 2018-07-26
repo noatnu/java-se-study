@@ -1,9 +1,9 @@
 package org.sort;
 
-import org.array.ToArray;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import util.array.ToArray;
 
 import java.util.Arrays;
 

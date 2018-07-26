@@ -1,7 +1,7 @@
 package other.nio.buffer;
 
 import org.testng.annotations.Test;
-import other.common.LogUtilA;
+import util.log.LogUtilA;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;

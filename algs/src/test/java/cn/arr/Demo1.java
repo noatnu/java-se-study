@@ -1,8 +1,8 @@
 package cn.arr;
 
 import common.Logger;
-import org.array.ToArray;
 import org.testng.annotations.Test;
+import util.array.ToArray;
 
 import java.util.Arrays;
 

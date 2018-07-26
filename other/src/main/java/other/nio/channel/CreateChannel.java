@@ -1,7 +1,7 @@
 package other.nio.channel;
 
 import org.testng.annotations.Test;
-import other.common.LogUtilA;
+import util.log.LogUtilA;
 
 import java.io.*;
 import java.net.ServerSocket;

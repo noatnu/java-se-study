@@ -1,9 +1,9 @@
 package org.binarySearch;
 
-import org.array.ToArray;
-import org.array.ToObjectArray;
+import entiyi.User;
 import org.testng.annotations.Test;
-import zch.pojo.User;
+import util.array.ToArray;
+import util.array.ToObjectArray;
 
 import java.util.Arrays;
 

@@ -1,7 +1,7 @@
 package jdbc.nio.channels;
 
 
-import zch.help.Zhou_Word;
+import help.Zhou_Word;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

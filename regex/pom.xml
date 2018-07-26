@@ -13,9 +13,9 @@
     <dependencies>
 
         <dependency>
-            <artifactId>interface</artifactId>
-            <groupId>se-interface</groupId>
-            <version>${SE_interface.version}</version>
+            <artifactId>utils</artifactId>
+            <groupId>utils</groupId>
+            <version>${utils}</version>
         </dependency>
 
         <!-- 整合spring框架 -->

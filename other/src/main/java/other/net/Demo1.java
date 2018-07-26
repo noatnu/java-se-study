@@ -1,6 +1,6 @@
 package other.net;
 
-import other.common.LogUtilA;
+import util.log.LogUtilA;
 
 import java.io.BufferedReader;
 import java.io.IOException;
