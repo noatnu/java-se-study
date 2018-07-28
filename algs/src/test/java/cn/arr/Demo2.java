@@ -1,13 +1,14 @@
 package cn.arr;
 
-import common.Logger;
 import org.testng.annotations.Test;
 import util.array.ToObjectArray;
+import util.log.LoggerFactoryGET;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class Demo2 {
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LoggerFactoryGET.getLoggerFactory().getLoggerAll();
 
     @Test
     public void testArr(){
