@@ -7,8 +7,9 @@ import java.io.*;
 public class ExampleA {
 
     @Test
-    public void init()throws Exception{
-        testB(new FileInputStream("D:\\cache\\test\\aab.txt"),new FileOutputStream("D:\\cache\\test\\aab2.txt"));
+    public void init() throws Exception {
+        testB(new FileInputStream("D:\\cache\\test\\aab.txt"), new FileOutputStream("D:\\cache\\test\\aab2.txt"));
+        testC("D:\\cache\\test\\联系信息.docx", "D:\\cache\\test\\联系信息3.docx");
     }
 
     @Test
@@ -43,7 +44,7 @@ public class ExampleA {
      * @Version:1.0
      */
     public void testB(InputStream input, OutputStream out) throws Exception {
-        int count = 10;
+        int count = 5;
         byte[] bytes = new byte[count];
         int len = -1;
         while ((len = input.read(bytes)) != -1) {
@@ -52,5 +53,19 @@ public class ExampleA {
         input.close();
         out.flush();
         out.close();
+    }
+
+    public void testC(String input, String output) throws Exception {
+        FileInputStream inputStream = null;
+        FileOutputStream outputStream = null;
+        inputStream = new FileInputStream(input);
+        outputStream = new FileOutputStream(output);
+        byte[] bytes = new byte[4];
+        while ((inputStream.read(bytes, 0, bytes.length)) != -1) {
+            outputStream.write(bytes, 0, bytes.length);
+        }
+        outputStream.flush();
+        outputStream.close();
+        inputStream.close();
     }
 }
