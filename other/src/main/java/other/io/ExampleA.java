@@ -3,7 +3,12 @@ package other.io;
 import org.testng.annotations.Test;
 
 import java.io.*;
-
+/**
+ * @Description:文件简单操作
+ * @Author:zch
+ * @CreateDate:22:19 2018/10/9
+ * @Version:1.0
+ */
 public class ExampleA {
 
     @Test
