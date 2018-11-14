@@ -1,6 +1,7 @@
 package other.base.dateType;
 
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;

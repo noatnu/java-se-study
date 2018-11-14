@@ -1,7 +1,7 @@
 package jdbc.encryption_and_decryption;
 
 
-import help.Zhou_StdRandom;
+import tool.help.Zhou_StdRandom;
 
 import java.util.Arrays;
 

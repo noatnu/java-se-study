@@ -1,7 +1,7 @@
 package other.nio.example;
 
-import org.testng.annotations.Test;
-import util.log.LogUtilA;
+import org.junit.jupiter.api.Test;
+import tool.log.LogUtilA;
 
 import java.nio.ByteBuffer;
 import java.util.logging.Level;

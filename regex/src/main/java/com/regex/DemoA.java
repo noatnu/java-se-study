@@ -1,8 +1,8 @@
 package com.regex;
 
 
-import help.Zhou_StdRandom;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import tool.help.Zhou_StdRandom;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;

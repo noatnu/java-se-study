@@ -1,7 +1,7 @@
 package other.base.operator;
 
-import help.Zhou_StdRandom;
-import util.log.LoggerFactoryGET;
+import tool.help.Zhou_StdRandom;
+import tool.log.LoggerFactoryGET;
 
 import java.util.Random;
 import java.util.logging.Logger;

@@ -2,8 +2,9 @@ package jdbc.nio.channels;
 
 
 
-import help.Zhou_String;
-import help.Zhou_Word;
+
+import tool.help.Zhou_String;
+import tool.help.Zhou_Word;
 
 import java.io.*;
 import java.nio.ByteBuffer;

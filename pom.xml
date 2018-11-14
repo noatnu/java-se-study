@@ -16,6 +16,7 @@
         <module>utils</module>
     </modules>
 
+
     <!-- 锁定版本 -->
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,28 +25,20 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- spring版本号 5.1.21  6.0.6-->
         <spring.version>4.2.4.RELEASE</spring.version>
-        <shiro.version>1.4.0</shiro.version>
         <mysql.version>6.0.6</mysql.version>
-        <socket.version>1.0.0</socket.version>
-        <poi.version>3.9</poi.version>
-        <activiti.version>5.15.1</activiti.version>
-        <utils.version>1.00</utils.version>
-
-        <SE_pojo.version>1.29</SE_pojo.version>
-        <SE_interface.version>1.29</SE_interface.version>
     </properties>
+
 
     <dependencies>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <!-- JSR303 hibernate-validator -->
@@ -61,13 +54,6 @@
             <version>1</version>
         </dependency>
         <!-- 日志 -->
-        <!-- slf4j-log4j12 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
-        </dependency>
         <!-- slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -80,28 +66,140 @@
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.3</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+
+        <!-- apache jar -->
+        <!-- Apache Commons BeanUtils 处理属性 -->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <!-- ObjectUtils,RandomUtils,SystemUtils,StringUtils -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+        <!-- commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <!-- list set map 等 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+        <!-- 上传支持 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <!-- commons-io 工具类包括FileUtils、IOUtils、FilenameUtils和FileSystemUtils-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <!-- commons-pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <!-- commons-compress apache的压缩包 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.18</version>
+        </dependency>
+        <!-- commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- commons-math3 科学计算类库 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+        <!-- commons-text 处理文本 字符串 文本算法等 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <!-- commons-csv 处理csv 类型文件 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <!-- commons-email 处理邮件 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.5</version>
+        </dependency>
+        <!-- commons-proxy 动态代理 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-proxy</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <!-- httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.10</version>
+        </dependency>
+        <!-- httpmime -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <!-- fluent-hc -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <!-- httpasyncclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.1.4</version>
+        </dependency>
+        <!-- httpclient-osgi -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-osgi</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <!-- httpcore-nio -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore-nio</artifactId>
+            <version>4.4.10</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.google.api/api-common -->
         <dependency>
             <groupId>com.google.api</groupId>
@@ -126,33 +224,11 @@
             <artifactId>joda-time</artifactId>
             <version>2.1</version>
         </dependency>
+        <!-- quartz 任务日程管理系统 定时器 -->
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <!-- 上传支持 -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-csv</artifactId>
-            <version>1.5</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>4.3</version>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.0</version>
         </dependency>
         <!-- 读取字节码包 -->
         <dependency>
@@ -172,11 +248,17 @@
             <artifactId>pinyin4j</artifactId>
             <version>2.5.0</version>
         </dependency>
-        <!-- cglib -->
+        <!-- cglib 动态代理 -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.6</version>
+        </dependency>
+        <!--FASTJSON是当今处理json效率最高的json处理工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.41</version>
         </dependency>
     </dependencies>
 
@@ -188,25 +270,6 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>3.1.0</version>
             </dependency>
-            <!-- 假如要考虑用maven 并且使用maven plugin那么必须去掉这两个servlet -->
-            <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>javax.servlet.jsp-api</artifactId>
-                <version>2.3.1</version>
-            </dependency>
-            <!-- jstl -->
-            <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>taglibs</groupId>
-                <artifactId>standard</artifactId>
-                <version>1.1.2</version>
-            </dependency>
-
-
             <!-- 整合spring框架 -->
             <!-- spring start -->
             <dependency>
@@ -246,6 +309,16 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-websocket</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-messaging</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -276,22 +349,6 @@
                 <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jms</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-commons</artifactId>
-                <version>2.0.3.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>2.0.3.RELEASE</version>
-            </dependency>
-            <!-- spring end -->
 
             <!-- aspectj相关jar包 -->
             <dependency>
@@ -321,48 +378,6 @@
                 <artifactId>jackson-annotations</artifactId>
                 <version>2.7.4</version>
             </dependency>
-            <!-- jackson xml start -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-xml</artifactId>
-                <version>2.7.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-mapper-asl</artifactId>
-                <version>1.9.13</version>
-            </dependency>
-            <dependency>
-                <groupId>org.json</groupId>
-                <artifactId>json</artifactId>
-                <version>20160212</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.woodstox</groupId>
-                <artifactId>woodstox-core-asl</artifactId>
-                <version>4.4.1</version>
-            </dependency>
-            <!-- jackson xml end -->
-
-            <!-- dubbo -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>2.5.3</version>
-            </dependency>
-            <!-- zookeeper -->
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>3.4.10</version>
-                <type>pom</type>
-            </dependency>
-            <!-- zkclient -->
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>0.10</version>
-            </dependency>
 
             <!-- el表达式 -->
             <dependency>
@@ -376,99 +391,11 @@
                 <version>2.2.4</version>
             </dependency>
 
-            <!-- shiro -->
-            <!-- shiro start -->
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-core</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-web</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-ehcache</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-guice</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-quartz</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-cas</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-aspectj</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <!-- shiro end -->
-
-            <!-- 整合mybatis和mybatis和spring整合包 -->
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>3.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-spring</artifactId>
-                <version>1.2.0</version>
-            </dependency>
-
-            <!-- hibernate-core -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>4.3.10.Final</version>
-            </dependency>
-            <!-- hibernate-entitymanager -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>4.3.10.Final</version>
-            </dependency>
-            <!-- hibernate-jpa-2.1-api -->
-            <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>1.0.0.Final</version>
-            </dependency>
-
             <!-- mysql -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
-            </dependency>
-            <!-- postgresql -->
-            <dependency>
-                <groupId>postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>9.1-901-1.jdbc4</version>
-            </dependency>
-            <!-- sqlserver -->
-            <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>mssql-jdbc</artifactId>
-                <version>6.4.0.jre8</version>
-                <scope>test</scope>
             </dependency>
             <!-- c3p0 连接池 -->
             <dependency>
@@ -482,93 +409,11 @@
                 <artifactId>druid</artifactId>
                 <version>1.1.9</version>
             </dependency>
-
-            <!-- quartz -->
+            <!-- 连接池 -->
             <dependency>
-                <groupId>org.quartz-scheduler</groupId>
-                <artifactId>quartz</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-
-            <!-- 模板引擎 -->
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity</artifactId>
-                <version>1.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-tools</artifactId>
-                <version>1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>2.3.26-incubating</version>
-            </dependency>
-            <!-- thymeleaf-spring4 -->
-            <dependency>
-                <groupId>org.thymeleaf</groupId>
-                <artifactId>thymeleaf-spring4</artifactId>
-                <version>3.0.7.RELEASE</version>
-            </dependency>
-            <!-- thymeleaf -->
-            <dependency>
-                <groupId>org.thymeleaf</groupId>
-                <artifactId>thymeleaf</artifactId>
-                <version>3.0.7.RELEASE</version>
-            </dependency>
-
-            <!-- poi start -->
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-scratchpad</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml-schemas</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jexcelapi</groupId>
-                <artifactId>jxl</artifactId>
-                <version>2.4.2</version>
-            </dependency>
-            <!-- poi end -->
-
-            <!-- ehcache -->
-            <dependency>
-                <groupId>net.sf.ehcache</groupId>
-                <artifactId>ehcache</artifactId>
-                <version>2.10.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-ehcache</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <!-- hibernate-ehcache -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-ehcache</artifactId>
-                <version>4.3.10.Final</version>
-            </dependency>
-
-            <dependency>
-                <groupId>jfree</groupId>
-                <artifactId>jfreechart</artifactId>
-                <version>1.0.13</version>
+                <groupId>com.jolbox</groupId>
+                <artifactId>bonecp-spring</artifactId>
+                <version>0.8.0.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

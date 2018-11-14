@@ -3,7 +3,7 @@ package org.sort;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import util.array.ToArray;
+import tool.array.ToArray;
 
 import java.util.Arrays;
 

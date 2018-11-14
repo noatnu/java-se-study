@@ -1,6 +1,5 @@
 package other.jdbc.dao;
 
-import org.apache.ibatis.jdbc.SQL;
 import other.jdbc.domin.User;
 
 import java.sql.SQLException;

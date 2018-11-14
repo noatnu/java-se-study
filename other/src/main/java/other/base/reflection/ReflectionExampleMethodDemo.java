@@ -1,7 +1,7 @@
 package other.base.reflection;
 
 import org.springframework.util.ObjectUtils;
-import util.log.LoggerFactoryGET;
+import tool.log.LoggerFactoryGET;
 
 import java.lang.reflect.Method;
 import java.util.logging.Logger;

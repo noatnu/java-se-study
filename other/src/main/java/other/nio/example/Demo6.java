@@ -1,6 +1,7 @@
 package other.nio.example;
 
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.nio.ByteBuffer;
 import java.util.Random;

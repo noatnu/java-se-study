@@ -27,6 +27,12 @@
             <version>${utils}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.3</version>
+        </dependency>
+
         <!-- 整合spring框架 -->
         <!-- spring start -->
         <dependency>

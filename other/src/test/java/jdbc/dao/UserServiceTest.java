@@ -1,10 +1,10 @@
 package jdbc.dao;
 
-import help.Zhou_StdRandom;
-import help.Zhou_Word;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import other.jdbc.domin.User;
 import other.jdbc.service.UserService;
+import tool.help.Zhou_StdRandom;
+import tool.help.Zhou_Word;
 
 import java.util.ArrayList;
 import java.util.List;

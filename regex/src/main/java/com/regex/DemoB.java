@@ -1,7 +1,8 @@
 package com.regex;
 
-import org.testng.annotations.Test;
-import util.log.LoggerFactoryGET;
+
+import org.junit.jupiter.api.Test;
+import tool.log.LoggerFactoryGET;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;

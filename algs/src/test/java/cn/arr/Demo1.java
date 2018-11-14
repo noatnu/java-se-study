@@ -1,8 +1,8 @@
 package cn.arr;
 
 import org.testng.annotations.Test;
-import util.array.ToArray;
-import util.log.LoggerFactoryGET;
+import tool.array.ToArray;
+import tool.log.LoggerFactoryGET;
 
 import java.util.Arrays;
 import java.util.logging.Logger;
