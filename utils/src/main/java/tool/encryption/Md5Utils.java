@@ -1,4 +1,4 @@
-package tool.utils;
+package tool.encryption;
 
 import org.apache.http.Consts;
 import org.slf4j.Logger;

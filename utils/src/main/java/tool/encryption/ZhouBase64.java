@@ -1,4 +1,4 @@
-package tool.help;
+package tool.encryption;
 
 import java.io.Serializable;
 import java.util.Base64;
