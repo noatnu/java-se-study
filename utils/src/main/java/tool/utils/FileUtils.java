@@ -1,18 +1,161 @@
 package tool.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * 描述:普通文件操作类
  *
- * @author: Calvin(qiudong@copowercpa.com)
+ * @author:zch
  * @data: 2017/8/11
  * @time: 14:37
  */
 public class FileUtils {
+
+    /**
+     * Demo3Table.class demo3table
+     *
+     * @param c
+     * @param polymerize
+     * @return
+     */
+    public static String getTestDataDirAddClassPath(Class<?> c, String polymerize) {
+        File dir = new File(System.getProperty("user.dir"));
+        StringBuilder builder = new StringBuilder(128);
+        if (StringUtils.isNotBlank(polymerize)) {
+            builder.append(dir.toString()).append(File.separator).append(polymerize).append("\\").append("src").append("\\test\\java\\");
+        } else {
+            builder.append(dir.toString()).append(File.separator).append("src").append("\\test\\java\\");
+        }
+        int i = 0;
+        for (String s : c.getName().split("\\.")) {
+            i++;
+            if (i == c.getName().split("\\.").length) {
+                builder.append(s.toLowerCase()).append("\\");
+            } else {
+                builder.append(s).append("\\");
+            }
+        }
+        dir = new File(builder.toString());
+        if (!dir.isDirectory()) {
+            dir.mkdir();
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Demo3Table.class utils
+     *
+     * @param c
+     * @param polymerize
+     * @return
+     */
+    public static String getTestDataDir(Class<?> c, String polymerize) {
+        File dir = new File(System.getProperty("user.dir"));
+        StringBuilder builder = new StringBuilder(128);
+        if (StringUtils.isNotBlank(polymerize)) {
+            builder.append(dir.toString()).append(File.separator).append(polymerize).append("\\").append("src").append("\\test\\java\\");
+        } else {
+            builder.append(dir.toString()).append(File.separator).append("src").append("\\test\\java\\");
+        }
+        int i = 0;
+        for (String s : c.getName().split("\\.")) {
+            i++;
+            if (i == c.getName().split("\\.").length) {
+
+            } else {
+                builder.append(s).append("\\");
+            }
+        }
+        dir = new File(builder.toString());
+        if (!dir.isDirectory()) {
+            dir.mkdir();
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Demo3Table.class utils
+     *
+     * @param c
+     * @param polymerize
+     * @return
+     */
+    public static String getMainDataDir(Class<?> c, String polymerize) {
+        File dir = new File(System.getProperty("user.dir"));
+        StringBuilder builder = new StringBuilder(128);
+        if (StringUtils.isNotBlank(polymerize)) {
+            builder.append(dir.toString()).append(File.separator).append(polymerize).append("\\").append("src").append("\\main\\java\\");
+        } else {
+            builder.append(dir.toString()).append(File.separator).append("src").append("\\main\\java\\");
+        }
+        int i = 0;
+        for (String s : c.getName().split("\\.")) {
+            i++;
+            if (i == c.getName().split("\\.").length) {
+
+            } else {
+                builder.append(s).append("\\");
+            }
+        }
+        dir = new File(builder.toString());
+        if (!dir.isDirectory()) {
+            dir.mkdir();
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 功能:压缩多个文件成一个zip文件
+     *
+     * @param srcFile：源文件列表
+     * @param zipFile：压缩后的文件
+     */
+    public static void zipFiles(File[] srcFile, File zipFile) throws Exception {
+        byte[] buf = new byte[1024];
+        //ZipOutputStream类：完成文件或文件夹的压缩
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFile));
+        for (int i = 0; i < srcFile.length; i++) {
+            FileInputStream in = new FileInputStream(srcFile[i]);
+            out.putNextEntry(new ZipEntry(srcFile[i].getName()));
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            out.closeEntry();
+            in.close();
+        }
+        out.close();
+    }
+
+
+    /**
+     * 注意： 该方法适用的图片格式为 bmp/gif/jpg/png
+     *
+     * @param path
+     * @return
+     */
+    public static boolean checkImgSuffix(String path) {
+        File file = new File(path);
+        try {
+            // 通过ImageReader来解码这个file并返回一个BufferedImage对象
+            // 如果找不到合适的ImageReader则会返回null，我们可以认为这不是图片文件
+            // 或者在解析过程中报错，也返回false
+            Image image = ImageIO.read(file);
+            return image != null;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
+
     /**
      * 保存文件到硬盘指定目录
      *
@@ -293,7 +436,7 @@ public class FileUtils {
     public static String getExtName(String s, char split) {
         int i = s.lastIndexOf(split);
         int leg = s.length();
-        return (i > 0 ? (i + 1) == leg ? " " : s.substring(i+1, s.length()) : " ");
+        return (i > 0 ? (i + 1) == leg ? " " : s.substring(i + 1, s.length()) : " ");
     }
 
     /**
@@ -362,6 +505,7 @@ public class FileUtils {
 
     /**
      * 创建不重复的文件名称
+     *
      * @param suffix
      * @return
      */

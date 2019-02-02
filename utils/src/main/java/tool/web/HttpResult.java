@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import tool.other.JsonUtils;
+import tool.utils.JsonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
