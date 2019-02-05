@@ -7,7 +7,7 @@ import tool.array.ToArray;
 
 import java.util.Arrays;
 
-public class SortUtils {
+public class SortTest {
 //    int[] arr = ToArray.getToArray().setSize(100000).setStart(1).setEnd(1000000).toIntArray();
     int[] arr = ToArray.toFinalArray();
     long start = 0;
