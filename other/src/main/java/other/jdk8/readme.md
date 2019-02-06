@@ -69,3 +69,40 @@ __map__
  List<String> names = students.parallelStream().sorted().filter(student -> "计算机科学".equals(student.getMajor())).map(student -> student.getName()).collect(Collectors.toList());
  System.out.println(names);
 ```
+__flatMap__
+> flatMap与map的区别在于 flatMap是将一个流中的每个值都转成一个个流，然后再将这些流扁平化成为一个流 。
+```
+String[] strs = {"java8", "is", "easy", "to", "use"};
+List<String> distinctStrs = Arrays.stream(strs)
+        .map(s -> s.split("")).flatMap(strings -> Arrays.stream(strings))// 映射成为Stream<String[]>
+        .distinct().collect(Collectors.toList()); // 扁平化为Stream<String>
+System.out.println(distinctStrs);
+```
+
+## 三:终端操作
+__allMatch__
+> allMatch用于检测是否全部都满足指定的参数行为，如果全部满足则返回true，例如我们希望检测是否所有的学生都已满18周岁，那么可以实现为
+```
+boolean isAdult = students.parallelStream().allMatch(student -> student.getAge() >= 18);
+System.out.println(isAdult?"是":"否");
+```
+__anyMatch__
+> anyMatch则是检测是否存在一个或多个满足指定的参数行为，如果满足则返回true，例如我们希望检测是否有来自武汉大学的学生，那么可以实现为：
+```
+ boolean hasWhu = students.parallelStream().anyMatch(student -> "武汉大学".equals(student.getSchool()));
+ System.out.println(hasWhu?"是":"否");
+```
+
+__noneMathch__
+> noneMatch用于检测是否不存在满足指定行为的元素，如果不存在则返回true，例如我们希望检测是否不存在专业为计算机科学的学生，可以实现如下：
+```
+ boolean noneCs = students.parallelStream().noneMatch(student -> "计算机科学".equals(student.getMajor()));
+ System.out.println(noneCs?"是":"否");
+```
+
+__findFirst__
+> findFirst用于返回满足条件的第一个元素，比如我们希望选出专业为土木工程的排在第一个学生，那么可以实现如下：
+```
+Optional<Student> optStu = students.stream().filter(student -> "土木工程".equals(student.getMajor())).findFirst();
+System.out.println(optStu.get());
+```
