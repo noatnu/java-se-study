@@ -16,6 +16,12 @@ import java.util.stream.Collectors;
  **/
 public class ExampleB {
 
+    public static void main(String[] args) {
+        double a  = 86852572;
+        double b  = 52872280;
+        System.out.println(a-b);
+    }
+
     // 初始化
     List<Student> students = new ArrayList<Student>() {
         {
