@@ -1,6 +1,7 @@
 package other.jdk8.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @Author noatn
@@ -105,5 +106,24 @@ public class Student implements Serializable, Comparable<Student> {
         sb.append(", school='").append(school).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return id == student.id &&
+                age == student.age &&
+                grade == student.grade &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(major, student.major) &&
+                Objects.equals(school, student.school);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, age, grade, major, school);
     }
 }
