@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * 描述:
  *
- * @author: Calvin(qiudong@copowercpa.com)
+ * @author: Calvin(qiudong @ copowercpa.com)
  * @data: 2017/7/26
  * @time: 10:19
  */

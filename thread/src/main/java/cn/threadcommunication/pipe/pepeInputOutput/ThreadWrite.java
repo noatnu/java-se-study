@@ -2,7 +2,7 @@ package cn.threadcommunication.pipe.pepeInputOutput;
 
 import java.io.PipedOutputStream;
 
-public class ThreadWrite extends Thread{
+public class ThreadWrite extends Thread {
     private WriteData writeData;
     private PipedOutputStream out;
 

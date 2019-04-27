@@ -18,7 +18,7 @@ public class DemoR {
  线程名称为：A在1521787603731离开printA
  线程名称为：B在1521787603731进入printB
  线程名称为：B在1521787603731离开printB
-同样是异步说明锁的是class
+ 同样是异步说明锁的是class
  */
     }
 

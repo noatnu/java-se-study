@@ -20,15 +20,10 @@ import java.util.concurrent.*;
  */
 public class ShareableThreadPoolExecutor implements ExecutorService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ShareableThreadPoolExecutor.class);
-
     public static final int DEFAULT_MAX_POOL_SIZE = 64; // 默认64线程
     public static final int DEFAULT_KEEPALIVE_SECONDS = 60; // 默认1分钟idle
-
-    private final ThreadPoolExecutor executor;
-
+    private static final Logger logger = LoggerFactory.getLogger(ShareableThreadPoolExecutor.class);
     private static final BlockingQueue<Runnable> UNBOUNDED_WORK_QUEUE = new LinkedBlockingQueue<>(Integer.MAX_VALUE);
-
     private static final Supplier<ShareableThreadPoolExecutor> DEFAULT_EXECUTOR = Suppliers
             .memoize(new Supplier<ShareableThreadPoolExecutor>() {
                 @Override
@@ -38,6 +33,7 @@ public class ShareableThreadPoolExecutor implements ExecutorService {
                     return executor;
                 }
             });
+    private final ThreadPoolExecutor executor;
 
     public ShareableThreadPoolExecutor(int maxPoolSize, int keepaliveSeconds, String threadNamePrefix) {
         ThreadFactory factory = new CustomizableThreadFactory(threadNamePrefix);

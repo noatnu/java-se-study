@@ -22,7 +22,7 @@ public class OpenCsvExampleA {
      * @Version:1.0
      */
     @Test
-    public static void testA(){
+    public static void testA() {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter("D:\\csv\\yourFile.csv"), '\t');
             // feed in your array (or convert your data to an array)
@@ -41,13 +41,13 @@ public class OpenCsvExampleA {
      * @Version:1.0
      */
     @Test
-    public static void testB(){
+    public static void testB() {
         try {
             CSVReader reader = new CSVReader(new FileReader("D:\\csv\\yourFile.csv"));
-            String [] nextLine;
+            String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 // nextLine[] is an array of values from the line
-                System.out.println(nextLine[0]  + "etc...");
+                System.out.println(nextLine[0] + "etc...");
             }
         } catch (Exception e) {
             e.printStackTrace();

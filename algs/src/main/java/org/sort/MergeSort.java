@@ -3,20 +3,19 @@ package org.sort;
 public class MergeSort {
 
     /**
-     *
      * @param a
      * @param s
      * @param len 每次归并的有序集合的长度
      */
-    public static void mergeSort(int[] a, int s, int len){
+    public static void mergeSort(int[] a, int s, int len) {
         int size = a.length;
-        int mid = size / (len<<1);
-        int c = size & ((len<<1) -1);
+        int mid = size / (len << 1);
+        int c = size & ((len << 1) - 1);
         //　-------归并到只剩一个有序集合的时候结束算法-------//
-        if (mid==0)return;
+        if (mid == 0) return;
         //　------进行一趟归并排序-------//
         for (int i = 0; i < mid; ++i) {
-            s = i * 2 *len;
+            s = i * 2 * len;
             merge(a, s, s + len, (len << 1) + s - 1);
         }
         //　-------将剩下的数和倒数一个有序集合归并-------//
@@ -25,6 +24,7 @@ public class MergeSort {
         //　-------递归执行下一趟归并排序------//
         mergeSort(a, 0, 2 * len);
     }
+
     private static void merge(int[] a, int s, int m, int t) {
         int[] tmp = new int[t - s + 1];
         int i = s, j = m, k = 0;

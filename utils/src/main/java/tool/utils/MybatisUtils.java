@@ -45,6 +45,7 @@ public class MybatisUtils {
         }
         return example;
     }
+
     public static <T> T convertObj2Criteria(Object obj, T criteria) {
         Field[] declaredFields = obj.getClass().getDeclaredFields();
         for (Field field : declaredFields) {

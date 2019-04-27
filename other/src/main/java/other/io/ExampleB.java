@@ -17,26 +17,6 @@ import java.util.zip.ZipOutputStream;
  **/
 public class ExampleB {
 
-    @Test
-    public void testA() {
-        File[] files = {new File("E:\\doc\\test\\0d018.xlsx"), new File("E:\\doc\\test\\HouseExample.xlsx")};
-        File zip = new File("E:\\doc\\zip\\" + UUID.randomUUID().toString().substring(0, 5) + ".zip");
-        try {
-            zipFiles(files, zip);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testB() {
-        try {
-            unZipFiles(new File("E:\\doc\\zip\\e3140.zip"), "E:\\doc\\unzip\\");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * 功能:解压缩
      *
@@ -81,5 +61,25 @@ public class ExampleB {
             in.close();
         }
         out.close();
+    }
+
+    @Test
+    public void testA() {
+        File[] files = {new File("E:\\doc\\test\\0d018.xlsx"), new File("E:\\doc\\test\\HouseExample.xlsx")};
+        File zip = new File("E:\\doc\\zip\\" + UUID.randomUUID().toString().substring(0, 5) + ".zip");
+        try {
+            zipFiles(files, zip);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testB() {
+        try {
+            unZipFiles(new File("E:\\doc\\zip\\e3140.zip"), "E:\\doc\\unzip\\");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

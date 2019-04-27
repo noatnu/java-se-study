@@ -13,56 +13,60 @@ public class UserDaoImpl implements UserDao {
     private PreparedStatement pstmt = null;
     private Connection conn = null;
 
+    public UserDaoImpl() {
+    }
+
     /**
      * 事物保存点 回滚
+     *
      * @param user
      * @param username
      * @throws SQLException
      */
     @Override
-    public void insert(User user, String username)throws SQLException {
+    public void insert(User user, String username) throws SQLException {
         init();
         Savepoint savepointA = null;
         Savepoint savepointB = null;
         try {
             conn.setAutoCommit(false);
             savepointA = conn.setSavepoint("savepointA");
-            pstmt = conn.prepareStatement(SQLString.insert(),Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
-            pstmt.setString(1,user.getName());
-            pstmt.setString(2,user.getUsername());
-            pstmt.setString(3,user.getPassword());
-            pstmt.setString(4,user.getAddress());
-            pstmt.setString(5,user.getAccount());
-            pstmt.setString(6,user.getGroup());
-            pstmt.setString(7,user.getSex());
-            pstmt.setString(8,user.getJurisdiction());
-            pstmt.setString(9,user.getPermission());
-            pstmt.setString(10,user.getRole());
-            pstmt.setInt(11,user.getAge());
+            pstmt = conn.prepareStatement(SQLString.insert(), Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getUsername());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getAddress());
+            pstmt.setString(5, user.getAccount());
+            pstmt.setString(6, user.getGroup());
+            pstmt.setString(7, user.getSex());
+            pstmt.setString(8, user.getJurisdiction());
+            pstmt.setString(9, user.getPermission());
+            pstmt.setString(10, user.getRole());
+            pstmt.setInt(11, user.getAge());
             pstmt.executeUpdate();
-        }catch (SQLException e){
-            if (conn!=null)conn.rollback(savepointA);
-            System.out.println("事物点 归滚:"+e.getSQLState()+" "+e.getMessage());
+        } catch (SQLException e) {
+            if (conn != null) conn.rollback(savepointA);
+            System.out.println("事物点 归滚:" + e.getSQLState() + " " + e.getMessage());
         }
 
         try {
             savepointB = conn.setSavepoint("savepointB");
-            pstmt = conn.prepareStatement(SQLString.insert(),Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
-            pstmt.setString(1,user.getName());
-            pstmt.setString(2,username);
-            pstmt.setString(3,user.getPassword());
-            pstmt.setString(4,user.getAddress());
-            pstmt.setString(5,user.getAccount());
-            pstmt.setString(6,user.getGroup());
-            pstmt.setString(7,user.getSex());
-            pstmt.setString(8,user.getJurisdiction());
-            pstmt.setString(9,user.getPermission());
-            pstmt.setString(10,user.getRole());
-            pstmt.setInt(11,user.getAge());
+            pstmt = conn.prepareStatement(SQLString.insert(), Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, username);
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getAddress());
+            pstmt.setString(5, user.getAccount());
+            pstmt.setString(6, user.getGroup());
+            pstmt.setString(7, user.getSex());
+            pstmt.setString(8, user.getJurisdiction());
+            pstmt.setString(9, user.getPermission());
+            pstmt.setString(10, user.getRole());
+            pstmt.setInt(11, user.getAge());
             pstmt.executeUpdate();
-        }catch (Exception e){
-            if (conn!=null)conn.rollback(savepointB);
-            System.out.println("事物点 归滚:"+e.getMessage());
+        } catch (Exception e) {
+            if (conn != null) conn.rollback(savepointB);
+            System.out.println("事物点 归滚:" + e.getMessage());
         }
 
         conn.commit();
@@ -73,26 +77,27 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean insert(User user) throws SQLException {
         init();
-        pstmt = conn.prepareStatement(SQLString.insert(),Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
-        pstmt.setString(1,user.getName());
-        pstmt.setString(2,user.getUsername());
-        pstmt.setString(3,user.getPassword());
-        pstmt.setString(4,user.getAddress());
-        pstmt.setString(5,user.getAccount());
-        pstmt.setString(6,user.getGroup());
-        pstmt.setString(7,user.getSex());
-        pstmt.setString(8,user.getJurisdiction());
-        pstmt.setString(9,user.getPermission());
-        pstmt.setString(10,user.getRole());
-        pstmt.setInt(11,user.getAge());
+        pstmt = conn.prepareStatement(SQLString.insert(), Statement.RETURN_GENERATED_KEYS);//用占位符的SQl语句,返回自动生成的键的标志
+        pstmt.setString(1, user.getName());
+        pstmt.setString(2, user.getUsername());
+        pstmt.setString(3, user.getPassword());
+        pstmt.setString(4, user.getAddress());
+        pstmt.setString(5, user.getAccount());
+        pstmt.setString(6, user.getGroup());
+        pstmt.setString(7, user.getSex());
+        pstmt.setString(8, user.getJurisdiction());
+        pstmt.setString(9, user.getPermission());
+        pstmt.setString(10, user.getRole());
+        pstmt.setInt(11, user.getAge());
         int num = pstmt.executeUpdate();
         pstmt.close();
         end();
-        return num>0;
+        return num > 0;
     }
 
     /**
      * 事物回滚
+     *
      * @param user
      * @return
      * @throws SQLException
@@ -105,33 +110,33 @@ public class UserDaoImpl implements UserDao {
         try {
             conn.setAutoCommit(false);
             pstmt = conn.prepareStatement(SQLString.update());
-            pstmt.setString(++i+0,user.getRole());
-            pstmt.setString(++i+0,user.getUsername());
-            pstmt.setString(++i+0,user.getName());
-            pstmt.setString(++i+0,user.getSex());
-            pstmt.setString(++i+0,user.getAccount());
-            pstmt.setString(++i+0,user.getAddress());
-            pstmt.setString(++i+0,user.getGroup());
-            pstmt.setString(++i+0,user.getPassword());
-            pstmt.setString(++i+0,user.getJurisdiction());
-            pstmt.setString(++i+0,user.getPermission());
-            pstmt.setInt(++i+0,user.getAge());
-            pstmt.setDate(++i+0,user.getBirthday());
+            pstmt.setString(++i + 0, user.getRole());
+            pstmt.setString(++i + 0, user.getUsername());
+            pstmt.setString(++i + 0, user.getName());
+            pstmt.setString(++i + 0, user.getSex());
+            pstmt.setString(++i + 0, user.getAccount());
+            pstmt.setString(++i + 0, user.getAddress());
+            pstmt.setString(++i + 0, user.getGroup());
+            pstmt.setString(++i + 0, user.getPassword());
+            pstmt.setString(++i + 0, user.getJurisdiction());
+            pstmt.setString(++i + 0, user.getPermission());
+            pstmt.setInt(++i + 0, user.getAge());
+            pstmt.setDate(++i + 0, user.getBirthday());
 
-            pstmt.setString(++i+0,user.getId());
+            pstmt.setString(++i + 0, user.getId());
             num = pstmt.executeUpdate();
             int op = 0;
 //            System.out.println(9/op);
             //回滚事物!/ by zero
             conn.commit();
-        }catch (Exception e){
-            if (conn!=null)conn.rollback();
-            System.out.println("回滚事物!"+e.getMessage());
-        }finally {
+        } catch (Exception e) {
+            if (conn != null) conn.rollback();
+            System.out.println("回滚事物!" + e.getMessage());
+        } finally {
             pstmt.close();
             end();
         }
-        return num>0;
+        return num > 0;
     }
 
     @Override
@@ -139,11 +144,11 @@ public class UserDaoImpl implements UserDao {
         init();
         pstmt = conn.prepareStatement(SQLString.delete());
         int i = 0;
-        pstmt.setString(++i,id);
+        pstmt.setString(++i, id);
         i = pstmt.executeUpdate();
         pstmt.close();
         end();
-        return i>0;
+        return i > 0;
     }
 
     @Override
@@ -151,9 +156,9 @@ public class UserDaoImpl implements UserDao {
         User user = null;
         init();
         pstmt = conn.prepareStatement(SQLString.selectById());
-        pstmt.setString(1,id);
+        pstmt.setString(1, id);
         ResultSet rs = pstmt.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
             user = new User();
             int age = rs.getInt("age");
             user.setAge(age);
@@ -182,10 +187,10 @@ public class UserDaoImpl implements UserDao {
         User user = null;
         init();
         Statement stmt = null;
-        String sql = "SELECT * FROM `jdbc-user` u WHERE u.id='"+id+"'";
+        String sql = "SELECT * FROM `jdbc-user` u WHERE u.id='" + id + "'";
         stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()){
+        while (rs.next()) {
             user = new User();
             int age = rs.getInt("age");
             user.setAge(age);
@@ -216,7 +221,7 @@ public class UserDaoImpl implements UserDao {
         init();
         pstmt = conn.prepareStatement(SQLString.select());
         ResultSet rs = pstmt.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
             user = new User();
             int age = rs.getInt("age");
             user.setAge(age);
@@ -243,30 +248,31 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 批处理
+     *
      * @param users
      * @throws SQLException
      */
     @Override
-    public void batch(List<User> users)throws SQLException {
+    public void batch(List<User> users) throws SQLException {
         init();
         conn.setAutoCommit(false);
         pstmt = conn.prepareStatement(SQLString.insert());//用占位符的SQl语句
         User user = null;
-        for (int i = 0; i < users.size()-1; i++) {
+        for (int i = 0; i < users.size() - 1; i++) {
             user = users.get(i);
-            pstmt.setString(1,user.getName());
-            pstmt.setString(2,user.getUsername());
-            pstmt.setString(3,user.getPassword());
-            pstmt.setString(4,user.getAddress());
-            pstmt.setString(5,user.getAccount());
-            pstmt.setString(6,user.getGroup());
-            pstmt.setString(7,user.getSex());
-            pstmt.setString(8,user.getJurisdiction());
-            pstmt.setString(9,user.getPermission());
-            pstmt.setString(10,user.getRole());
-            pstmt.setInt(11,user.getAge());
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getUsername());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getAddress());
+            pstmt.setString(5, user.getAccount());
+            pstmt.setString(6, user.getGroup());
+            pstmt.setString(7, user.getSex());
+            pstmt.setString(8, user.getJurisdiction());
+            pstmt.setString(9, user.getPermission());
+            pstmt.setString(10, user.getRole());
+            pstmt.setInt(11, user.getAge());
             pstmt.addBatch();
-            if (i%100==0){//当100后执行一次
+            if (i % 100 == 0) {//当100后执行一次
                 pstmt.executeBatch();//执行批处理
             }
         }
@@ -276,18 +282,16 @@ public class UserDaoImpl implements UserDao {
         end();
     }
 
-    private void init(){
+    private void init() {
         threadLocal.set(ConnectionUtil.getConnectionUtil().getConnection());
         conn = threadLocal.get();
     }
 
-    private void end(){
+    private void end() {
         try {
-            if (!conn.isClosed())conn.close();
-        }catch (SQLException e){
+            if (!conn.isClosed()) conn.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    public UserDaoImpl(){}
 }

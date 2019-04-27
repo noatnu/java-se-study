@@ -13,6 +13,19 @@ public class FlowerTest implements Cloneable {
         this("alice");
     }
 
+    public static void main(String[] args) throws Exception {
+        FlowerTest flowerTest = FlowerTest.class.newInstance();
+        flowerTest.print();
+
+        FlowerTest flowerTest2 = (FlowerTest) flowerTest.clone();
+        flowerTest2.print();
+
+        flowerTest.name = "张三";
+
+        flowerTest2.print();
+        flowerTest.print();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,21 +41,8 @@ public class FlowerTest implements Cloneable {
     }
 
     public void print() {
-        System.out.println("FlowerTest.print " + name+" "+System.currentTimeMillis());
-        System.out.println("FlowerTest.print "+hashCode());
-    }
-
-    public static void main(String[] args) throws Exception{
-        FlowerTest flowerTest = FlowerTest.class.newInstance();
-        flowerTest.print();
-
-        FlowerTest flowerTest2 = (FlowerTest)flowerTest.clone();
-        flowerTest2.print();
-
-        flowerTest.name = "张三";
-
-        flowerTest2.print();
-        flowerTest.print();
+        System.out.println("FlowerTest.print " + name + " " + System.currentTimeMillis());
+        System.out.println("FlowerTest.print " + hashCode());
     }
 
 }

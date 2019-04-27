@@ -1,8 +1,8 @@
 package other.jdk8.example.stram;
 
 import com.google.common.collect.Lists;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import other.jdk8.entity.Student;
 import tool.help.Zhou_StdRandom;
 
@@ -51,50 +51,54 @@ public class ExampleA {
 
     /**
      * filter 过滤
+     *
      * @throws Exception
      */
     @Test
-    public void testB()throws Exception{
+    public void testB() throws Exception {
         List<Student> whuStudents = students.parallelStream().sorted().filter(student -> "武汉大学".equals(student.getSchool())).collect(Collectors.toList());
         whuStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
     /**
      * distinct 去除重复
+     *
      * @throws Exception
      */
     @Test
-    public void testC()throws Exception{
+    public void testC() throws Exception {
         List<Integer> numS = Lists.newArrayList();
         for (int i = 0; i < 1000; i++) {
             numS.add(Zhou_StdRandom.uniform(1, 24));
         }
-        List<Integer> evens = numS.parallelStream().sorted().filter(integer -> integer%2==0).distinct().collect(Collectors.toList());
+        List<Integer> evens = numS.parallelStream().sorted().filter(integer -> integer % 2 == 0).distinct().collect(Collectors.toList());
         System.out.println(evens);
     }
 
     /**
      * limit返回包含前n个元素的流，当集合大小小于n时，则返回实际长度
+     *
      * @throws Exception
      */
     @Test
-    public void testD()throws Exception{
+    public void testD() throws Exception {
         List<Student> civilStudents = students.parallelStream().sorted().filter(student -> "土木工程".equals(student.getMajor())).limit(2).collect(Collectors.toList());
         civilStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
     /**
      * skip skip操作与limit操作相反，如同其字面意思一样，是跳过前n个元素
+     *
      * @throws Exception
      */
     @Test
-    public void testE()throws Exception{
+    public void testE() throws Exception {
         List<Student> civilStudents = students.parallelStream().sorted().filter(student -> "土木工程".equals(student.getMajor())).skip(2).collect(Collectors.toList());
         civilStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
-    @BeforeTest
-    public void before(){
+    @BeforeAll
+    public void before() {
 
     }
 

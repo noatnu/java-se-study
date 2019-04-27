@@ -7,11 +7,11 @@ public class BreakTest {
 
     public static void tOOg() {
         int i = 0;
-        while (i<100){
+        while (i < 100) {
             i++;
-            System.out.println("i:"+i);
-            if (i==50)break;
+            System.out.println("i:" + i);
+            if (i == 50) break;
         }
-        return ;
+        return;
     }
 }

@@ -1,12 +1,13 @@
 package jdbc.nio.channels;
 
 
-
-
 import tool.help.Zhou_String;
 import tool.help.Zhou_Word;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
@@ -17,17 +18,17 @@ import java.nio.channels.WritableByteChannel;
  * Created by zhou on 17-12-24.
  */
 public class FileLockDemo {
+    protected final String NAME_LOCK = "lockFileLockDemo.txt";
     private final int size = 10;//
     private final long time = 2000;
-    protected final String NAME_LOCK = "lockFileLockDemo.txt";
 
     public static void main(String[] args) throws IOException {
         FileLockDemo lockDemo = new FileLockDemo();
         Runnable runnable = lockDemo.isWriteLock();
         Thread thread = new Thread(runnable, "线程1");
 //        thread.start();
-        Thread t1 = new Thread(lockDemo.isReadable(),"xx");
-        Thread t2 = new Thread(lockDemo.isReadable(),"yy");
+        Thread t1 = new Thread(lockDemo.isReadable(), "xx");
+        Thread t2 = new Thread(lockDemo.isReadable(), "yy");
 //        t1.start();
 //        t2.start();
         for (int i = 0; i < 10; i++) {
@@ -35,7 +36,7 @@ public class FileLockDemo {
         }
     }
 
-    public final Runnable isReadable(){
+    public final Runnable isReadable() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -45,21 +46,21 @@ public class FileLockDemo {
                     FileChannel channel = in.getChannel();
                     FileLock fileLock;
 //                    fileLock = channel.lock(0,1000,false);//如果是独占锁则没有一个能获取到锁
-                    fileLock = channel.tryLock(0,1000,true);//共享锁,则可以有一个能捕获到IO锁
+                    fileLock = channel.tryLock(0, 1000, true);//共享锁,则可以有一个能捕获到IO锁
 //                    fileLock = channel.lock(0,Long.MAX_VALUE,true);//不能这样设置
                     ByteBuffer buffer = ByteBuffer.allocate(100);
                     WritableByteChannel writableByteChannel = Channels.newChannel(System.out);
-                    while ((channel.read(buffer))!=-1){
+                    while ((channel.read(buffer)) != -1) {
                         buffer.flip();
                         writableByteChannel.write(buffer);
-                        if (buffer.hasRemaining())writableByteChannel.write(buffer);
+                        if (buffer.hasRemaining()) writableByteChannel.write(buffer);
                         buffer.clear();
                         Thread.sleep(time);
                         System.out.println("休眠中!");
                         fileLock.release();
                     }
-                }catch (Exception ex){
-                    System.out.println("Exception "+ex.getMessage());
+                } catch (Exception ex) {
+                    System.out.println("Exception " + ex.getMessage());
                     ex.printStackTrace();
                 }
             }
@@ -81,7 +82,7 @@ public class FileLockDemo {
                     long start = System.currentTimeMillis();
                     for (int i = 0; i < size; i++) {
                         buffer.put(
-                                (Zhou_String.toOther(9)+"    "+Zhou_Word.getEnglishName() + " " + Zhou_Word.getChineseName_Random() + "\n"
+                                (Zhou_String.toOther(9) + "    " + Zhou_Word.getEnglishName() + " " + Zhou_Word.getChineseName_Random() + "\n"
                                 ).getBytes("UTF-8"));
                         buffer.flip();
                         channel.write(buffer);
@@ -90,8 +91,8 @@ public class FileLockDemo {
                         }
                         buffer.clear();
                     }
-                    long end = (System.currentTimeMillis()-start)/1000;
-                    System.out.println("write is time: "+end+" ;开始休眠!");
+                    long end = (System.currentTimeMillis() - start) / 1000;
+                    System.out.println("write is time: " + end + " ;开始休眠!");
                     Thread.sleep(time);
                     fileLock.release();//释放锁
                     System.out.println("put data is end!");

@@ -2,6 +2,7 @@ package cn.volatilePack.t1;
 
 public class RunThread extends Thread {
     volatile private boolean isRunable = true;
+
     public boolean isRunable() {
         return isRunable;
     }
@@ -13,9 +14,9 @@ public class RunThread extends Thread {
     @Override
     public void run() {
         System.out.println("进入run了");
-        while (isRunable){
+        while (isRunable) {
             System.out.println("很好啊!");
         }
-        System.out.println("RunThread.run"+"线程被停止了");
+        System.out.println("RunThread.run" + "线程被停止了");
     }
 }

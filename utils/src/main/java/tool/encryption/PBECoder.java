@@ -15,7 +15,7 @@ import java.util.Random;
 public abstract class PBECoder extends Coder {
     /**
      * 支持以下任意一种算法
-     *
+     * <p>
      * <pre>
      * PBEWithMD5AndDES
      * PBEWithMD5AndTripleDES
@@ -55,9 +55,9 @@ public abstract class PBECoder extends Coder {
     /**
      * 加密
      *
-     * @param data 数据
+     * @param data     数据
      * @param password 密码
-     * @param salt  盐
+     * @param salt     盐
      * @return
      * @throws Exception
      */
@@ -77,9 +77,9 @@ public abstract class PBECoder extends Coder {
     /**
      * 解密
      *
-     * @param data  数据
+     * @param data     数据
      * @param password 密码
-     * @param salt  盐
+     * @param salt     盐
      * @return
      * @throws Exception
      */

@@ -19,7 +19,7 @@ public class BufferFillDrain {
 
     public static void main(String[] args) throws IOException {
         CharBuffer buffer = CharBuffer.allocate(100);
-        while (fillDrain(buffer)){
+        while (fillDrain(buffer)) {
             buffer.flip();
             drainBuffer(buffer);
             buffer.clear();
@@ -28,24 +28,26 @@ public class BufferFillDrain {
 
     /**
      * 填充
+     *
      * @param buffer
      * @return
      */
     public static boolean fillDrain(CharBuffer buffer) {
-        if (index>=strings.length)return false;
+        if (index >= strings.length) return false;
         String string = strings[index++];
         for (int i = 0; i < string.length(); i++) {
             buffer.put(string.charAt(i));
         }
-        return  true;
+        return true;
     }
 
     /**
      * 释放
+     *
      * @param buffer
      */
-    private static void drainBuffer (CharBuffer buffer){
-        while (buffer.hasRemaining()){
+    private static void drainBuffer(CharBuffer buffer) {
+        while (buffer.hasRemaining()) {
             System.out.print(buffer.get());
         }
         System.out.println();

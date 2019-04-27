@@ -20,19 +20,30 @@ import java.util.concurrent.CountDownLatch;
 @Lazy(false)
 public class SpringContextUtils implements ApplicationContextAware {
 
+    /**
+     * 使用闭锁来管理当spring容器还没有启动的时候被调用的问题
+     */
+    public static final CountDownLatch latch = new CountDownLatch(1);
     private final static Logger logger = LoggerFactory.getLogger(SpringContextUtils.class);
-
     // Spring应用上下文环境
     private static ApplicationContext applicationContext;
-
-    /** 使用闭锁来管理当spring容器还没有启动的时候被调用的问题 */
-    public static final CountDownLatch latch = new CountDownLatch(1);
 
     /**
      * @return ApplicationContext
      */
     public static ApplicationContext getApplicationContext() {
         return SpringContextUtils.applicationContext;
+    }
+
+    /**
+     * 实现ApplicationContextAware接口的回调方法，设置上下文环境
+     *
+     * @param applicationContext
+     */
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        SpringContextUtils.initialize(applicationContext);
+        latch.countDown();
     }
 
     /**
@@ -78,17 +89,6 @@ public class SpringContextUtils implements ApplicationContextAware {
      */
     private static void initialize(ApplicationContext applicationContext) {
         SpringContextUtils.applicationContext = applicationContext;
-    }
-
-    /**
-     * 实现ApplicationContextAware接口的回调方法，设置上下文环境
-     *
-     * @param applicationContext
-     */
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        SpringContextUtils.initialize(applicationContext);
-        latch.countDown();
     }
 
 }

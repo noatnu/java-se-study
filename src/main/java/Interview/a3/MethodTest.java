@@ -2,7 +2,7 @@ package Interview.a3;
 
 public class MethodTest {
 
-    public void f(){
+    public void f() {
 
     }
 
@@ -10,7 +10,7 @@ public class MethodTest {
 //
 //    }
 
-    public void f(int o){
+    public void f(int o) {
 
     }
 
@@ -18,15 +18,15 @@ public class MethodTest {
 //
 //    }
 
-    public void f(String s,int o){
+    public void f(String s, int o) {
 
     }
 
-    public void f(int o,String s){
+    public void f(int o, String s) {
 
     }
 
-    public void f(Object...o){
+    public void f(Object... o) {
 
     }
     /**

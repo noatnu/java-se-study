@@ -30,16 +30,16 @@ public class DirectBuffer {
 
     /**
      * 直接 ByteBuffer 是通过调用具有所需容量的 ByteBuffer.allocateDirect()函数
-     产生的，就像我们之前所涉及的 allocate()函数一样。注意用一个 wrap()函数所创建的被
-     包装的缓冲区总是非直接的。
+     * 产生的，就像我们之前所涉及的 allocate()函数一样。注意用一个 wrap()函数所创建的被
+     * 包装的缓冲区总是非直接的。
      */
 
     @Test
     public void direct() {
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
         //isDirect() 检测是否是直接缓冲区
-        loggerA.info(byteBuffer+"");
-        loggerA.info(""+byteBuffer.isDirect());
+        loggerA.info(byteBuffer + "");
+        loggerA.info("" + byteBuffer.isDirect());
         //1 最终JVM与本地线程交互的是直接缓冲区,并且直接缓冲区性能高于非直接缓冲区
         //2 直接缓冲区创建与销毁更加耗费
         //3 非直接缓冲区创建与销毁更加容易

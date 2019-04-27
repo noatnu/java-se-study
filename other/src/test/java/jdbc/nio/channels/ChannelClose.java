@@ -9,13 +9,13 @@ import java.nio.channels.FileChannel;
  * 检测通道是否开启以及通道关闭
  */
 public class ChannelClose {
-    public static void main(String[] args)throws IOException {
-        RandomAccessFile accessFile = new RandomAccessFile("BufferDemoWriteA_isWrite.txt","rw");
+    public static void main(String[] args) throws IOException {
+        RandomAccessFile accessFile = new RandomAccessFile("BufferDemoWriteA_isWrite.txt", "rw");
         FileChannel channel = accessFile.getChannel();
-        System.out.println("channel is close "+channel.isOpen());
+        System.out.println("channel is close " + channel.isOpen());
 
         channel.close();
 
-        System.out.println("channel is close "+channel.isOpen());
+        System.out.println("channel is close " + channel.isOpen());
     }
 }

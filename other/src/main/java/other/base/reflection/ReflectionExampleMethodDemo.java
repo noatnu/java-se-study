@@ -14,38 +14,38 @@ import java.util.logging.Logger;
 public class ReflectionExampleMethodDemo {
     private final Logger logger = LoggerFactoryGET.getLoggerFactory().getLoggerAll();
 
-    public void info() {
-        logger.info(String.format("info() ===>",System.currentTimeMillis()));
-    }
-
-    protected void log() {
-        logger.info(String.format("log() ===>",System.currentTimeMillis()));
-    }
-
     public static void main(String[] args) {
         final Logger logger = LoggerFactoryGET.getLoggerFactory().getLoggerAll();
         try {
             Class<?> cClass = Class.forName("other.base.reflection.ReflectionExampleMethodDemo");
-            logger.info(String.format("class name: %s",cClass.getSimpleName()));
+            logger.info(String.format("class name: %s", cClass.getSimpleName()));
 
             Method[] methods = null;
             /*获取所有的public修饰的方法 包括父类的方法*/
             methods = cClass.getMethods();
-            if (ObjectUtils.isArray(methods)){
-                for (Method method:methods){
+            if (ObjectUtils.isArray(methods)) {
+                for (Method method : methods) {
 //                    logger.info(String.format("method name: %s",method.getName()));
                 }
             }
 
             /*获取class对象的所有声明方法:建议平时尽量使用getDeclaredMethods()*/
             methods = cClass.getDeclaredMethods();
-            if (ObjectUtils.isArray(methods)){
-                for (Method method:methods){
-                    logger.info(String.format("DeclaredMethod name: %s",method.getName()));
+            if (ObjectUtils.isArray(methods)) {
+                for (Method method : methods) {
+                    logger.info(String.format("DeclaredMethod name: %s", method.getName()));
                 }
             }
         } catch (ClassNotFoundException e) {
-            logger.warning(String.format("error: %s",e.getMessage()));
+            logger.warning(String.format("error: %s", e.getMessage()));
         }
+    }
+
+    public void info() {
+        logger.info(String.format("info() ===>", System.currentTimeMillis()));
+    }
+
+    protected void log() {
+        logger.info(String.format("log() ===>", System.currentTimeMillis()));
     }
 }

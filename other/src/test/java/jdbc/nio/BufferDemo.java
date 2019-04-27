@@ -8,25 +8,25 @@ import java.nio.ByteBuffer;
  */
 public class BufferDemo {
 
-    public final static void isBuffer()throws IOException{
+    public final static void isBuffer() throws IOException {
 
         ByteBuffer buffer = ByteBuffer.allocate(10);
         buffer.limit(9);//人为设定9
-        System.out.println("返回此缓冲区的位置。"+buffer.position());
-        System.out.println("返回此缓冲区的限制。"+buffer.limit());
+        System.out.println("返回此缓冲区的位置。" + buffer.position());
+        System.out.println("返回此缓冲区的限制。" + buffer.limit());
         //Hello  开始的时候limit和capacity在同一位置(本例中10)
         System.out.println("put 添加数据");
-        buffer.put((byte)'H').put((byte)'e').put((byte)'l').put((byte)'l').put((byte)'o');
+        buffer.put((byte) 'H').put((byte) 'e').put((byte) 'l').put((byte) 'l').put((byte) 'o');
         System.out.println(buffer.toString());
-        System.out.println("返回此缓冲区的位置。"+buffer.position());
-        System.out.println("返回此缓冲区的限制。"+buffer.limit());
+        System.out.println("返回此缓冲区的位置。" + buffer.position());
+        System.out.println("返回此缓冲区的限制。" + buffer.limit());
         //当填充数据之后position位置逐渐的向后递增
 
         //既然我们已经在 buffer 中存放了一些数据,如果我们想在不丢失位置的情况下进行一些
         //更改该怎么办呢?put()的绝对方案可以达到这样的目的。假设我们想将缓冲区中的内“Hello”的 ASCII 码更改为“Mellow”。
         // 我们可以这样实现:
         System.out.println("修改数据!");
-        buffer.put(0,(byte)'M').put((byte)'W');
+        buffer.put(0, (byte) 'M').put((byte) 'W');
 
         /**
          * 我们已经写满了缓冲区,现在我们必须准备将其清空。我们想把这个缓冲区传递给一个通
@@ -47,20 +47,20 @@ public class BufferDemo {
         buffer.rewind();//和flip()效果差不多,但是不影响界限或者说是上界,因此最好是先设置上界
         buffer.limit(xxB);
 
-        System.out.println("-->"+buffer.toString());//限制变为了6,但是位置变为了0(位置必须为0才可以get或者通道读取)
-        System.out.println("剩余元素数量!"+buffer.remaining());
-        int length = buffer.limit()-1;
+        System.out.println("-->" + buffer.toString());//限制变为了6,但是位置变为了0(位置必须为0才可以get或者通道读取)
+        System.out.println("剩余元素数量!" + buffer.remaining());
+        int length = buffer.limit() - 1;
         byte[] bs = new byte[length];
-        for (int i = 0; i<length; i++) {
+        for (int i = 0; i < length; i++) {
             if (buffer.hasRemaining()) bs[i] = buffer.get();
         }
-        System.out.println("剩余元素数量!"+buffer.remaining());
-        System.out.println("<--"+buffer.toString());
-        System.out.println("get() data :"+new String(bs));
+        System.out.println("剩余元素数量!" + buffer.remaining());
+        System.out.println("<--" + buffer.toString());
+        System.out.println("get() data :" + new String(bs));
 
     }
 
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) throws IOException {
         isBuffer();
     }
 }

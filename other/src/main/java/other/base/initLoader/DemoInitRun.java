@@ -10,7 +10,7 @@ public class DemoInitRun {
 
     public static void main(String[] args) {
         System.out.println(new DemoInitRun().demoInitA);
-        int a = 844+816+987;
+        int a = 844 + 816 + 987;
         System.out.println(a);
     }
 }

@@ -25,6 +25,7 @@ public class Generate_DES_Key {
 
     /**
      * 银行生成DESede密匙
+     *
      * @throws Exception
      */
     public static void isCreateGenerate_DES_Key() throws Exception {
@@ -47,29 +48,30 @@ public class Generate_DES_Key {
 
     /**
      * 银行用DESede来加密即将要发送给商户的数据
+     *
      * @throws Exception
      */
-    public static void isGenerate_DES_Key()throws Exception{
+    public static void isGenerate_DES_Key() throws Exception {
         //从数据文件中读取每日交易数据
-        File file = new File(path+""+"ming.txt");
+        File file = new File(path + "" + "ming.txt");
         BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));//ming.txt交易数据
-        byte[] bussinessData = new byte[(int)file.length()];
+        byte[] bussinessData = new byte[(int) file.length()];
         in.read(bussinessData);
         in.close();
         //从Generate_DES_Key_key.dat处得到密匙
-        BufferedInputStream inKey = new BufferedInputStream(new FileInputStream(path+""+DESedeFileName));
+        BufferedInputStream inKey = new BufferedInputStream(new FileInputStream(path + "" + DESedeFileName));
         ObjectInputStream inObjKey = new ObjectInputStream(inKey);
         Key key = (Key) inObjKey.readObject();
         inObjKey.close();
         Cipher cp = Cipher.getInstance(DESede);
-        cp.init(Cipher.ENCRYPT_MODE,key);
+        cp.init(Cipher.ENCRYPT_MODE, key);
         //加密每日交易数据文件
-        byte[] pText = (new String(bussinessData,"UTF-8")).getBytes("UTF-8");
+        byte[] pText = (new String(bussinessData, "UTF-8")).getBytes("UTF-8");
         byte[] cText = cp.doFinal(pText);//加密
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(path+""+DESBussiness));
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(path + "" + DESBussiness));
         bufferedOutputStream.write(cText);
         bufferedOutputStream.flush();
         bufferedOutputStream.close();
-        System.out.println("交易数据已经用"+DESede+"加密");
+        System.out.println("交易数据已经用" + DESede + "加密");
     }
 }

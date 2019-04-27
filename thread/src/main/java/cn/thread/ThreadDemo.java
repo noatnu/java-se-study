@@ -8,19 +8,23 @@ import tool.help.Zhou_String;
 public class ThreadDemo {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    public static void main(String[] args) {
+        new ThreadDemo().testYield();
+    }
+
     /**
      * 直接继承 Thread 实现多线程
      */
     @Test
-    public void isThread(){
-        class Dthread extends Thread{
+    public void isThread() {
+        class Dthread extends Thread {
             public Dthread(String name) {
                 super(name);
             }
 
             @Override
             public void run() {
-                logger.info("thread is start! "+currentThread().getName());//currentThread 可以返回代码段正在被谁调用的信息
+                logger.info("thread is start! " + currentThread().getName());//currentThread 可以返回代码段正在被谁调用的信息
             }
         }
         new Dthread(Zhou_String.toMath(4)).start();
@@ -30,8 +34,8 @@ public class ThreadDemo {
      * 通过 Runnable 接口 实现多线程
      */
     @Test
-    public void isRunnable(){
-        new Thread(()->{
+    public void isRunnable() {
+        new Thread(() -> {
             logger.info("thread is start!");
         }).start();
     }
@@ -40,27 +44,27 @@ public class ThreadDemo {
      * 判断线程是否处理活动状态 (ps 线程是否已经启动并且尚未终止)
      */
     @Test
-    public void isAlive(){
-        Thread t = new Thread(()->{
+    public void isAlive() {
+        Thread t = new Thread(() -> {
             logger.info("thread is run!");
         });
-        System.out.println("begin == "+t.isAlive());
+        System.out.println("begin == " + t.isAlive());
         t.start();
-        System.out.println("end == "+t.isAlive());
+        System.out.println("end == " + t.isAlive());
     }
 
     /**
      * 线程 在指定的时间内让正在执行的线程 暂停执行 这里正在执行的线程指的是currentThread()返回的线程
      */
     @Test
-    public void sleep(){
-        Thread thread = new Thread(()->{
+    public void sleep() {
+        Thread thread = new Thread(() -> {
             logger.info("线程正在执行!");
             try {
                 logger.info("休眠开始!");
                 Thread.sleep(2000);
                 logger.info("休眠结束!");
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 logger.error("异常!");
             }
         });
@@ -71,19 +75,19 @@ public class ThreadDemo {
      * interrupt() 在当前线程打上标记并不是真正的突然马上停止 不想stop()那样马上停止(已经废弃)
      */
     @Test
-    public void interrupt(){
-        Thread thread = new Thread(()->{
+    public void interrupt() {
+        Thread thread = new Thread(() -> {
             for (int i = 0; i < 500000; i++) {
-                logger.info("i= "+(i+1));
+                logger.info("i= " + (i + 1));
             }
-        },""+Zhou_String.toLowerCase(5));
+        }, "" + Zhou_String.toLowerCase(5));
         thread.start();
         try {
             Thread.sleep(20);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             logger.error("异常!");
         }
-        logger.info("thread name:"+thread.getName()+" id:"+thread.getId());
+        logger.info("thread name:" + thread.getName() + " id:" + thread.getId());
 //        thread.interrupt();
         thread.stop();
         /**
@@ -97,20 +101,20 @@ public class ThreadDemo {
      * isInterrupted() is not static method 当前线程是否已经中断
      */
     @Test
-    public void is_interrupted(){
-        Thread thread = new Thread(()->{
+    public void is_interrupted() {
+        Thread thread = new Thread(() -> {
             for (int i = 0; i < 500000; i++) {
-                logger.info("i= "+(i+1));
+                logger.info("i= " + (i + 1));
             }
-        },""+Zhou_String.toLowerCase(5));
+        }, "" + Zhou_String.toLowerCase(5));
         try {
             thread.start();
             Thread.sleep(2000);
             thread.interrupt();
             int i = 1;
-            logger.info("是否停止"+thread.getName()+(i++)+"!"+thread.interrupted());
-            logger.info("是否停止"+thread.getName()+(i++)+"!"+thread.interrupted());
-        }catch (InterruptedException e){
+            logger.info("是否停止" + thread.getName() + (i++) + "!" + thread.interrupted());
+            logger.info("是否停止" + thread.getName() + (i++) + "!" + thread.interrupted());
+        } catch (InterruptedException e) {
             logger.error("异常!");
         }
         /**
@@ -121,8 +125,8 @@ public class ThreadDemo {
         //让 main线程产生中断效果
         Thread.currentThread().interrupt();
         int i = 1;
-        logger.info("是否停止"+thread.getName()+(i++)+"!"+thread.interrupted());
-        logger.info("是否停止"+thread.getName()+(i++)+"!"+thread.interrupted());
+        logger.info("是否停止" + thread.getName() + (i++) + "!" + thread.interrupted());
+        logger.info("是否停止" + thread.getName() + (i++) + "!" + thread.interrupted());
         /**
          * 16:16:50,736 [ main ] [ INFO ]:124 - 是否停止stymm1!true
          * 16:16:50,740 [ main ] [ INFO ]:125 - 是否停止stymm2!false
@@ -131,8 +135,8 @@ public class ThreadDemo {
          */
         Thread.currentThread().interrupt();
         i = 1;
-        logger.info("是否停止 -->"+thread.getName()+(i++)+"!"+thread.isInterrupted());
-        logger.info("是否停止 -->"+thread.getName()+(i++)+"!"+thread.isInterrupted());
+        logger.info("是否停止 -->" + thread.getName() + (i++) + "!" + thread.isInterrupted());
+        logger.info("是否停止 -->" + thread.getName() + (i++) + "!" + thread.isInterrupted());
         /**
          *16:23:32,540 [ main ] [ INFO ]:134 - 是否停止 -->ijltd1!false
          *16:23:32,541 [ main ] [ INFO ]:135 - 是否停止 -->ijltd2!false
@@ -144,31 +148,31 @@ public class ThreadDemo {
      * 异常状态也是可以停止的哦!
      */
     @Test
-    public void testException(){
-        Thread thread = new Thread(()->{
+    public void testException() {
+        Thread thread = new Thread(() -> {
             try {
                 for (int i = 0; i < 500000; i++) {
-                    if (Thread.currentThread().isInterrupted()){
+                    if (Thread.currentThread().isInterrupted()) {
                         logger.debug("已经是停止状态!");
                         throw new InterruptedException();
                     }
-                    logger.info(Thread.currentThread().getName()+" i= "+(i+1));
+                    logger.info(Thread.currentThread().getName() + " i= " + (i + 1));
                 }
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 logger.error("异常!");
             }
 
-        },""+Zhou_String.toLowerCase(5));
+        }, "" + Zhou_String.toLowerCase(5));
         try {
             thread.start();
             Thread.sleep(2000);
             thread.interrupt();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
         }
         /*
-        *16:39:22,084 [ dvhvh ] [ INFO ]:155 - dvhvh i= 31648
-        *16:39:22,084 [ dvhvh ] [ ERROR ]:158 - 异常!
-        * 线程在异常状态下停止*/
+         *16:39:22,084 [ dvhvh ] [ INFO ]:155 - dvhvh i= 31648
+         *16:39:22,084 [ dvhvh ] [ ERROR ]:158 - 异常!
+         * 线程在异常状态下停止*/
 
     }
 
@@ -176,23 +180,23 @@ public class ThreadDemo {
      * 在睡眠中停止
      */
     @Test
-    public void testSleepStop(){
-        Thread thread = new Thread(()->{
+    public void testSleepStop() {
+        Thread thread = new Thread(() -> {
             try {
                 for (int i = 0; i < 100000; i++) {
-                    if (Thread.currentThread().isInterrupted()){
+                    if (Thread.currentThread().isInterrupted()) {
                         logger.debug("已经是停止状态!");
                     }
-                    logger.info(Thread.currentThread().getName()+" i= "+(i+1));
+                    logger.info(Thread.currentThread().getName() + " i= " + (i + 1));
                 }
                 logger.info("run begin");
                 Thread.sleep(200000000);
                 logger.info("run end");
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 logger.error("异常!");
             }
 
-        },""+Zhou_String.toLowerCase(5));
+        }, "" + Zhou_String.toLowerCase(5));
         thread.start();
         thread.interrupt();
         logger.info("end!");
@@ -212,29 +216,29 @@ public class ThreadDemo {
      * stop() 释放不良的锁
      */
     @Test
-    public void testStop(){
-        Thread thread = new Thread(()->{
+    public void testStop() {
+        Thread thread = new Thread(() -> {
             try {
                 int i = 0;
-                while (true){
-                    if (!Thread.currentThread().isInterrupted()){
-                        if (Thread.currentThread().isInterrupted()){
+                while (true) {
+                    if (!Thread.currentThread().isInterrupted()) {
+                        if (Thread.currentThread().isInterrupted()) {
                             logger.debug("已经是停止状态!");
                         }
-                        logger.info(Thread.currentThread().getName()+" i= "+(++i)+Thread.currentThread().isInterrupted());
+                        logger.info(Thread.currentThread().getName() + " i= " + (++i) + Thread.currentThread().isInterrupted());
                         Thread.sleep(2000);
                     }
                 }
-            }catch (InterruptedException e){
-                logger.error("异常!->-> "+e.getMessage());
+            } catch (InterruptedException e) {
+                logger.error("异常!->-> " + e.getMessage());
             }
         });
         try {
             thread.start();
             Thread.sleep(1000);
             thread.stop();
-        }catch (Exception e){
-            logger.error("异常!-- "+e.getMessage());
+        } catch (Exception e) {
+            logger.error("异常!-- " + e.getMessage());
         }
     }
 
@@ -242,16 +246,16 @@ public class ThreadDemo {
      * 使用return 停止线程
      */
     @Test
-    public void isReturn(){
-        Thread thread = new Thread(()->{
+    public void isReturn() {
+        Thread thread = new Thread(() -> {
             int i = 0;
-            while (true){
-                if (!Thread.currentThread().isInterrupted()){
-                    if (Thread.currentThread().isInterrupted()){
+            while (true) {
+                if (!Thread.currentThread().isInterrupted()) {
+                    if (Thread.currentThread().isInterrupted()) {
                         logger.debug("已经是停止状态!");
                         return;
                     }
-                    logger.info(Thread.currentThread().getName()+" i= "+(++i)+Thread.currentThread().isInterrupted());
+                    logger.info(Thread.currentThread().getName() + " i= " + (++i) + Thread.currentThread().isInterrupted());
                 }
             }
 
@@ -260,8 +264,8 @@ public class ThreadDemo {
             thread.start();
             Thread.sleep(2000);
             thread.interrupt();
-        }catch (Exception e){
-            logger.error("异常!-- "+e.getMessage());
+        } catch (Exception e) {
+            logger.error("异常!-- " + e.getMessage());
         }
     }
 
@@ -269,13 +273,13 @@ public class ThreadDemo {
      * 暂停与恢复
      */
     @Test
-    public void testSuspend_resume(){
-        class MyThread extends Thread{
+    public void testSuspend_resume() {
+        class MyThread extends Thread {
+            private long i = 0;
+
             public MyThread(String name) {
                 super(name);
             }
-
-            private long i = 0;
 
             public long getI() {
                 return i;
@@ -287,7 +291,7 @@ public class ThreadDemo {
 
             @Override
             public void run() {
-                while (true){
+                while (true) {
                     i++;
                 }
 
@@ -295,15 +299,15 @@ public class ThreadDemo {
         }
         try {
             MyThread thread = new MyThread(Zhou_String.toLowerCase(5));
-            int NUM = 1000*4;
+            int NUM = 1000 * 4;
             thread.start();
             Thread.sleep(NUM);
             //A 段
 
             thread.suspend();//暂停
-            logger.info("A="+System.currentTimeMillis()+" i="+thread.getI());
+            logger.info("A=" + System.currentTimeMillis() + " i=" + thread.getI());
             Thread.sleep(NUM);
-            logger.info("A="+System.currentTimeMillis()+" i="+thread.getI());
+            logger.info("A=" + System.currentTimeMillis() + " i=" + thread.getI());
 
             //B段
             thread.resume();//恢复
@@ -312,11 +316,11 @@ public class ThreadDemo {
 
             //C段
             thread.suspend();//暂停
-            logger.info("C="+System.currentTimeMillis()+" i="+thread.getI());
+            logger.info("C=" + System.currentTimeMillis() + " i=" + thread.getI());
             Thread.sleep(NUM);
-            logger.info("C="+System.currentTimeMillis()+" i="+thread.getI());
-        }catch (InterruptedException e){
-            logger.error("异常!"+e.getMessage());
+            logger.info("C=" + System.currentTimeMillis() + " i=" + thread.getI());
+        } catch (InterruptedException e) {
+            logger.error("异常!" + e.getMessage());
         }
 
     }
@@ -325,34 +329,36 @@ public class ThreadDemo {
      * suspend 对公共对象独占
      */
     @Test
-    public void testSuspend_resume_synchronized(){
-        class MyObject{
+    public void testSuspend_resume_synchronized() {
+        class MyObject {
             private String username = "1";
             private String password = "11";
-            public void setValue(String u,String p){
+
+            public void setValue(String u, String p) {
                 this.username = u;
-                if (Thread.currentThread().getName().equals("a")){
+                if (Thread.currentThread().getName().equals("a")) {
                     System.out.println("停止a线程");
                     Thread.currentThread().suspend();
                 }
                 this.password = p;
             }
-            public void printUsernamePassword(){
-                System.out.println("username "+username+" password "+password);
+
+            public void printUsernamePassword() {
+                System.out.println("username " + username + " password " + password);
             }
         }
         final MyObject myObject = new MyObject();
-        Thread thread = new Thread(()->{
-            myObject.setValue("a","aa");
+        Thread thread = new Thread(() -> {
+            myObject.setValue("a", "aa");
         });
         thread.setName("a");
         try {
             thread.start();
             Thread.sleep(500);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
 
         }
-        new Thread(()->{
+        new Thread(() -> {
             myObject.printUsernamePassword();
         }).start();
         //在 thread 中已经修改过但是后面的线程调用数据 没有与修改过的同步
@@ -365,16 +371,16 @@ public class ThreadDemo {
      * 不能用junit5测试
      */
     @Test
-    public void testYield(){
-        Thread thread = new Thread(()->{
+    public void testYield() {
+        Thread thread = new Thread(() -> {
             long beginTime = System.currentTimeMillis();
             int count = 0;
             for (int i = 0; i < 50000000; i++) {
                 Thread.yield();
-                count += (i+1);
+                count += (i + 1);
             }
             long endTime = System.currentTimeMillis();
-            System.out.println("时间:"+(endTime-beginTime)+" 毫秒");
+            System.out.println("时间:" + (endTime - beginTime) + " 毫秒");
         });
         thread.start();
         /**改变 Thread.yield()使它被注释
@@ -387,14 +393,14 @@ public class ThreadDemo {
      * 守护线程 就有点类似于保姆
      */
     @Test
-    public void testDaemon(){
-        Thread thread = new Thread(()->{
+    public void testDaemon() {
+        Thread thread = new Thread(() -> {
             int count = 0;
             for (int i = 0; i < 50000000; i++) {
-                System.out.println("name:"+Thread.currentThread().getName()+" i="+i);
+                System.out.println("name:" + Thread.currentThread().getName() + " i=" + i);
                 try {
                     Thread.sleep(5000);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
 
                 }
             }
@@ -405,14 +411,14 @@ public class ThreadDemo {
     }
 
     @Test
-    public void testJoin(){
-        Thread t1 = new Thread(()->{
-            for(int i=0;i<100;i++){
+    public void testJoin() {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
                 System.out.println(Thread.currentThread().getName() + ":" + i);
             }
         });
-        Thread t2 = new Thread(()->{
-            for(int i=0;i<100;i++){
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
                 System.out.println(Thread.currentThread().getName() + ":" + i);
             }
         });
@@ -422,7 +428,7 @@ public class ThreadDemo {
             t1.start();
             t1.join();
             t2.start();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             logger.error("异常!");
         }
         /**join的意思是使得放弃当前线程的执行，并返回对应的线程，例如下面代码的意思就是：
@@ -431,10 +437,6 @@ public class ThreadDemo {
 
          join方法的原理就是调用相应线程的wait方法进行等待操作的
          */
-    }
-
-    public static void main(String[] args) {
-        new ThreadDemo().testYield();
     }
 
 

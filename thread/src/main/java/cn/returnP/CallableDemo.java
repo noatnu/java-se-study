@@ -13,10 +13,10 @@ public class CallableDemo {
         }
         result.forEach(stringFuture -> {
             try {
-                System.out.println("string:"+stringFuture.get());
-            }catch (ExecutionException e){
+                System.out.println("string:" + stringFuture.get());
+            } catch (ExecutionException e) {
                 e.printStackTrace();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         });
@@ -28,14 +28,15 @@ public class CallableDemo {
 class TaskWithResult implements Callable<String> {
 
     private AtomicReference<String> atomicReference = new AtomicReference<>();
+
     @Override
     public String call() throws Exception {
-        atomicReference.set("time:"+System.currentTimeMillis());
+        atomicReference.set("time:" + System.currentTimeMillis());
         return atomicReference.get();
     }
 }
 
-class HandlerThreadFactory implements ThreadFactory{
+class HandlerThreadFactory implements ThreadFactory {
     @Override
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r);
@@ -43,10 +44,10 @@ class HandlerThreadFactory implements ThreadFactory{
         return t;
     }
 
-    class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler{
+    class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
         @Override
         public void uncaughtException(Thread t, Throwable e) {
-            System.out.println("异常了 "+e.getMessage());
+            System.out.println("异常了 " + e.getMessage());
         }
     }
 }

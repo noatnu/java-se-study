@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 
 /**
  * DES安全编码组件
- *
+ * <p>
  * <pre>
  * 支持 DES、DESede(TripleDES,就是3DES)、AES、Blowfish、RC2、RC4(ARCFOUR)
  * DES          		key size must be equal to 56
@@ -22,11 +22,11 @@ import java.security.SecureRandom;
  * 具体内容 需要关注 JDK Document http://.../docs/technotes/guides/security/SunProviders.html
  * </pre>
  **/
-public abstract  class DESCoder extends Coder {
+public abstract class DESCoder extends Coder {
     /**
      * ALGORITHM 算法 <br>
      * 可替换为以下任意一种算法，同时key值的size相应改变。
-     *
+     * <p>
      * <pre>
      * DES          		key size must be equal to 56
      * DESede(TripleDES) 	key size must be equal to 112 or 168
@@ -35,7 +35,7 @@ public abstract  class DESCoder extends Coder {
      * RC2          		key size must be between 40 and 1024 bits
      * RC4(ARCFOUR) 		key size must be between 40 and 1024 bits
      * </pre>
-     *
+     * <p>
      * 在Key toKey(byte[] key)方法中使用下述代码
      * <code>SecretKey secretKey = new SecretKeySpec(key, ALGORITHM);</code> 替换
      * <code>
@@ -45,7 +45,6 @@ public abstract  class DESCoder extends Coder {
      * </code>
      */
     public static final String ALGORITHM = "DES";
-
 
 
     /**

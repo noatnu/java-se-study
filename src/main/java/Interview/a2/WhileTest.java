@@ -5,7 +5,7 @@ public class WhileTest {
         int num = 0;
         do {//至少循环一次
             num++;
-            System.out.println("num: "+num);
-        }while (num<10);
+            System.out.println("num: " + num);
+        } while (num < 10);
     }
 }

@@ -3,7 +3,7 @@ package tool.enums;
 /**
  * 描述: Excel常用类
  *
- * @author: Calvin(qiudong@copowercpa.com)
+ * @author: Calvin(qiudong @ copowercpa.com)
  * @data: 2018-9-4
  * @time: 9:57
  */

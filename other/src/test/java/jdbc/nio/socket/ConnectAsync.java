@@ -8,9 +8,10 @@ import java.nio.channels.SocketChannel;
  * Created by zhou on 17-12-26.
  */
 public class ConnectAsync {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         isit();
     }
+
     public static void isit(String... args) throws IOException {
         String host = "localhost";
         int port = 8080;

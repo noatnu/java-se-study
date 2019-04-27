@@ -15,18 +15,12 @@ import java.util.logging.Logger;
  * @Description:
  */
 public class LogUtilA {
-    private static Calendar now = Calendar.getInstance();
-
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-    private static final int year = now.get(Calendar.YEAR);
-
-    private static final int month = now.get(Calendar.MONTH) + 1;
-
     private static final String LOG_FOLDER_NAME = "AIOClient";
-
     private static final String LOG_FILE_SUFFIX = "_LOG.log";
-
+    private static Calendar now = Calendar.getInstance();
+    private static final int year = now.get(Calendar.YEAR);
+    private static final int month = now.get(Calendar.MONTH) + 1;
     private static Logger logger = Logger.getLogger("MyLogger_LOG");
 
     //使用唯一的fileHandler，保证当天的所有日志写在同一个文件里
@@ -90,6 +84,7 @@ public class LogUtilA {
         }
         return logger;
     }
+
     private synchronized static String populateExceptionStackTrace(Exception e) {
         StringBuilder sb = new StringBuilder();
         sb.append(e.toString()).append("\n");

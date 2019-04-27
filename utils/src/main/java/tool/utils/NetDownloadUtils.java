@@ -13,13 +13,13 @@ import java.net.URLConnection;
  * @createDate 2019/2/2
  **/
 public class NetDownloadUtils {
-    public static void download(String urlString, String filename,String savePath) throws Exception {
+    public static void download(String urlString, String filename, String savePath) throws Exception {
         // 构造URL
         URL url = new URL(urlString);
         // 打开连接
         URLConnection con = url.openConnection();
         //设置请求超时为5s
-        con.setConnectTimeout(5*1000);
+        con.setConnectTimeout(5 * 1000);
         // 输入流
         InputStream is = con.getInputStream();
 
@@ -28,11 +28,11 @@ public class NetDownloadUtils {
         // 读取到的数据长度
         int len;
         // 输出的文件流
-        File sf=new File(savePath);
-        if(!sf.exists()){
+        File sf = new File(savePath);
+        if (!sf.exists()) {
             sf.mkdirs();
         }
-        OutputStream os = new FileOutputStream(sf.getPath()+File.separator+filename);
+        OutputStream os = new FileOutputStream(sf.getPath() + File.separator + filename);
         // 开始读取
         while ((len = is.read(bs)) != -1) {
             os.write(bs, 0, len);

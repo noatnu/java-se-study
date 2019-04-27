@@ -3,32 +3,32 @@ package cn.threadcommunication.c1;
 public class INITData {
     private String flag = "1";
 
-    public void isA(Object lockA){
+    public void isA(Object lockA) {
         try {
-            synchronized (lockA){
-                if (getFlag().equals("0")){
+            synchronized (lockA) {
+                if (getFlag().equals("0")) {
                     lockA.wait();
                 }
-                System.out.println("create data is "+System.currentTimeMillis());
+                System.out.println("create data is " + System.currentTimeMillis());
                 setFlag("0");
                 lockA.notifyAll();
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public void isB(Object lockB){
+    public void isB(Object lockB) {
         try {
-            synchronized (lockB){
-                if (getFlag().equals("1")){
+            synchronized (lockB) {
+                if (getFlag().equals("1")) {
                     lockB.wait();
                 }
-                System.out.println("remove data is "+System.currentTimeMillis());
+                System.out.println("remove data is " + System.currentTimeMillis());
                 setFlag("1");
                 lockB.notifyAll();
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

@@ -12,7 +12,7 @@ import java.util.Date;
  * @Description 商品
  * @createDate 2019/2/4
  **/
-public class Commodity implements Serializable,Comparable<Commodity> {
+public class Commodity implements Serializable, Comparable<Commodity> {
 
     private java.math.BigDecimal price;
     private String name;

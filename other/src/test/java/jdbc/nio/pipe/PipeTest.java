@@ -42,6 +42,7 @@ public class PipeTest {
     private static class Worker extends Thread {
         WritableByteChannel channel;
         private int reps;
+        private Random rand = new Random();
 
         Worker(WritableByteChannel channel, int reps) {
             this.channel = channel;
@@ -65,8 +66,6 @@ public class PipeTest {
                 e.printStackTrace();
             }
         }
-
-        private Random rand = new Random();
 
         private void doSomeWork(ByteBuffer buffer) {
             int product = rand.nextInt(products.length);

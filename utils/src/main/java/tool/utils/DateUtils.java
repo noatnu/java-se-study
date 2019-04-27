@@ -22,8 +22,6 @@ import java.util.Date;
  */
 public final class DateUtils {
 
-    private final static Logger logger = LoggerFactory.getLogger(DateUtils.class);
-
     public final static int MON = 1;
     public final static int TUE = 2;
     public final static int WED = 3;
@@ -31,6 +29,71 @@ public final class DateUtils {
     public final static int FRI = 5;
     public final static int SAT = 6;
     public final static int SUN = 7;
+    public final static String DATE_CHINESE_PATTERN = "yyyy年MM月dd日";
+    public final static String DATE_MONTH_DAY_CHINESE_PATTERN = "MM月dd日";
+    /**
+     * 标准的中文小时分钟格式
+     */
+    public final static String HOUR_MINUTE_CHINESE_PATTERN = "HH点mm分";
+    /**
+     * 标准日期格式
+     */
+    public final static String DATE_PATTERN = "yyyy-MM-dd";
+    public final static String DATE_YYYY_MM = "yyyy-MM";
+    public final static String DATE_SHORT_PATTERN = "yyyyMMdd";
+    public final static String DATE_SLASH_PATTERN = "yyyy/MM/dd";
+    /**
+     * 标准日期时分秒毫秒格式
+     */
+    public final static String DATETIME_MILL_SECOND = "yyyy-MM-dd HH:mm:ss.SSS";
+    /**
+     * 标准时间格式
+     */
+    public final static String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 标准时间格式，不含秒
+     */
+    public final static String DATETIME_PATTERN_SHORT = "yyyy-MM-dd HH:mm";
+    /**
+     * 特殊的格式 针对创建订单，拼凑的最晚支付时间
+     */
+    public final static String DATETIME_PATTERN_CREAT_ORDER = "yyyy-MM-ddHH:mm";
+    public final static String DATETIME_SHORT_PATTERN = "yyyyMMddHHmmss";
+    /**
+     * 标准年小时分钟格式
+     */
+    public final static String HOUR_MINUTE = "HH:mm";
+    /**
+     * 标准年小时分钟秒格式
+     */
+    public final static String HOUR_MINUTE_SECOND = "HH:mm:ss";
+    /**
+     * Number of milliseconds in a standard second.
+     */
+    public static final long MILLIS_PER_SECOND = 1000;
+    /**
+     * Number of milliseconds in a standard minute.
+     */
+    public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND;
+    /**
+     * Number of milliseconds in a standard hour.
+     */
+    public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE;
+    /**
+     * Number of milliseconds in a standard day.
+     */
+    public static final long MILLIS_PER_DAY = 24 * MILLIS_PER_HOUR;
+    /**
+     * Number of day in a year
+     */
+    public static final int DAYS_PER_YEAR = 365;
+    /**
+     * 标准年月格式
+     */
+    public final static String MONTH_PATTERN = "yyyy-MM";
+    private final static Logger logger = LoggerFactory.getLogger(DateUtils.class);
+    private final static String[] WEEK_NAMES = {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"};
+    private final static char[] upper = "0一二三四五六七八九十".toCharArray();
 
     public static Date min() {
         return new Date(0L);
@@ -84,95 +147,10 @@ public final class DateUtils {
         return period.toStandardMinutes().getMinutes();
     }
 
-
-    public final static String DATE_CHINESE_PATTERN = "yyyy年MM月dd日";
-
-    public final static String DATE_MONTH_DAY_CHINESE_PATTERN = "MM月dd日";
-
-    /**
-     * 标准的中文小时分钟格式
-     */
-    public final static String HOUR_MINUTE_CHINESE_PATTERN = "HH点mm分";
-
-    /**
-     * 标准日期格式
-     */
-    public final static String DATE_PATTERN = "yyyy-MM-dd";
-
-    public final static String DATE_YYYY_MM = "yyyy-MM";
-
-    public final static String DATE_SHORT_PATTERN = "yyyyMMdd";
-
-    public final static String DATE_SLASH_PATTERN = "yyyy/MM/dd";
-
-    /**
-     * 标准日期时分秒毫秒格式
-     */
-    public final static String DATETIME_MILL_SECOND = "yyyy-MM-dd HH:mm:ss.SSS";
-
-    /**
-     * 标准时间格式
-     */
-    public final static String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
-    /**
-     * 标准时间格式，不含秒
-     */
-    public final static String DATETIME_PATTERN_SHORT = "yyyy-MM-dd HH:mm";
-
-    /**
-     * 特殊的格式 针对创建订单，拼凑的最晚支付时间
-     */
-    public final static String DATETIME_PATTERN_CREAT_ORDER = "yyyy-MM-ddHH:mm";
-
-    public final static String DATETIME_SHORT_PATTERN = "yyyyMMddHHmmss";
-
-    /**
-     * 标准年小时分钟格式
-     */
-    public final static String HOUR_MINUTE = "HH:mm";
-
-    /**
-     * 标准年小时分钟秒格式
-     */
-    public final static String HOUR_MINUTE_SECOND = "HH:mm:ss";
-
-    /**
-     * Number of milliseconds in a standard second.
-     */
-    public static final long MILLIS_PER_SECOND = 1000;
-
-    /**
-     * Number of milliseconds in a standard minute.
-     */
-    public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND;
-
-    /**
-     * Number of milliseconds in a standard hour.
-     */
-    public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE;
-
-    /**
-     * Number of milliseconds in a standard day.
-     */
-    public static final long MILLIS_PER_DAY = 24 * MILLIS_PER_HOUR;
-
-    /**
-     * Number of day in a year
-     */
-    public static final int DAYS_PER_YEAR = 365;
-
-    /**
-     * 标准年月格式
-     */
-    public final static String MONTH_PATTERN = "yyyy-MM";
-
-    private final static String[] WEEK_NAMES = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
-    private final static char[] upper = "0一二三四五六七八九十".toCharArray();
     /**
      * 在指定日期增加指定年
      *
-     * @param date 指定日期
+     * @param date  指定日期
      * @param years 指定年数
      * @return
      */
@@ -188,7 +166,7 @@ public final class DateUtils {
 
     /**
      * 在指定日期减少指定年数
-     * 
+     *
      * @param date
      * @param years
      * @return
@@ -200,7 +178,7 @@ public final class DateUtils {
     /**
      * 在指定日期增加指定月数
      *
-     * @param date 指定日期
+     * @param date   指定日期
      * @param months 指定月数
      * @return
      */
@@ -216,7 +194,7 @@ public final class DateUtils {
 
     /**
      * 在指定日期减少指定月数
-     * 
+     *
      * @param date
      * @param months
      * @return
@@ -397,7 +375,7 @@ public final class DateUtils {
 
     /**
      * 将年份、月份、日期转化为日期对象
-     * 
+     *
      * @param year
      * @param month
      * @param day
@@ -411,9 +389,9 @@ public final class DateUtils {
     /**
      * 将日期或者时间字符串转化为日期对象
      *
-     * @param date 日期字符串
+     * @param date    日期字符串
      * @param pattern 格式字符串</br> yyyy-MM-DD, yyyy/MM/DD, yyyyMMdd</br> yyyy-MM-dd-HH:mm:ss, yyyy-MM-dd HH:mm:ss
-     *            格式字符串可选字符："GyMdkHmsSEDFwWahKzZ"
+     *                格式字符串可选字符："GyMdkHmsSEDFwWahKzZ"
      * @return Date
      */
     public static Date convertDate(String date, String pattern) {
@@ -433,7 +411,7 @@ public final class DateUtils {
     /**
      * 将时间字符串转化为时间对象Time
      *
-     * @param time 时间字符串
+     * @param time    时间字符串
      * @param pattern 格式字符串 yyyy-MM-dd HH:mm:ss or yyyy-MM-dd HH:mm:ss.SSS
      * @return
      */
@@ -488,7 +466,7 @@ public final class DateUtils {
     /**
      * 按指定格式字符串格式时间
      *
-     * @param date 日期或者时间
+     * @param date    日期或者时间
      * @param pattern 格式化字符串 yyyy-MM-dd， yyyy-MM-dd HH:mm:ss, yyyy年MM月dd日 etc.</br>
      * @return
      */
@@ -603,7 +581,7 @@ public final class DateUtils {
      * 获取后续第n天日期
      *
      * @param date
-     * @param n 第n天
+     * @param n    第n天
      * @return
      */
     public static Date getNextNDay(Date date, int n) {
@@ -654,7 +632,7 @@ public final class DateUtils {
     /**
      * 检查时间或者字符串是否合法
      *
-     * @param date 时间
+     * @param date    时间
      * @param pattern 格式串
      * @return
      */
@@ -698,7 +676,7 @@ public final class DateUtils {
     /**
      * 按指定roundType格式化日期。
      *
-     * @param date 日期
+     * @param date      日期
      * @param roundType
      * @return Date
      */
@@ -706,19 +684,19 @@ public final class DateUtils {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(date.getTime());
         switch (roundType) {
-        case Calendar.MONTH:
-            c.set(Calendar.DAY_OF_MONTH, 1);
-        case Calendar.DATE:
-            c.set(Calendar.HOUR_OF_DAY, 0);
-        case Calendar.HOUR:
-            c.set(Calendar.MINUTE, 0);
-        case Calendar.MINUTE:
-            c.set(Calendar.SECOND, 0);
-        case Calendar.SECOND:
-            c.set(Calendar.MILLISECOND, 0);
-            return c.getTime();
-        default:
-            throw new IllegalArgumentException("invalid round roundType.");
+            case Calendar.MONTH:
+                c.set(Calendar.DAY_OF_MONTH, 1);
+            case Calendar.DATE:
+                c.set(Calendar.HOUR_OF_DAY, 0);
+            case Calendar.HOUR:
+                c.set(Calendar.MINUTE, 0);
+            case Calendar.MINUTE:
+                c.set(Calendar.SECOND, 0);
+            case Calendar.SECOND:
+                c.set(Calendar.MILLISECOND, 0);
+                return c.getTime();
+            default:
+                throw new IllegalArgumentException("invalid round roundType.");
         }
     }
 
@@ -741,10 +719,9 @@ public final class DateUtils {
     }
 
     /**
-     *
      * 将日期或者时间字符串转化为Timestamp对象
      *
-     * @param date 日期字符串
+     * @param date    日期字符串
      * @param pattern 格式字符串</br> yyyy-MM-DD, yyyy/MM/DD, yyyyMMdd</br> yyyy-MM-dd-HH:mm:ss, yyyy-MM-dd HH:mm:ss
      * @return Timestamp
      * @author reeboo
@@ -785,7 +762,7 @@ public final class DateUtils {
 
     /**
      * 判断当前时间是否在某个区间内
-     * 
+     *
      * @param startDate
      * @param endDate
      * @return
@@ -797,7 +774,7 @@ public final class DateUtils {
 
     /**
      * 判断某个时间是否在对应的时间段内
-     * 
+     *
      * @param startDate
      * @param endDate
      * @param time
@@ -817,7 +794,7 @@ public final class DateUtils {
 
     /**
      * 判断两个时间区间是否有交集
-     * 
+     *
      * @param closeOneStartDate
      * @param closeOneEndDate
      * @param closeTwoStartDate
@@ -825,7 +802,7 @@ public final class DateUtils {
      * @return
      */
     public static boolean timeIntersection(Date closeOneStartDate, Date closeOneEndDate, Date closeTwoStartDate,
-            Date closeTwoEndDate) {
+                                           Date closeTwoEndDate) {
         long start = Math.max(closeOneStartDate.getTime(), closeTwoStartDate.getTime());
         long end = Math.min(closeOneEndDate.getTime(), closeTwoEndDate.getTime());
         return start <= end;
@@ -875,7 +852,7 @@ public final class DateUtils {
 
     /**
      * 获取某个日期的上一天
-     * 
+     *
      * @param date
      * @return
      */
@@ -898,7 +875,7 @@ public final class DateUtils {
 
     /**
      * 校验是否是指定的日期格式
-     * 
+     *
      * @param dateStr
      * @return
      */
@@ -920,16 +897,17 @@ public final class DateUtils {
 
     /**
      * 获得该月第一天
+     *
      * @param year
      * @param month
      * @return
      */
-    public static String getFirstDayOfMonth(Integer year,Integer month){
+    public static String getFirstDayOfMonth(Integer year, Integer month) {
         Calendar cal = Calendar.getInstance();
         //设置年份
-        cal.set(Calendar.YEAR,year);
+        cal.set(Calendar.YEAR, year);
         //设置月份
-        cal.set(Calendar.MONTH, month-1);
+        cal.set(Calendar.MONTH, month - 1);
         //获取某月最小天数
         int firstDay = cal.getActualMinimum(Calendar.DAY_OF_MONTH);
         //设置日历中月份的最小天数
@@ -942,16 +920,17 @@ public final class DateUtils {
 
     /**
      * 获得该月最后一天
+     *
      * @param year
      * @param month
      * @return
      */
-    public static String getLastDayOfMonth(Integer year,Integer month){
+    public static String getLastDayOfMonth(Integer year, Integer month) {
         Calendar cal = Calendar.getInstance();
         //设置年份
-        cal.set(Calendar.YEAR,year);
+        cal.set(Calendar.YEAR, year);
         //设置月份
-        cal.set(Calendar.MONTH, month-1);
+        cal.set(Calendar.MONTH, month - 1);
         //获取某月最大天数
         int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         //设置日历中月份的最大天数

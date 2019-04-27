@@ -1,7 +1,9 @@
 package jdbc.encryption_and_decryption.rsa;
 
-import javax.crypto.KeyGenerator;
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -12,9 +14,9 @@ import java.security.PublicKey;
  */
 public class GenkeyDemo {
     public final static String RSA = "RSA";
-    public static String path = "/home/zhou/ssh_java/maven/";
-    public final  static String PUBLICkey = "publicKey.dat";
+    public final static String PUBLICkey = "publicKey.dat";
     public final static String PRIVATEKey = "privateKey.dat";
+    public static String path = "/home/zhou/ssh_java/maven/";
 
     public static void main(String[] args) throws Exception {
         isGenkey();
@@ -32,7 +34,7 @@ public class GenkeyDemo {
         PublicKey publicKey = kp.getPublic();
         PrivateKey privateKey = kp.getPrivate();
         //---------------------保存公匙到文件-------------
-        BufferedOutputStream bStream = new BufferedOutputStream(new FileOutputStream(path+""+PUBLICkey));
+        BufferedOutputStream bStream = new BufferedOutputStream(new FileOutputStream(path + "" + PUBLICkey));
         ObjectOutputStream out = new ObjectOutputStream(bStream);
         ByteArrayOutputStream in = new ByteArrayOutputStream(1024);
 
@@ -44,7 +46,7 @@ public class GenkeyDemo {
         bStream = null;
         out = null;
         //保存私匙到文件
-        bStream = new BufferedOutputStream(new FileOutputStream(path+""+PRIVATEKey));
+        bStream = new BufferedOutputStream(new FileOutputStream(path + "" + PRIVATEKey));
         out = new ObjectOutputStream(bStream);
         out.writeObject(privateKey);
         bStream.flush();

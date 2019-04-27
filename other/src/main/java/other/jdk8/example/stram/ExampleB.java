@@ -1,6 +1,6 @@
 package other.jdk8.example.stram;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import other.jdk8.entity.Student;
 
 import java.util.ArrayList;
@@ -15,12 +15,6 @@ import java.util.stream.Collectors;
  * @createDate 2019/2/5
  **/
 public class ExampleB {
-
-    public static void main(String[] args) {
-        double a  = 86852572;
-        double b  = 52872280;
-        System.out.println(a-b);
-    }
 
     // 初始化
     List<Student> students = new ArrayList<Student>() {
@@ -37,6 +31,12 @@ public class ExampleB {
             add(new Student(20163001, "丁奉", 24, 5, "土木工程", "南京大学"));
         }
     };
+
+    public static void main(String[] args) {
+        double a = 86852572;
+        double b = 52872280;
+        System.out.println(a - b);
+    }
 
     /**
      * map
@@ -65,40 +65,44 @@ public class ExampleB {
 
     /**
      * allMatch用于检测是否全部都满足指定的参数行为，如果全部满足则返回true
+     *
      * @throws Exception
      */
     @Test
     public void testC() throws Exception {
         boolean isAdult = students.parallelStream().allMatch(student -> student.getAge() >= 18);
-        System.out.println(isAdult?"是":"否");
+        System.out.println(isAdult ? "是" : "否");
     }
 
     /**
      * anyMatch则是检测是否存在一个或多个满足指定的参数行为，如果满足则返回true
+     *
      * @throws Exception
      */
     @Test
-    public void testD()throws Exception{
+    public void testD() throws Exception {
         boolean hasWhu = students.parallelStream().anyMatch(student -> "武汉大学".equals(student.getSchool()));
-        System.out.println(hasWhu?"是":"否");
+        System.out.println(hasWhu ? "是" : "否");
     }
 
     /**
      * noneMatch用于检测是否不存在满足指定行为的元素，如果不存在则返回true
+     *
      * @throws Exception
      */
     @Test
-    public void testF()throws Exception{
+    public void testF() throws Exception {
         boolean noneCs = students.parallelStream().noneMatch(student -> "计算机科学".equals(student.getMajor()));
-        System.out.println(noneCs?"是":"否");
+        System.out.println(noneCs ? "是" : "否");
     }
 
     /**
      * findFirst findFirst用于返回满足条件的第一个元素
+     *
      * @throws Exception
      */
     @Test
-    public void testG()throws Exception{
+    public void testG() throws Exception {
         Optional<Student> optStu = students.stream().filter(student -> "土木工程".equals(student.getMajor())).findFirst();
         System.out.println(optStu.get());
     }

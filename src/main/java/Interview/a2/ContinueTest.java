@@ -6,13 +6,13 @@ public class ContinueTest {
         isContinue();
     }
 
-    public static void isContinue(){
+    public static void isContinue() {
         int j = 0;
         do {
             j++;
-            if (j==30)continue;
-            System.out.println(System.nanoTime()+" "+j);
-        }while (j<100);
+            if (j == 30) continue;
+            System.out.println(System.nanoTime() + " " + j);
+        } while (j < 100);
         return;
     }
 }

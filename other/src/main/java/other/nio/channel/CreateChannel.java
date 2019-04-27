@@ -21,50 +21,50 @@ public class CreateChannel {
     //通道的创建
 
     @Test
-    public void createFileReadChannel(){
+    public void createFileReadChannel() {
         try {
-            File file = new File(path+"cache/panda.jpeg");
+            File file = new File(path + "cache/panda.jpeg");
             FileInputStream inputStream = new FileInputStream(file);
             ReadableByteChannel readableByteChannel = inputStream.getChannel();
-            loggerA.info(readableByteChannel.isOpen()+"");
-        }catch (IOException e){
-            loggerA.warning(""+e.getMessage());
+            loggerA.info(readableByteChannel.isOpen() + "");
+        } catch (IOException e) {
+            loggerA.warning("" + e.getMessage());
         }
     }
 
     @Test
-    public void createFileWriteChannel(){
+    public void createFileWriteChannel() {
         try {
-            File file = new File(path+"cache/bibi.txt");
+            File file = new File(path + "cache/bibi.txt");
             FileOutputStream outputStream = new FileOutputStream(file);
             WritableByteChannel writableByteChannel = outputStream.getChannel();
-            loggerA.info(writableByteChannel.isOpen()+"");
-        }catch (IOException e){
-            loggerA.warning(""+e.getMessage());
+            loggerA.info(writableByteChannel.isOpen() + "");
+        } catch (IOException e) {
+            loggerA.warning("" + e.getMessage());
         }
     }
 
     @Test
-    public void createFileChannel(){
+    public void createFileChannel() {
         try {
-            File file = new File(path+"cache/bibiA.txt");
-            RandomAccessFile accessFile = new RandomAccessFile(file,"rw");
+            File file = new File(path + "cache/bibiA.txt");
+            RandomAccessFile accessFile = new RandomAccessFile(file, "rw");
             FileChannel fileChannel = accessFile.getChannel();
-            loggerA.info(""+fileChannel.isOpen());
-        }catch (IOException e){
-            loggerA.warning(""+e.getMessage());
+            loggerA.info("" + fileChannel.isOpen());
+        } catch (IOException e) {
+            loggerA.warning("" + e.getMessage());
         }
     }
 
     @Test
-    public void createSocketChannel(){
+    public void createSocketChannel() {
         try {
-            ServerSocket serverSocket = new ServerSocket(0+8090);
-            Socket socket = new Socket("127.0.0.1",5209);
+            ServerSocket serverSocket = new ServerSocket(0 + 8090);
+            Socket socket = new Socket("127.0.0.1", 5209);
             SocketChannel socketChannel = socket.getChannel();
-            loggerA.info("is "+socketChannel.isOpen());
-        }catch (Exception e){
-            loggerA.warning(""+e.getMessage());
+            loggerA.info("is " + socketChannel.isOpen());
+        } catch (Exception e) {
+            loggerA.warning("" + e.getMessage());
         }
     }
 }

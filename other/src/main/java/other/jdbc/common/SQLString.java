@@ -2,32 +2,32 @@ package other.jdbc.common;
 
 public class SQLString {
 
-    public static String insert(){
+    public static String insert() {
         final StringBuilder builder = new StringBuilder(1024);
         builder.append("insert into `jdbc-user`(id,birthday,name,username,password,address,account,`group`,sex,jurisdiction,permission,role,age) values((select UUID()),(select NOW()),?,?,?,?,?,?,?,?,?,?,?)");
         return builder.toString();
     }
 
-    public static String select(){
+    public static String select() {
         final StringBuilder builder = new StringBuilder(1024);
         builder.append("SELECT * from `jdbc-user`");
         return builder.toString();
     }
 
-    public static String selectById(){
+    public static String selectById() {
         final StringBuilder builder = new StringBuilder(1024);
         builder.append("select * from `jdbc-user` WHERE id=?");
         return builder.toString();
     }
 
 
-    public static String delete(){
+    public static String delete() {
         final StringBuilder builder = new StringBuilder(1024);
         builder.append("delete from `jdbc-user` where id=?");
         return builder.toString();
     }
 
-    public static String update(){
+    public static String update() {
         final StringBuilder builder = new StringBuilder(1024);
         builder.append("UPDATE `jdbc-user` u SET u.role=?,u.username=?,u.name=?,u.sex=?,u.account=?,u.address=?,u.`group`=?,u.password=?,\n" +
                 "  u.jurisdiction=?,u.permission=?,u.age=?,u.birthday=? WHERE u.id=?");

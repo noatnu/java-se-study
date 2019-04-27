@@ -248,7 +248,7 @@ public class DemoA {
     }
 
     @Test
-    public void isTest13A(){//这里需要注意的是回溯　　回的是变化的字符如1-6有123456我们不确定,还有就是只能回溯一次
+    public void isTest13A() {//这里需要注意的是回溯　　回的是变化的字符如1-6有123456我们不确定,还有就是只能回溯一次
         String str = InputDemo.getText(DOC.INPUT.getName() + "isTest13A.html");
         logger.info("普通写法");
         Matcher m = Pattern.compile("<[Hh][1-6][\\s\\S]*>.*</[Hh][1-6]>").matcher(str);

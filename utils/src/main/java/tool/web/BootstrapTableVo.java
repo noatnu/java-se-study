@@ -8,17 +8,20 @@ import java.io.Serializable;
  * @Description:
  */
 public class BootstrapTableVo<E> implements Serializable {
+    //每页的最大记录数
+    public final int PAGE_MAX = 10;
     /*总页数*/
     private Long total;
     //当前页
     private int pageSize;
-    /**总记录**/
+    /**
+     * 总记录
+     **/
     private long pageTotal;
-    //每页的最大记录数
-    public final int PAGE_MAX = 10;
     private E rows;
 
-    public BootstrapTableVo(){}
+    public BootstrapTableVo() {
+    }
 
     public BootstrapTableVo(Long total, E rows) {
         this.total = total;
@@ -26,12 +29,12 @@ public class BootstrapTableVo<E> implements Serializable {
     }
 
     public Long getTotal() {
-        if (getPageTotal() <= PAGE_MAX)return 1l;
-        long temp = (pageTotal/PAGE_MAX);
-        if ((pageTotal % PAGE_MAX ) == 0 ){
+        if (getPageTotal() <= PAGE_MAX) return 1l;
+        long temp = (pageTotal / PAGE_MAX);
+        if ((pageTotal % PAGE_MAX) == 0) {
             return temp;
-        }else {
-            return temp+1;
+        } else {
+            return temp + 1;
         }
     }
 

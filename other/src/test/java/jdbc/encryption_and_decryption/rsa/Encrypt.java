@@ -17,7 +17,7 @@ public class Encrypt {
     public static void isEncrypt() throws Exception {
         final String str = "hao are you";
         //---------------------读取公匙-------------------------------
-        BufferedInputStream bInputS = new BufferedInputStream(new FileInputStream(GenkeyDemo.path+""+GenkeyDemo.PUBLICkey));
+        BufferedInputStream bInputS = new BufferedInputStream(new FileInputStream(GenkeyDemo.path + "" + GenkeyDemo.PUBLICkey));
         ObjectInputStream in = new ObjectInputStream(bInputS);
         RSAPublicKey publicKey = (RSAPublicKey) in.readObject();
         //-----------------得到公匙的两个重要参数e,n-----------------------

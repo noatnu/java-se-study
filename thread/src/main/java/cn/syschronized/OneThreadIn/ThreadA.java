@@ -2,17 +2,17 @@ package cn.syschronized.OneThreadIn;
 
 public class ThreadA extends Thread {
 
-	private ObjectService service;
+    private ObjectService service;
 
-	public ThreadA(ObjectService service) {
-		super();
-		this.service = service;
-	}
+    public ThreadA(ObjectService service) {
+        super();
+        this.service = service;
+    }
 
-	@Override
-	public void run() {
-		super.run();
-		service.serviceMethod();
-	}
+    @Override
+    public void run() {
+        super.run();
+        service.serviceMethod();
+    }
 
 }

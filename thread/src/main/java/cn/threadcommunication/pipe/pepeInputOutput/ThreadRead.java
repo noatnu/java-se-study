@@ -2,7 +2,7 @@ package cn.threadcommunication.pipe.pepeInputOutput;
 
 import java.io.PipedInputStream;
 
-public class ThreadRead extends Thread{
+public class ThreadRead extends Thread {
     private PipedInputStream input;
     private ReadData readData;
 

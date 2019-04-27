@@ -11,7 +11,7 @@ public class RUNDemo {
 
             threadP.start();
             threadC.start();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

@@ -11,26 +11,27 @@ public class ConnectionUtil {
     private final String DB_URL = "jdbc:mysql://localhost:3306/spring?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false";
 
     //  Database credentials
-    private  final String USER = "blake";
-    private  final String PASS = "123456";
+    private final String USER = "blake";
+    private final String PASS = "123456";
 
-    public  Connection getConnection(){
+    private ConnectionUtil() {
+    }
+
+    public static ConnectionUtil getConnectionUtil() {
+        if (connectionUtil == null) connectionUtil = new ConnectionUtil();
+        return connectionUtil;
+    }
+
+    public Connection getConnection() {
         Connection conn = null;
         try {
             Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-        }catch (SQLException e){
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return conn;
     }
-
-    public static ConnectionUtil getConnectionUtil() {
-        if (connectionUtil==null)connectionUtil = new ConnectionUtil();
-        return connectionUtil;
-    }
-
-    private ConnectionUtil(){}
 }

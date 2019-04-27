@@ -6,15 +6,15 @@ package com.init;
 public class Demo2 {
 
 
-    static {
-        System.out.println("静态块执行");
-        Sample sample = new Sample("sample initializer static 静态块初始化");
-    }
-
     /**
      * sample 和 sample1顺序实际初始化顺序是一致的
      */
     static Sample sample1 = new Sample("sample1 static成员初始化");
+
+    static {
+        System.out.println("静态块执行");
+        Sample sample = new Sample("sample initializer static 静态块初始化");
+    }
 
     Sample sample2 = new Sample("sample2 成员初始化");
 

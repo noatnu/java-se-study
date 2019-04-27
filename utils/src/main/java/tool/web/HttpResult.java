@@ -23,16 +23,24 @@ public class HttpResult {
 
     private static final int DEFAULT_ERR_CODE = 0;
 
-    /** 表示调用是否成功，成功为true，失败为false */
+    /**
+     * 表示调用是否成功，成功为true，失败为false
+     */
     private Boolean ret;
 
-    /** 业务数据 */
+    /**
+     * 业务数据
+     */
     private Object data;
 
-    /** 调用码，当调用出错时，此字段才会出现 */
+    /**
+     * 调用码，当调用出错时，此字段才会出现
+     */
     private Integer code;
 
-    /** 错误信息，输出出错码对应的出错信息 */
+    /**
+     * 错误信息，输出出错码对应的出错信息
+     */
     private String errmsg;
 
     /**
@@ -59,7 +67,6 @@ public class HttpResult {
     }
 
     /**
-     *
      * @param code
      * @param object
      * @return
@@ -114,6 +121,7 @@ public class HttpResult {
 
     /**
      * json
+     *
      * @param result
      * @return
      */
@@ -159,7 +167,9 @@ public class HttpResult {
         return JsonUtils.parse(JsonUtils.json(data), clazz);
     }
 
-    /** -----------------setter/getter--------------------- **/
+    /**
+     * -----------------setter/getter---------------------
+     **/
     public Object getData() {
         return data;
     }
@@ -193,7 +203,9 @@ public class HttpResult {
         this.ret = ret;
     }
 
-    /** -----------------equals/hashCode--------------------- **/
+    /**
+     * -----------------equals/hashCode---------------------
+     **/
 
     @Override
     public String toString() {

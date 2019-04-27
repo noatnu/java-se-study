@@ -9,11 +9,11 @@ import java.nio.channels.*;
  * Created by zhou on 17-12-27.
  */
 public class SelectSockets {
+    public static int PORT_NUMBER = 1234;
     //对所有的通道使用相同的缓冲区。单线程为所有的通道进行服务，所以并发访问没有风险
     private static ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
-    public static int PORT_NUMBER = 1234;
 
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
         String[] argv = {"8090"};
         new SelectSockets().go(argv);
         System.out.println(buffer);

@@ -27,11 +27,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>RELEASE</version>
@@ -257,8 +252,12 @@
     </dependencies>
 
     <dependencyManagement>
-
-
+        <dependencies>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>

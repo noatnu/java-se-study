@@ -15,15 +15,17 @@ import java.util.regex.Pattern;
 public class StringUtilsS {
     /**
      * 过滤空NULL
+     *
      * @param o
      * @return
      */
     public static String FilterNull(Object o) {
-        return o != null && !"null".equals(o.toString()) ? o.toString().trim() : "" ;
+        return o != null && !"null".equals(o.toString()) ? o.toString().trim() : "";
     }
 
     /**
      * 是否为空
+     *
      * @param o
      * @return
      */
@@ -40,6 +42,7 @@ public class StringUtilsS {
 
     /**
      * 是否不为空
+     *
      * @param o
      * @return
      */
@@ -56,6 +59,7 @@ public class StringUtilsS {
 
     /**
      * 是否可转化为数字
+     *
      * @param o
      * @return
      */
@@ -70,6 +74,7 @@ public class StringUtilsS {
 
     /**
      * 是否可转化为Long型数字
+     *
      * @param o
      * @return
      */
@@ -84,6 +89,7 @@ public class StringUtilsS {
 
     /**
      * 转化为Long型数字, 不可转化时返回0
+     *
      * @param o
      * @return
      */
@@ -97,6 +103,7 @@ public class StringUtilsS {
 
     /**
      * 转化为int型数字, 不可转化时返回0
+     *
      * @param o
      * @return
      */
@@ -110,6 +117,7 @@ public class StringUtilsS {
 
     /**
      * 按字符从左截取固定长度字符串, 防止字符串超长, 默认截取50
+     *
      * @param o
      * @return
      */
@@ -123,6 +131,7 @@ public class StringUtilsS {
 
     /**
      * 从左截取固定长度字符串, 防止字符串超长, maxlength为0时默认50
+     *
      * @param o
      * @return
      */
@@ -136,6 +145,7 @@ public class StringUtilsS {
 
     /**
      * 按字节截取字符串
+     *
      * @param str
      * @param len
      * @return
@@ -167,9 +177,10 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_添加
+     *
      * @param commaexpress 原逗号表达式 如 A,B
      * @param newelement   新增元素 C
-     * @return A,B,C
+     * @return A, B, C
      */
     public static String comma_add(String commaexpress, String newelement) {
         return comma_rect(FilterNull(commaexpress) + "," + FilterNull(newelement));
@@ -177,8 +188,9 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_删除
-     * @param commaexpress  原逗号表达式 如 A,B,C
-     * @param delelement 删除元素 C,A
+     *
+     * @param commaexpress 原逗号表达式 如 A,B,C
+     * @param delelement   删除元素 C,A
      * @return B
      */
     public static String comma_del(String commaexpress, String delelement) {
@@ -195,9 +207,10 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_单一删除
-     * @param commaexpress  原逗号表达式 如 A,B,C
-     * @param delelement 删除元素 C
-     * @return A,B
+     *
+     * @param commaexpress 原逗号表达式 如 A,B,C
+     * @param delelement   删除元素 C
+     * @return A, B
      */
     public static String comma_delone(String commaexpress, String delelement) {
         if ((commaexpress == null) || (delelement == null) || (commaexpress.trim().equals(delelement.trim()))) {
@@ -215,8 +228,9 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_判断是否包含元素
+     *
      * @param commaexpress 逗号表达式 A,B,C
-     * @param element C
+     * @param element      C
      * @return true
      */
     public static boolean comma_contains(String commaexpress, String element) {
@@ -237,9 +251,10 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_取交集
+     *
      * @param commaexpressA 逗号表达式1  A,B,C
      * @param commaexpressB 逗号表达式2  B,C,D
-     * @return B,C
+     * @return B, C
      */
     public static String comma_intersect(String commaexpressA, String commaexpressB) {
         commaexpressA = FilterNull(commaexpressA);
@@ -259,8 +274,9 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_规范
-     * @param commaexpress  逗号表达式  ,A,B,B,,C
-     * @return A,B,C
+     *
+     * @param commaexpress 逗号表达式  ,A,B,B,,C
+     * @return A, B, C
      */
     public static String comma_rect(String commaexpress) {
         commaexpress = FilterNull(commaexpress);
@@ -276,8 +292,9 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_反转
+     *
      * @param commaexpress A,B,C
-     * @return C,B,A
+     * @return C, B, A
      */
     public static String comma_reverse(String commaexpress) {
         commaexpress = FilterNull(commaexpress);
@@ -291,6 +308,7 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_获取首对象
+     *
      * @param commaexpress A,B,C
      * @return A
      */
@@ -306,6 +324,7 @@ public class StringUtilsS {
 
     /**
      * 逗号表达式_获取尾对象
+     *
      * @param commaexpress A,B,C
      * @return C
      */
@@ -320,6 +339,7 @@ public class StringUtilsS {
 
     /**
      * 替换字符串,支持字符串为空的情形
+     *
      * @param strData
      * @param regex
      * @param replacement
@@ -331,12 +351,13 @@ public class StringUtilsS {
 
     /**
      * 字符串转为HTML显示字符
+     *
      * @param strData
      * @return
      */
-    public static String String2HTML(String strData){
-        if( strData == null || "".equals(strData) ){
-            return "" ;
+    public static String String2HTML(String strData) {
+        if (strData == null || "".equals(strData)) {
+            return "";
         }
         strData = replace(strData, "&", "&amp;");
         strData = replace(strData, "<", "&lt;");
@@ -345,12 +366,14 @@ public class StringUtilsS {
         return strData;
     }
 
-    /**     * 把异常信息转换成字符串，以方便保存 */
-    public static String getexceptionInfo(Exception e){
+    /**
+     * 把异常信息转换成字符串，以方便保存
+     */
+    public static String getexceptionInfo(Exception e) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try{
+        try {
             e.printStackTrace(new PrintStream(baos));
-        }finally{
+        } finally {
             try {
                 baos.close();
             } catch (IOException e1) {
@@ -360,8 +383,10 @@ public class StringUtilsS {
         return baos.toString();
     }
 
-    /** 过滤特殊符号 */
-    public static String regex(String str){
+    /**
+     * 过滤特殊符号
+     */
+    public static String regex(String str) {
         Pattern pattern = Pattern.compile("[0-9-:/ ]");// 中文汉字编码区间
         Matcher matcher;
         char[] array = str.toCharArray();
@@ -375,11 +400,11 @@ public class StringUtilsS {
         return str;
     }
 
-    public static String comma_insert(String commaexpress, String newelement,int index){
+    public static String comma_insert(String commaexpress, String newelement, int index) {
         int length = commaexpress.length();
-        if ( index > length ) {
+        if (index > length) {
             index = length;
-        }else if ( index < 0){
+        } else if (index < 0) {
             index = 0;
         }
         String result = commaexpress.substring(0, index) + newelement + commaexpress.substring(index, commaexpress.length());
@@ -388,6 +413,7 @@ public class StringUtilsS {
 
     /**
      * 将"/"替换成"\"
+     *
      * @param strDir
      * @return
      */
@@ -405,10 +431,10 @@ public class StringUtilsS {
     /**
      * 去除字符串中 头和尾的空格，中间的空格保留
      *
-     * @Title: trim
-     * @Description: TODO
      * @return String
      * @throws
+     * @Title: trim
+     * @Description: TODO
      */
     public static String trim(String s) {
         int i = s.length();// 字符串最后一个字符的位置
@@ -421,8 +447,10 @@ public class StringUtilsS {
             --i;// 确定字符串后面的空格数
         return (((j > 0) || (i < s.length())) ? s.substring(j, i) : s);// 返回去除空格后的字符串
     }
+
     /**
      * 得到大括号中的内容
+     *
      * @param str
      * @return
      */
@@ -452,6 +480,7 @@ public class StringUtilsS {
 
     /**
      * 去掉字符串中、前、后的空格
+     *
      * @param name
      * @throws IOException
      */
@@ -465,6 +494,7 @@ public class StringUtilsS {
 
     /**
      * 将null换成""
+     *
      * @param str
      * @return
      */
@@ -472,7 +502,7 @@ public class StringUtilsS {
         return str != null && !"null".equals(str) ? str.trim() : "";
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println(isNum("a"));
         System.out.println(isNum("-1"));
         System.out.println(isNum("01"));

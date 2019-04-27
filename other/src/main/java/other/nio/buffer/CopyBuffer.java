@@ -13,13 +13,13 @@ public class CopyBuffer {
     private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
 
     @Test
-    public void copyBufferA(){
+    public void copyBufferA() {
         char[] chars = new char[1024];
-        CharBuffer charBuffer = CharBuffer.wrap(chars,0,chars.length/4);
+        CharBuffer charBuffer = CharBuffer.wrap(chars, 0, chars.length / 4);
         charBuffer.put("A Hangzhou resident scans the QR code on a shared car.");
-        loggerA.info("原始缓冲区:"+print(charBuffer));
+        loggerA.info("原始缓冲区:" + print(charBuffer));
         CharBuffer copyBuffer = charBuffer.duplicate();
-        loggerA.info("Copy缓冲区:"+print(copyBuffer));
+        loggerA.info("Copy缓冲区:" + print(copyBuffer));
 
         /**
          * 两个缓冲区共享数据元素，拥有同样的容量，但每个缓冲区拥有各自的位置，上界和标记属性。对一个缓冲区内的数
@@ -29,19 +29,19 @@ public class CopyBuffer {
     }
 
     @Test
-    public void asReadyOnly(){
+    public void asReadyOnly() {
         char[] chars = new char[1024];
-        CharBuffer charBuffer = CharBuffer.wrap(chars,0,chars.length/4);
+        CharBuffer charBuffer = CharBuffer.wrap(chars, 0, chars.length / 4);
         charBuffer.put("A Hangzhou resident scans the QR code on a shared car.");
-        loggerA.info("原始缓冲区:"+print(charBuffer));
+        loggerA.info("原始缓冲区:" + print(charBuffer));
         CharBuffer copyBuffer = charBuffer.asReadOnlyBuffer();
-        loggerA.info("只读的缓冲区视图:"+print(copyBuffer));
+        loggerA.info("只读的缓冲区视图:" + print(copyBuffer));
     }
 
-    public String print(Buffer buffer){
+    public String print(Buffer buffer) {
         StringBuilder builder = new StringBuilder(1024);
-        builder.append("缓冲区的容量:"+ buffer.capacity()+" 缓冲区的限制:"+ buffer.limit());
-        builder.append(" 缓冲区的位置:"+ buffer.position());
+        builder.append("缓冲区的容量:" + buffer.capacity() + " 缓冲区的限制:" + buffer.limit());
+        builder.append(" 缓冲区的位置:" + buffer.position());
         return builder.toString();
     }
 }

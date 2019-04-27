@@ -1,7 +1,6 @@
 package jdbc.nio;
 
 
-
 import tool.help.Zhou_String;
 
 import java.nio.ByteBuffer;
@@ -14,12 +13,14 @@ public class BufferEquals {
         isEquals();
     }
 
-    public static void isEquals(){
+    public static void isEquals() {
         ByteBuffer buffer1 = ByteBuffer.allocate(10);
         ByteBuffer buffer2 = ByteBuffer.allocate(10);
         buffer1.put((byte) Zhou_String.toLowerCase(2).charAt(0));
         buffer1.put((byte) Zhou_String.toLowerCase(2).charAt(0));
-        if (buffer1.equals(buffer2)) System.out.println("yes");else System.out.println("no");;
+        if (buffer1.equals(buffer2)) System.out.println("yes");
+        else System.out.println("no");
+        ;
         /**
           两个对象类型相同。包含不同数据类型的 buffer 永远不会相等,而且 buffer
          绝不会等于非 buffer 对象。

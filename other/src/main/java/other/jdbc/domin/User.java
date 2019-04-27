@@ -6,22 +6,22 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- CREATE TABLE `jdbc-user` (
- `id` varchar(50) NOT NULL,
- `name` varchar(255) DEFAULT NULL,
- `username` varchar(255) DEFAULT NULL,
- `birthday` timestamp NULL DEFAULT NULL,
- `address` varchar(255) DEFAULT NULL,
- `account` varchar(255) DEFAULT NULL,
- `group` varchar(255) DEFAULT NULL,
- `sex` varchar(255) DEFAULT NULL,
- `jurisdiction` varchar(255) DEFAULT NULL,
- `permission` varchar(255) DEFAULT NULL,
- `role` varchar(255) DEFAULT NULL,
- `age` int(30) DEFAULT NULL,
- `password` varchar(255) DEFAULT NULL,
- PRIMARY KEY (`id`) USING BTREE
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ * CREATE TABLE `jdbc-user` (
+ * `id` varchar(50) NOT NULL,
+ * `name` varchar(255) DEFAULT NULL,
+ * `username` varchar(255) DEFAULT NULL,
+ * `birthday` timestamp NULL DEFAULT NULL,
+ * `address` varchar(255) DEFAULT NULL,
+ * `account` varchar(255) DEFAULT NULL,
+ * `group` varchar(255) DEFAULT NULL,
+ * `sex` varchar(255) DEFAULT NULL,
+ * `jurisdiction` varchar(255) DEFAULT NULL,
+ * `permission` varchar(255) DEFAULT NULL,
+ * `role` varchar(255) DEFAULT NULL,
+ * `age` int(30) DEFAULT NULL,
+ * `password` varchar(255) DEFAULT NULL,
+ * PRIMARY KEY (`id`) USING BTREE
+ * ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  */
 public class User implements Serializable, Comparable<User> {
     private String id;
@@ -38,6 +38,15 @@ public class User implements Serializable, Comparable<User> {
     private String jurisdiction;
     private String role;
     private int age;
+
+    public User() {
+    }
+
+    public User(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 
     public String getId() {
         return id;
@@ -156,15 +165,6 @@ public class User implements Serializable, Comparable<User> {
         return this;
     }
 
-    public User() {
-    }
-
-    public User(String id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -190,17 +190,17 @@ public class User implements Serializable, Comparable<User> {
     }
 }
 /**
- id	varchar(50)	NO	PRI
- name	varchar(255)	YES
- username	varchar(255)	YES
- birthday	timestamp	YES
- address	varchar(255)	YES
- account	varchar(255)	YES
- group	varchar(255)	YES
- sex	varchar(255)	YES
- jurisdiction	varchar(255)	YES
- permission	varchar(255)	YES
- role	varchar(255)	YES
- age	int(30)	YES
- password	varchar(255)	YES
+ * id	varchar(50)	NO	PRI
+ * name	varchar(255)	YES
+ * username	varchar(255)	YES
+ * birthday	timestamp	YES
+ * address	varchar(255)	YES
+ * account	varchar(255)	YES
+ * group	varchar(255)	YES
+ * sex	varchar(255)	YES
+ * jurisdiction	varchar(255)	YES
+ * permission	varchar(255)	YES
+ * role	varchar(255)	YES
+ * age	int(30)	YES
+ * password	varchar(255)	YES
  */

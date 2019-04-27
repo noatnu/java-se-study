@@ -25,6 +25,22 @@ public class MultiPortEcho {
         go();
     }
 
+    static public void main(String args[]) throws Exception {
+        String[] argv = {"8080", "8081"};
+        if (argv.length <= 0) {
+            System.err.println("Usage: java MultiPortEcho port [port port ...]");
+            System.exit(1);
+        }
+
+        int ports[] = new int[argv.length];
+
+        for (int i = 0; i < argv.length; ++i) {
+            ports[i] = Integer.parseInt(argv[i]);
+        }
+
+        new MultiPortEcho(ports);
+    }
+
     private void go() throws IOException {
         // Create a new selector
         Selector selector = Selector.open();
@@ -96,22 +112,6 @@ public class MultiPortEcho {
             //      selectedKeys.clear();
             //System.out.println( "cleared" );
         }
-    }
-
-    static public void main(String args[]) throws Exception {
-        String[] argv = {"8080", "8081"};
-        if (argv.length <= 0) {
-            System.err.println("Usage: java MultiPortEcho port [port port ...]");
-            System.exit(1);
-        }
-
-        int ports[] = new int[argv.length];
-
-        for (int i = 0; i < argv.length; ++i) {
-            ports[i] = Integer.parseInt(argv[i]);
-        }
-
-        new MultiPortEcho(ports);
     }
 
 }

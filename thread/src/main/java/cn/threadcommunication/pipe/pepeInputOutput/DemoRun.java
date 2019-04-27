@@ -15,14 +15,14 @@ public class DemoRun {
 //            inputStream.connect(outputStream);
             outputStream.connect(inputStream);
 
-            ThreadRead threadRead = new ThreadRead(inputStream,readData);
+            ThreadRead threadRead = new ThreadRead(inputStream, readData);
             threadRead.start();
 
             Thread.sleep(200);
 
-            ThreadWrite threadWrite = new ThreadWrite(writeData,outputStream);
+            ThreadWrite threadWrite = new ThreadWrite(writeData, outputStream);
             threadWrite.start();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

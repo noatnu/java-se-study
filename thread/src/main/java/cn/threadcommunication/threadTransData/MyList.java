@@ -5,14 +5,14 @@ import java.util.List;
 
 public class MyList {
 
-	private List<String> list = new ArrayList<>();
+    private List<String> list = new ArrayList<>();
 
-	public void add() {
-		list.add("南京");
-	}
+    public void add() {
+        list.add("南京");
+    }
 
-	public int size() {
-		return list.size();
-	}
+    public int size() {
+        return list.size();
+    }
 
 }

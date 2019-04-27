@@ -9,6 +9,9 @@ import java.util.Base64;
  * @Description:
  */
 public class ZhouBase64 implements Serializable {
+    private ZhouBase64() {
+    }
+
     /**
      * JDK8实现的Base64加密
      *
@@ -31,9 +34,6 @@ public class ZhouBase64 implements Serializable {
         Base64.Decoder decoder = Base64.getDecoder();
         byte[] bs = decoder.decode(var.getBytes());
         return new String(bs).toString();
-    }
-
-    private ZhouBase64() {
     }
 
     @SuppressWarnings("unused")

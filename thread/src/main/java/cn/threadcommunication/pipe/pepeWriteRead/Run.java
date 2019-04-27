@@ -6,32 +6,32 @@ import java.io.PipedWriter;
 
 public class Run {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		try {
-			WriteData writeData = new WriteData();
-			ReadData readData = new ReadData();
+        try {
+            WriteData writeData = new WriteData();
+            ReadData readData = new ReadData();
 
-			PipedReader inputStream = new PipedReader();
-			PipedWriter outputStream = new PipedWriter();
+            PipedReader inputStream = new PipedReader();
+            PipedWriter outputStream = new PipedWriter();
 
-			// inputStream.connect(outputStream);
-			outputStream.connect(inputStream);
+            // inputStream.connect(outputStream);
+            outputStream.connect(inputStream);
 
-			ThreadRead threadRead = new ThreadRead(readData, inputStream);
-			threadRead.start();
+            ThreadRead threadRead = new ThreadRead(readData, inputStream);
+            threadRead.start();
 
-			Thread.sleep(2000);
+            Thread.sleep(2000);
 
-			ThreadWrite threadWrite = new ThreadWrite(writeData, outputStream);
-			threadWrite.start();
+            ThreadWrite threadWrite = new ThreadWrite(writeData, outputStream);
+            threadWrite.start();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

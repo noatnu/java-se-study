@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import java.security.MessageDigest;
 
 /**
- *
  * 实现描述：MD5加密工具，主要用于HMAC签名
  *
  * @author red
@@ -15,8 +14,8 @@ import java.security.MessageDigest;
  */
 public class Md5Utils {
 
-    private static final String HEX_DIGITS[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
-            "e", "f" };
+    private static final String HEX_DIGITS[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+            "e", "f"};
 
     private final static Logger logger = LoggerFactory.getLogger(Md5Utils.class);
 

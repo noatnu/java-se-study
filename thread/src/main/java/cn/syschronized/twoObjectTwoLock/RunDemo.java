@@ -15,7 +15,7 @@ public class RunDemo {
          b set over!
          b num=200
          a num=100
-        效果为异步,当多个对象访问多个对象,则JVM会创建多个锁
+         效果为异步,当多个对象访问多个对象,则JVM会创建多个锁
          */
     }
 }

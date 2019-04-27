@@ -1,7 +1,6 @@
 package jdbc.nio.pipe;
 
 
-
 import tool.help.Zhou_String;
 
 import java.io.IOException;
@@ -14,8 +13,9 @@ import java.nio.channels.WritableByteChannel;
  * Created by zhou on 17-12-26.
  */
 public class DemoPipe {
-    private final static Integer NUM = 1024*1000;
-    public static void main(String[] args) throws IOException,Exception {
+    private final static Integer NUM = 1024 * 1000;
+
+    public static void main(String[] args) throws IOException, Exception {
 //        isit();
         isRun();
     }
@@ -30,7 +30,7 @@ public class DemoPipe {
         ByteBuffer buffer = ByteBuffer.allocate(NUM);//创建缓冲器
         buffer.put(newData.getBytes("UTF-8"));
         buffer.flip();
-        System.out.println("--> "+buffer);
+        System.out.println("--> " + buffer);
         while (buffer.hasRemaining()) {
             sinkChannel.write(buffer);
         }
@@ -42,25 +42,27 @@ public class DemoPipe {
         StringBuilder builder = new StringBuilder(1024);
         int i = sourceChannel.read(byteBuffer);
         byteBuffer.flip();
-        System.out.println(i+" --<"+byteBuffer);
+        System.out.println(i + " --<" + byteBuffer);
         byte[] bs = new byte[byteBuffer.remaining()];
         int j = 0;
-        while (byteBuffer.hasRemaining()){
+        while (byteBuffer.hasRemaining()) {
             bs[j++] = byteBuffer.get();
         }
-        System.out.println(new String(bs,"UTF-8"));
+        System.out.println(new String(bs, "UTF-8"));
         System.out.println(byteBuffer);
 
     }
 
-    public static void isRun()throws Exception{
+    public static void isRun() throws Exception {
         Pipe pipe = Pipe.open();
         Pipe.SinkChannel sinkChannel = pipe.sink();
         String newData = isGetData().toString();
         ByteBuffer buffer = ByteBuffer.allocate(NUM);//创建缓冲器
         buffer.put(newData.getBytes("UTF-8"));
         buffer.flip();
-        while (buffer.hasRemaining()){sinkChannel.write(buffer);}
+        while (buffer.hasRemaining()) {
+            sinkChannel.write(buffer);
+        }
 
         Pipe.SourceChannel sourceChannel = pipe.source();
         WritableByteChannel writableByteChannel = Channels.newChannel(System.out);
@@ -70,11 +72,11 @@ public class DemoPipe {
         writableByteChannel.write(byteBuffer);
     }
 
-    public static StringBuilder isGetData(){
+    public static StringBuilder isGetData() {
         StringBuilder builder = new StringBuilder(1024);
         for (int i = 0; i < 1000; i++) {
-            builder.append(Zhou_String.toLowerCase(3)+" ");
-            if (i%10==0)builder.append("\n");
+            builder.append(Zhou_String.toLowerCase(3) + " ");
+            if (i % 10 == 0) builder.append("\n");
         }
         return builder;
     }

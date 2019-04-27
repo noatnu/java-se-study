@@ -10,9 +10,9 @@ public class Demo1 {
         isit();
     }
 
-    public static void isit(){
+    public static void isit() {
         ByteBuffer buffer = ByteBuffer.allocate(10);
-        buffer.put((byte) 'z').put((byte)'h').put((byte)'o').put((byte)'u');
+        buffer.put((byte) 'z').put((byte) 'h').put((byte) 'o').put((byte) 'u');
         /**
          * Java NIO一共有四个参数
          * 0 1 2 3 4 5 6 7 8 9 10
@@ -25,7 +25,6 @@ public class Demo1 {
          * limit表示缓冲区 下一个不能读和写的索引
          * mark表示标记 设定时与position()方法连用   调用reset() method即可恢复mark标记的位置
          */
-
 
 
         //最重要的就是读的时候是从position到limit之间,写的时候同样是position到limit之间

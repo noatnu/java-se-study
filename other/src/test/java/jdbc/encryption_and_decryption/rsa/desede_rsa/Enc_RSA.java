@@ -91,7 +91,7 @@ public class Enc_RSA {
         System.out.println("c:" + c);
         String cs = c.toString();
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Generate_DES_Key.path + "" + ENC_RSA)));
-        writer.write(cs, 0,cs.length());
+        writer.write(cs, 0, cs.length());
         writer.flush();
         writer.close();
     }
@@ -108,7 +108,7 @@ public class Enc_RSA {
         byte[] bytes = new byte[(int) file.length()];
         in.read(bytes);
         in.close();
-        BigInteger c = new BigInteger(new String(bytes,"UTF-8").toString());
+        BigInteger c = new BigInteger(new String(bytes, "UTF-8").toString());
         //得到商户自己的密匙
         ObjectInputStream b = new ObjectInputStream(new FileInputStream(Generate_DES_Key.path + "" + RSA_PRIVATE_FileName));
         RSAPrivateKey privateKey = (RSAPrivateKey) b.readObject();
@@ -124,7 +124,7 @@ public class Enc_RSA {
         byteArray.read(mt);
         ObjectInputStream isT = new ObjectInputStream(byteArray);
         Key key = (Key) isT.readObject();
-        System.out.println("测试:"+key.toString());
+        System.out.println("测试:" + key.toString());
         BufferedOutputStream oStream = new BufferedOutputStream(new FileOutputStream(Generate_DES_Key.path + "" + Dec_RSA));
         //为商户保存解密得到的DESede密匙
         oStream.write(mt);

@@ -5,7 +5,7 @@ public class DTest1 {
         try {
             String nString = new String();
             nString.wait();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }

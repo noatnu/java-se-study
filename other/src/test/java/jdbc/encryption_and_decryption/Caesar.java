@@ -18,7 +18,7 @@ public class Caesar {
 
         //解密
         strings[0] = "czggj rjmgy";
-        strings[1] = "-"+198245;
+        strings[1] = "-" + 198245;
         isit(strings);
     }
 

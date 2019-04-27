@@ -32,6 +32,15 @@ public class Student implements Serializable, Comparable<Student> {
      */
     private String school;
 
+    public Student(long id, String name, int age, int grade, String major, String school) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+        this.major = major;
+        this.school = school;
+    }
+
     public long getId() {
         return id;
     }
@@ -77,15 +86,6 @@ public class Student implements Serializable, Comparable<Student> {
     }
 
     public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public Student(long id, String name, int age, int grade, String major, String school) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.grade = grade;
-        this.major = major;
         this.school = school;
     }
 

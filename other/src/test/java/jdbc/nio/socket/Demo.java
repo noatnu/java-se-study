@@ -9,7 +9,7 @@ import java.nio.channels.ServerSocketChannel;
  * Created by zhou on 17-12-25.
  */
 public class Demo {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         long x = (Long.MAX_VALUE / (1024 * 1024 * 1024));
         System.out.println(x);
         System.out.println(x / 1024);

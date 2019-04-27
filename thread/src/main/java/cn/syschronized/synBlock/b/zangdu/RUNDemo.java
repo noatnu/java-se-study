@@ -16,7 +16,7 @@ public class RUNDemo {
             Thread.sleep(6000);
 
             System.out.println("listSize=" + list.getSize());
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println("异常!");
         }
     }

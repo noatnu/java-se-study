@@ -6,12 +6,13 @@ import java.util.Date;
 
 /**
  * 描述:身份证处理相关类
- * @author: Calvin(qiudong@copowercpa.com)
+ *
+ * @author: Calvin(qiudong @ copowercpa.com)
  * @data: 2017/7/26
  * @time: 9:42
  */
 public class IDCardUtils {
-      /**
+    /**
      * <p>
      * 判断18位身份证的合法性
      *
@@ -52,6 +53,7 @@ public class IDCardUtils {
         }
         return true;
     }
+
     /**
      * 将字符数组转为整型数组
      *
@@ -67,8 +69,10 @@ public class IDCardUtils {
         }
         return a;
     }
+
     /**
      * 数字验证
+     *
      * @param str
      * @return
      */
@@ -78,11 +82,12 @@ public class IDCardUtils {
 
     /**
      * 将身份证的每位和对应位的加权因子相乘之后，再得到和值
+     *
      * @param bit
      * @return
      */
     private static int getPowerSum(int[] bit) {
-        int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+        int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
         int sum = 0;
         if (power.length != bit.length) {
             return sum;
@@ -100,17 +105,19 @@ public class IDCardUtils {
 
     /**
      * 将和值与11取模得到余数进行校验码判断
+     *
      * @param sum17
      * @return 校验位
      */
     private static String getCheckCodeBySum(int sum17) {
-        String verifyCode[] = { "1", "0", "X", "9", "8", "7", "6", "5",
-                "4", "3", "2" };
-        return verifyCode[sum17%11];
+        String verifyCode[] = {"1", "0", "X", "9", "8", "7", "6", "5",
+                "4", "3", "2"};
+        return verifyCode[sum17 % 11];
     }
 
     /**
      * 根据身份证取得出生日期
+     *
      * @param idcard
      * @return
      * @throws ParseException
@@ -124,19 +131,18 @@ public class IDCardUtils {
 
     /**
      * 根据身份证号取性别
+     *
      * @param idcard
      * @return
      */
-    public static String GenderByIdcard(String idcard)
-    {
+    public static String GenderByIdcard(String idcard) {
         String id17 = idcard.substring(16, 17);
         if (Integer.parseInt(id17) % 2 != 0) {
-            return  "男";
+            return "男";
         } else {
             return "女";
         }
     }
-
 
 
 }

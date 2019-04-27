@@ -14,10 +14,10 @@ public class PinYinUtil {
     //pinyin4j格式类
     private HanyuPinyinOutputFormat format = null;
     //拼音字符串数组
-    private String[]pinyin;
+    private String[] pinyin;
 
     //通过构造方法进行初始化
-    public PinYinUtil(){
+    public PinYinUtil() {
 
         format = new HanyuPinyinOutputFormat();
         /*
@@ -33,7 +33,6 @@ public class PinYinUtil {
     }
 
     /**
-     *
      * 功能描述: 对单个字进行转换
      *
      * @param:pinYinStr 需转换的汉字字符串
@@ -41,21 +40,19 @@ public class PinYinUtil {
      * @auther: zch
      * @date: 2018/7/26 21:38
      */
-    public String getCharPinYin(char pinYinStr){
+    public String getCharPinYin(char pinYinStr) {
 
-        try
-        {
+        try {
             //执行转换
             pinyin = PinyinHelper.toHanyuPinyinStringArray(pinYinStr, format);
 
-        } catch (BadHanyuPinyinOutputFormatCombination e)
-        {
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         //pinyin4j规则，当转换的符串不是汉字，就返回null
-        if(pinyin == null){
+        if (pinyin == null) {
             return null;
         }
 
@@ -64,29 +61,24 @@ public class PinYinUtil {
     }
 
     /**
-     *
      * 功能描述: 对单个字进行转换
      *
-     * @param: 
+     * @param:
      * @return:
      * @auther: zch
      * @date: 2018/7/26 21:39
      */
-    public String getStringPinYin(String pinYinStr){
+    public String getStringPinYin(String pinYinStr) {
         StringBuffer sb = new StringBuffer();
         String tempStr = null;
         //循环字符串
-        for(int i = 0; i<pinYinStr.length(); i++)
-        {
+        for (int i = 0; i < pinYinStr.length(); i++) {
 
             tempStr = this.getCharPinYin(pinYinStr.charAt(i));
-            if(tempStr == null)
-            {
+            if (tempStr == null) {
                 //非汉字直接拼接
                 sb.append(pinYinStr.charAt(i));
-            }
-            else
-            {
+            } else {
                 sb.append(tempStr);
             }
         }

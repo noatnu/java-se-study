@@ -1,7 +1,7 @@
 package Interview.a3;
 
-public class Chess  extends BoardGame{
-    Chess(){
+public class Chess extends BoardGame {
+    Chess() {
         super(11);
     }
 
@@ -10,14 +10,14 @@ public class Chess  extends BoardGame{
     }
 }
 
-class Game{
-    Game(int i){
+class Game {
+    Game(int i) {
         System.out.println("i = [" + i + "]");
     }
 }
 
-class BoardGame extends Game{
-    BoardGame(int i){
+class BoardGame extends Game {
+    BoardGame(int i) {
         super(i);
         System.out.println("BoardGame.BoardGame");
     }

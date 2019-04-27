@@ -2,6 +2,7 @@ package org.sort;
 
 /**
  * 插入排序
+ *
  * @author zhou
  */
 public class InsertSort {
@@ -9,16 +10,17 @@ public class InsertSort {
 
     /**
      * 插入排序
+     *
      * @param arr
      * @return
      */
-    public static int[] sort(int[] arr){
-        int j,target;
-        for (int i =1; i < arr.length; i++) {
+    public static int[] sort(int[] arr) {
+        int j, target;
+        for (int i = 1; i < arr.length; i++) {
             j = i;
             target = arr[j];
-            while (j > 0 && arr[j-1] > target){
-                arr[j] = arr[j-1];
+            while (j > 0 && arr[j - 1] > target) {
+                arr[j] = arr[j - 1];
                 j--;
             }
             arr[j] = target;

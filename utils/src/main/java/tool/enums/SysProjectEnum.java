@@ -8,7 +8,7 @@ package tool.enums;
  * @date: 2017/12/19 17:00
  */
 public enum SysProjectEnum {
-    NONE("none", "所有"), FINISH("finish", "已完成"), CLOSE("close", "关闭"),RUNING("runing", "运行中");
+    NONE("none", "所有"), FINISH("finish", "已完成"), CLOSE("close", "关闭"), RUNING("runing", "运行中");
 
     private String value;
     private String name;
@@ -18,7 +18,7 @@ public enum SysProjectEnum {
         this.name = name;
     }
 
-    public static String getNameByKey(String value){
+    public static String getNameByKey(String value) {
         for (SysProjectEnum e : SysProjectEnum.values()) {
             if (e.getValue().equals(value)) {
                 return e.getName();

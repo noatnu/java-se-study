@@ -9,17 +9,17 @@ import java.util.logging.Logger;
  * @Description:
  */
 public class LoggerFactoryGET {
-    private static LoggerFactoryGET loggerFactory = new LoggerFactoryGET();
     public final static Logger loggerALL = LogUtilA.setLoggerHanlder(Level.ALL);
-
-    public Logger getLoggerAll(){
-        return LogUtilA.setLoggerHanlder(Level.ALL);
-    }
+    private static LoggerFactoryGET loggerFactory = new LoggerFactoryGET();
 
     public LoggerFactoryGET() {
     }
 
     public static LoggerFactoryGET getLoggerFactory() {
         return loggerFactory;
+    }
+
+    public Logger getLoggerAll() {
+        return LogUtilA.setLoggerHanlder(Level.ALL);
     }
 }

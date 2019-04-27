@@ -14,13 +14,13 @@ import java.security.MessageDigest;
  * @Description基础加密组件
  * @createDate 2019/2/2
  **/
-public abstract  class Coder {
+public abstract class Coder {
     public static final String KEY_SHA = "SHA";
     public static final String KEY_MD5 = "MD5";
 
     /**
      * MAC算法可选以下多种算法
-     *
+     * <p>
      * <pre>
      * HmacMD5
      * HmacSHA1

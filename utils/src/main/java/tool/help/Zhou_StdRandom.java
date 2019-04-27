@@ -10,7 +10,6 @@ import java.util.Random;
 public class Zhou_StdRandom {
     private static Random random = new Random(System.currentTimeMillis());
     /**
-     *
      * 功能描述: Chinese 静态初始化 static initializer
      *
      * @param:
@@ -19,9 +18,21 @@ public class Zhou_StdRandom {
      * @date: 2018/7/26 21:01
      */
     private static long seed;
+
     {
         seed = System.currentTimeMillis();
         random = new Random(seed);
+    }
+
+    /**
+     * 功能描述: 不能创建对象 (don't instantiate)
+     *
+     * @param:
+     * @return:
+     * @auther: zch
+     * @date: 2018/7/26 21:00
+     */
+    private Zhou_StdRandom() {
     }
 
     public static void setSeed(long num) {
@@ -29,21 +40,19 @@ public class Zhou_StdRandom {
         random = new Random(seed);
     }
 
-   /**
-    *
-    * 功能描述: Returns a random real number uniformly in [0, 1]
-    *
-    * @param:
-    * @return:
-    * @auther: zch
-    * @date: 2018/7/26 21:01
-    */
+    /**
+     * 功能描述: Returns a random real number uniformly in [0, 1]
+     *
+     * @param:
+     * @return:
+     * @auther: zch
+     * @date: 2018/7/26 21:01
+     */
     public static double uniform() {
         return random.nextDouble();
     }
 
     /**
-     *
      * 功能描述: must b > a (a-b)
      *
      * @param:
@@ -58,15 +67,14 @@ public class Zhou_StdRandom {
         return a + (b - a) * uniform();
     }
 
-   /**
-    *
-    * 功能描述: 0——n
-    *
-    * @param:
-    * @return:
-    * @auther: zch
-    * @date: 2018/7/26 21:02
-    */
+    /**
+     * 功能描述: 0——n
+     *
+     * @param:
+     * @return:
+     * @auther: zch
+     * @date: 2018/7/26 21:02
+     */
     public static int uniform(int n) {
         if (n <= 0) {
             throw new IllegalArgumentException("argument must be positive");
@@ -74,15 +82,14 @@ public class Zhou_StdRandom {
         return random.nextInt(n);
     }
 
-   /**
-    *
-    * 功能描述: a>b(a——b)
-    *
-    * @param:
-    * @return:
-    * @auther: zch
-    * @date: 2018/7/26 21:02
-    */
+    /**
+     * 功能描述: a>b(a——b)
+     *
+     * @param:
+     * @return:
+     * @auther: zch
+     * @date: 2018/7/26 21:02
+     */
     public static int uniform(int a, int b) {
         if (b <= a || b - a >= Integer.MAX_VALUE) {
             throw new IllegalArgumentException("argument must be positive");
@@ -91,7 +98,6 @@ public class Zhou_StdRandom {
     }
 
     /**
-     *
      * 功能描述: 0-n
      *
      * @param:
@@ -108,7 +114,6 @@ public class Zhou_StdRandom {
     }
 
     /**
-     *
      * 功能描述: a-b (b>a)
      *
      * @param:
@@ -124,15 +129,14 @@ public class Zhou_StdRandom {
         return num;
     }
 
-   /**
-    *
-    * 功能描述: 0-f
-    *
-    * @param:
-    * @return:
-    * @auther: zch
-    * @date: 2018/7/26 21:00
-    */
+    /**
+     * 功能描述: 0-f
+     *
+     * @param:
+     * @return:
+     * @auther: zch
+     * @date: 2018/7/26 21:00
+     */
     public static float uniformFloat(float f) {
         if (f <= 0) {
             throw new IllegalArgumentException("argument must be positive");
@@ -141,32 +145,19 @@ public class Zhou_StdRandom {
         return num;
     }
 
-   /**
-    *
-    * 功能描述: a-b
-    *
-    * @param:
-    * @return:
-    * @auther: zch
-    * @date: 2018/7/26 21:00
-    */
-    public static float uniformFloat(float a, float b) {
-        if (b <= a || b - a >= Float.MAX_VALUE) {
-            throw new IllegalArgumentException("argument must be positive");
-        }
-        float num = a + uniformFloat(b - a);
-        return num;
-    }
-
     /**
-     *
-     * 功能描述: 不能创建对象 (don't instantiate)
+     * 功能描述: a-b
      *
      * @param:
      * @return:
      * @auther: zch
      * @date: 2018/7/26 21:00
      */
-    private Zhou_StdRandom() {
+    public static float uniformFloat(float a, float b) {
+        if (b <= a || b - a >= Float.MAX_VALUE) {
+            throw new IllegalArgumentException("argument must be positive");
+        }
+        float num = a + uniformFloat(b - a);
+        return num;
     }
 }

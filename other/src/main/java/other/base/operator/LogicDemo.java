@@ -14,27 +14,27 @@ import java.util.logging.Logger;
 public class LogicDemo {
     private final Logger logger = LoggerFactoryGET.loggerALL;
 
-    public void boolA(){
+    public static void main(String[] args) {
+        new LogicDemo().boolA();
+    }
+
+    public void boolA() {
         int i = Zhou_StdRandom.uniform(100);
         int j = Zhou_StdRandom.uniform(101);
-        logger.info(String.format("原始数据i: %d",i));
-        logger.info(String.format("原始数据j %d",j));
+        logger.info(String.format("原始数据i: %d", i));
+        logger.info(String.format("原始数据j %d", j));
 
-        logger.info(String.format("i > j---boolean: %b",(i > j)));
+        logger.info(String.format("i > j---boolean: %b", (i > j)));
 
         int a = new Random().nextInt(10);
         int b = new Random().nextInt(10);
-        logger.info(String.format("原始数据a= %d",a));
-        logger.info(String.format("原始数据b= %d",b));
+        logger.info(String.format("原始数据a= %d", a));
+        logger.info(String.format("原始数据b= %d", b));
 
-        logger.info(String.format("a==b 结果: %b",(a==b)));
-        logger.info(String.format("a>=b 结果: %b",(a>=b)));
-        logger.info(String.format("a!=b 结果: %b",(a>=b)));
-        logger.info(String.format("a<=b 结果: %b",(a<=b)));
-        logger.info(String.format("a<b 结果: %b",(a<b)));
-    }
-
-    public static void main(String[] args) {
-        new LogicDemo().boolA();
+        logger.info(String.format("a==b 结果: %b", (a == b)));
+        logger.info(String.format("a>=b 结果: %b", (a >= b)));
+        logger.info(String.format("a!=b 结果: %b", (a >= b)));
+        logger.info(String.format("a<=b 结果: %b", (a <= b)));
+        logger.info(String.format("a<b 结果: %b", (a < b)));
     }
 }

@@ -24,7 +24,7 @@ public class Encrypt {
     public static void main(String[] args) {
         final String passSalt = UUID.randomUUID().toString();
         isEncrypt(passSalt);
-        System.out.println("自定义密码密匙:"+passSalt);
+        System.out.println("自定义密码密匙:" + passSalt);
         isDecrypt(passSalt);
     }
 
@@ -82,8 +82,8 @@ public class Encrypt {
             //从文件流处得到加密的密文和盐
             File file1 = new File("/home/zhou/ssh_java/maven/Encrypt_saltByte.txt");
             File file2 = new File("/home/zhou/ssh_java/maven/Encrypt_encodeString.txt");
-            BufferedInputStream inSalt = new BufferedInputStream(new FileInputStream(file1),1024);
-            BufferedInputStream inPass = new BufferedInputStream(new FileInputStream(file2),1024);
+            BufferedInputStream inSalt = new BufferedInputStream(new FileInputStream(file1), 1024);
+            BufferedInputStream inPass = new BufferedInputStream(new FileInputStream(file2), 1024);
             byte[] saltByte = new byte[(int) file1.length()];
             byte[] passByte = new byte[(int) file2.length()];
             inSalt.read(saltByte);
@@ -93,8 +93,8 @@ public class Encrypt {
 
             //---------创建并且初始化密码器---------------------
             Cipher cp = Cipher.getInstance(PBE);
-            PBEParameterSpec pbeps = new PBEParameterSpec(saltByte,EACHSIZE);// 迭代计数1000次
-            cp.init(Cipher.DECRYPT_MODE,key,pbeps);
+            PBEParameterSpec pbeps = new PBEParameterSpec(saltByte, EACHSIZE);// 迭代计数1000次
+            cp.init(Cipher.DECRYPT_MODE, key, pbeps);
             //-------------------解密--------------------
             byte[] strByte = cp.doFinal(passByte);
             System.out.println(new String(strByte));

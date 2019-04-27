@@ -82,7 +82,7 @@ public abstract class JsonUtils {
         }
     }
 
-    public static <T> List<T> parse2list(String json, Class<T> clazz){
+    public static <T> List<T> parse2list(String json, Class<T> clazz) {
         try {
             if (StringUtils.isBlank(json))
                 return null;
@@ -113,7 +113,7 @@ public abstract class JsonUtils {
         }
     }
 
-    public static JavaType getCollectionType(Class<?> collectionClass, Class<?> ... elementClasses) {
+    public static JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
         return defaultMapper.getTypeFactory().constructParametricType(collectionClass, elementClasses);
     }
 

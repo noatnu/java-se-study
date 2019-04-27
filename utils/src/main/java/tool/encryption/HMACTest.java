@@ -1,6 +1,6 @@
 package tool.encryption;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -11,8 +11,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -31,7 +31,7 @@ public class HMACTest {
 
     /**
      * MAC算法可选以下多种算法
-     *
+     * <p>
      * <pre>
      * HmacMD5
      * HmacSHA1

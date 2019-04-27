@@ -13,17 +13,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class URLDemo {
-    private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
     private static URLDemo urlDemo = new URLDemo();
+    private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
+
+    private URLDemo() {
+    }
 
     public static URLDemo getUrlDemo() {
         return urlDemo;
     }
 
-    private URLDemo(){}
-
-    public String urlDataTest(String urlPath){
-        StringBuilder builder = new StringBuilder(1024*1000);
+    public String urlDataTest(String urlPath) {
+        StringBuilder builder = new StringBuilder(1024 * 1000);
 //        String urlPath = "http://www.chinadaily.com.cn/";
         try {
             URL url = new URL(urlPath);
@@ -31,23 +32,23 @@ public class URLDemo {
             InputStream inputStream = url.openStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String readData = null;
-            while ((readData = bufferedReader.readLine())!=null){
+            while ((readData = bufferedReader.readLine()) != null) {
                 builder.append(readData);
             }
             inputStream.close();
             bufferedReader.close();
-        }catch (Exception e){
-            loggerA.warning(""+e.getMessage());
+        } catch (Exception e) {
+            loggerA.warning("" + e.getMessage());
         }
         return builder.toString();
     }
 
-    private String regex(String input){
+    private String regex(String input) {
         String s = null;//columnists 专栏作家
         //http://www.chinadaily.com.cn/opinion/columnists.html
         Pattern pattern = Pattern.compile("http[s]?://[w]{3}[\\.]chinadaily[\\.]com[\\.]cn/opinion/[a-z]+[\\.]html");
         Matcher matcher = pattern.matcher(input);
-        while (matcher.find()){
+        while (matcher.find()) {
             s = matcher.group();
         }
         return s;

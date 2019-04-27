@@ -39,7 +39,7 @@ public class Demo1 {
         System.out.println(num);
         Set<SelectionKey> selectedKeys = selector.selectedKeys();
         Iterator<SelectionKey> it = selectedKeys.iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             SelectionKey key = it.next();
             System.out.println(key.readyOps());
         }

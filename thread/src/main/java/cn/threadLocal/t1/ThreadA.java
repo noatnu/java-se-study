@@ -7,12 +7,12 @@ public class ThreadA implements Runnable {
     public void run() {
         try {
             for (int i = 0; i < 100; i++) {
-                Object value = this.getClass().getSimpleName()+" "+(i+1);
+                Object value = this.getClass().getSimpleName() + " " + (i + 1);
                 ToolsLocal.t1.set(value);
-                System.out.println(getClass().getSimpleName()+" "+ToolsLocal.t1.get());
+                System.out.println(getClass().getSimpleName() + " " + ToolsLocal.t1.get());
                 Thread.sleep(200);
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }

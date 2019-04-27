@@ -1,21 +1,22 @@
 package Interview.a4;
 
-public class InstrumentTest {
-    public static void main(String[] args) {
-        System.out.println(" "+Wind.VALUE);
-    }
-}
-
-interface Instrument{
-    public static final String sgs= "";
-//    int VALUE ;// 因为接口中的成员变量或者说域是隐式的 static 与 final 而且还是public
+interface Instrument {
+    public static final String sgs = "";
+    //    int VALUE ;// 因为接口中的成员变量或者说域是隐式的 static 与 final 而且还是public
     int VALUE = 5;
 
     void play(Note n);
+
     void adjust();
 }
 
-class Wind implements Instrument{
+public class InstrumentTest {
+    public static void main(String[] args) {
+        System.out.println(" " + Wind.VALUE);
+    }
+}
+
+class Wind implements Instrument {
     @Override
     public void play(Note n) {
 
@@ -27,6 +28,6 @@ class Wind implements Instrument{
     }
 }
 
-abstract class Note{
+abstract class Note {
 
 }

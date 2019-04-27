@@ -1,15 +1,9 @@
 package jdbc.nio.buffer;
 
 
-
-
 import tool.help.Zhou_String;
 
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,46 +17,48 @@ public class Demo2 {
 
 
     /*Buffer的clear()学习*/
-    public static void isClear(){
+    public static void isClear() {
         ByteBuffer buffer = ByteBuffer.allocate(10);
-        buffer.put((byte) 'z').put((byte)'h').put((byte)'o').put((byte)'u');
-        System.out.println("remaining "+buffer.remaining());
-        System.out.println("position and limit:"+buffer);
+        buffer.put((byte) 'z').put((byte) 'h').put((byte) 'o').put((byte) 'u');
+        System.out.println("remaining " + buffer.remaining());
+        System.out.println("position and limit:" + buffer);
 
         buffer.clear();//作用 position=0 limit=capacity
-        System.out.println(buffer+" "+buffer.remaining());
+        System.out.println(buffer + " " + buffer.remaining());
         //ps 虽然position 被设置为了0,但是缓冲区中的数据并没有消失,当然你可以向里面填充数据
-        buffer.put((byte)new Random(47).nextInt(20));
+        buffer.put((byte) new Random(47).nextInt(20));
         System.out.println(buffer);//又可以继续被填充数据了,其实1处是有数据的但是被新填进来的数据覆盖了
     }
 
     /*limit() position()初步设置*/
-    public final static void isLimitAndPosition(){
+    public final static void isLimitAndPosition() {
         ByteBuffer buffer = ByteBuffer.allocateDirect(12);
         //初步创建并且设置直接缓冲器的limit以及position
-        System.out.println("设置之前: position"+buffer.position()+" limit:"+buffer.limit());
+        System.out.println("设置之前: position" + buffer.position() + " limit:" + buffer.limit());
         buffer.limit(10).position(2);
-        System.out.println("设置之后: position"+buffer.position()+" limit:"+buffer.limit());
+        System.out.println("设置之后: position" + buffer.position() + " limit:" + buffer.limit());
     }
 
     /*mark() reset() 学习*/
-    public final static void isMark(){
+    public final static void isMark() {
         ByteBuffer buffer = ByteBuffer.allocateDirect(10);
         buffer.position(2).mark();
         buffer.put((byte) 1);//填充一个字节
-        System.out.println("--->"+buffer);
+        System.out.println("--->" + buffer);
         buffer.reset();//回到最初position的位置
-        System.out.println("<---"+buffer);
+        System.out.println("<---" + buffer);
     }
 
-    /**remaining() flip() rewind()**/
-    public final static void isFlib(){
+    /**
+     * remaining() flip() rewind()
+     **/
+    public final static void isFlib() {
         ByteBuffer buffer = ByteBuffer.allocateDirect(12);
-        buffer.put((byte)'c').put((byte)'h').put((byte)'i').put((byte)'n').put((byte)'a');
-        System.out.println("-->"+buffer);
+        buffer.put((byte) 'c').put((byte) 'h').put((byte) 'i').put((byte) 'n').put((byte) 'a');
+        System.out.println("-->" + buffer);
 
         System.out.println("修改数据!");//修改数据,并继续填充
-        buffer.put(0,(byte)'M').put((byte)'W');
+        buffer.put(0, (byte) 'M').put((byte) 'W');
 
         //假如我不想填充了,要读取出来
         //需要翻转
@@ -82,26 +78,25 @@ public class Demo2 {
 
         //另一种方式
         int i = 0;
-        if (buffer.hasRemaining()){
+        if (buffer.hasRemaining()) {
             bs[i++] = buffer.get();
         }
 
-        System.out.println("打印出来的数据是:"+new String(bs));
-        System.out.println("读取之后元素数量: "+buffer.remaining());
+        System.out.println("打印出来的数据是:" + new String(bs));
+        System.out.println("读取之后元素数量: " + buffer.remaining());
 
     }
 
     /*批量移动数据*/
-    public final static void isGetMoreData(){
-        ByteBuffer buffer = ByteBuffer.allocateDirect(1024*2);
+    public final static void isGetMoreData() {
+        ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 2);
         int limitN = buffer.limit();
         byte[] bs = new byte[limitN];
 
         StringBuilder builder = new StringBuilder(1024);
-        for (int i = 0; i <limitN ; i++) {
-            builder.append(Zhou_String.toOther(3)+" ");
+        for (int i = 0; i < limitN; i++) {
+            builder.append(Zhou_String.toOther(3) + " ");
         }
-
 
 
         byte[] bytes = new byte[limitN];
@@ -110,13 +105,13 @@ public class Demo2 {
         }
 
 //        buffer.put(builder.toString().getBytes());//填充数据,和下面一致
-        buffer.put(bytes,0,bytes.length);//批量填充
+        buffer.put(bytes, 0, bytes.length);//批量填充
 
         buffer.flip();
-        buffer.get(bs,0,buffer.remaining());//批量取出
-        
+        buffer.get(bs, 0, buffer.remaining());//批量取出
 
-        System.out.println("打印数据:"+new String(bs));
+
+        System.out.println("打印数据:" + new String(bs));
     }
 
     /*数据压缩*/
@@ -145,12 +140,14 @@ public class Demo2 {
         //...............继续填充
     }
 
-    public static void isEquals(){
+    public static void isEquals() {
         ByteBuffer buffer1 = ByteBuffer.allocate(10);
         ByteBuffer buffer2 = ByteBuffer.allocate(10);
         buffer1.put((byte) Zhou_String.toLowerCase(2).charAt(0));
         buffer1.put((byte) Zhou_String.toLowerCase(2).charAt(0));
-        if (buffer1.equals(buffer2)) System.out.println("yes");else System.out.println("no");;
+        if (buffer1.equals(buffer2)) System.out.println("yes");
+        else System.out.println("no");
+        ;
         /**
           两个对象类型相同。包含不同数据类型的 buffer 永远不会相等,而且 buffer
          绝不会等于非 buffer 对象。
@@ -165,7 +162,7 @@ public class Demo2 {
 
 
     /*链式方法学习*/
-    public static void isit(){
+    public static void isit() {
         StringBuilder builder = new StringBuilder(20);
         builder.append("H").append("e").append("l").append("l").append("o");
         System.out.println(builder.toString());

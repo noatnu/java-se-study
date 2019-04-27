@@ -11,7 +11,7 @@
 
     <artifactId>utils</artifactId>
     <groupId>utils</groupId>
-    <version>${utils}</version>
+    <version>1.0</version>
 
     <packaging>jar</packaging>
 
@@ -25,7 +25,6 @@
     </properties>
 
     <dependencies>
-
         <!-- poi start -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -163,17 +162,6 @@
                 <version>3.0.2</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <!-- Allows the example to be run via 'mvn compile exec:java' -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <mainClass>Java-se.MainApp</mainClass>
-                    <includePluginDependencies>false</includePluginDependencies>
                 </configuration>
             </plugin>
 

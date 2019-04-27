@@ -21,7 +21,7 @@ public class FileLockDemo {
     private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
 
     @Test
-    public void runTest(){
+    public void runTest() {
         ExecutorService executorService = Executors.newCachedThreadPool();
 //        executorService.execute(isReadable());
         executorService.execute(isWritable());
@@ -29,24 +29,24 @@ public class FileLockDemo {
     }
 
 
-    private Thread isReadable(){
+    private Thread isReadable() {
         String path = PathEnum.PATH_ENUM.getVar();
-        Thread thread = new Thread(()->{
-            while (true){
+        Thread thread = new Thread(() -> {
+            while (true) {
                 try {
-                    File file = new File(path+"pcoli.html");
+                    File file = new File(path + "pcoli.html");
                     FileInputStream inputStream = new FileInputStream(file);
                     FileChannel channel = inputStream.getChannel();
-                    ByteBuffer byteBuffer = ByteBuffer.allocateDirect((int)file.length());
-                    FileLock fileLock = channel.tryLock(0,(int)file.length(),true);//共享锁
+                    ByteBuffer byteBuffer = ByteBuffer.allocateDirect((int) file.length());
+                    FileLock fileLock = channel.tryLock(0, (int) file.length(), true);//共享锁
                     channel.read(byteBuffer);
                     fileLock.release();//释放锁
                     inputStream.close();
                     byteBuffer.flip();
                     byte[] bs = new byte[byteBuffer.remaining()];
-                    byteBuffer.get(bs,0,byteBuffer.remaining());
+                    byteBuffer.get(bs, 0, byteBuffer.remaining());
                     print(bs);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -54,11 +54,11 @@ public class FileLockDemo {
         return thread;
     }
 
-    private Thread isWritable(){
+    private Thread isWritable() {
         String path = PathEnum.PATH_ENUM.getVar();
-        Thread thread = new Thread(()->{
+        Thread thread = new Thread(() -> {
             try {
-                File file = new File(path+ Zhou_String.toLowerCase(5)+".html");
+                File file = new File(path + Zhou_String.toLowerCase(5) + ".html");
                 FileOutputStream outputStream = new FileOutputStream(file);
                 FileChannel fileChannel = outputStream.getChannel();
                 FileLock fileLock = fileChannel.lock();//独占锁
@@ -69,14 +69,14 @@ public class FileLockDemo {
                 fileChannel.close();
                 outputStream.flush();
                 outputStream.close();
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         });
         return thread;
     }
 
-    private void print(byte[] bs){
+    private void print(byte[] bs) {
         System.out.println(new String(bs).toString());
     }
 }

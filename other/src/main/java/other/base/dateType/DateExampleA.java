@@ -61,7 +61,7 @@ public class DateExampleA {
     }
 
     @Test
-    public void testD(){
+    public void testD() {
         Date date = new Date();
         System.out.println(date);
         DateFormat df = DateFormat.getDateInstance();//获取具有默认语言环境风格的日期格式器
@@ -78,10 +78,10 @@ public class DateExampleA {
     }
 
     @Test
-    public void testE(){
+    public void testE() {
         Date date = null;
         DateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-        String val = "2012-09-22 9:6:20" ;
+        String val = "2012-09-22 9:6:20";
         try {
             date = df.parse(val);
         } catch (ParseException e) {

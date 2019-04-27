@@ -16,6 +16,9 @@ public class SocketDemoA {
 
     private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
 
+    public static void main(String[] args) {
+        new SocketDemoA().oneServer();
+    }
 
     public void oneServer() {
         ServerSocket servler = null;
@@ -36,7 +39,7 @@ public class SocketDemoA {
             //2、调用accept()方法开始监听，等待客户端的连接
             //使用accept()阻塞等待客户请求，有客户
             //请求到来则产生一个Socket对象，并继续执行
-        }catch (IOException e){
+        } catch (IOException e) {
             loggerA.warning("Error: " + e.getMessage());
         }
 
@@ -45,11 +48,11 @@ public class SocketDemoA {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             //由Socket对象得到输入流，并构造相应的BufferedReader对象
-            PrintWriter writer=new PrintWriter(socket.getOutputStream());
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
             //由Socket对象得到输出流，并构造PrintWriter对象
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             //由系统标准输入设备构造BufferedReader对象
-            System.out.println("Client:"+in.readLine());
+            System.out.println("Client:" + in.readLine());
             //在标准输出上打印从客户端读入的字符串
             line = br.readLine();
             //从标准输入读入一字符串
@@ -70,13 +73,9 @@ public class SocketDemoA {
             writer.close(); // 关闭Socket输出流
             in.close(); // 关闭Socket输入流
             socket.close(); // 关闭Socket
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        new SocketDemoA().oneServer();
     }
 
 }
