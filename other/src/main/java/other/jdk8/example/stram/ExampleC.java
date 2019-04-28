@@ -84,12 +84,30 @@ public class ExampleC {
         System.out.println(CollectionUtils.isEmpty(stringList));
         //流的操作元素数量可以为0，但是流不能是空的
         stringList.stream().filter(s -> s.length() > 2).forEach(s -> System.out.println("---" + s));
-        stringList = null;
+//        stringList = null;
         try {
             stringList.stream().filter(s -> s.length() > 2).forEach(s -> System.out.println("---" + s));
         } catch (Exception e) {
-            logger.error(String.format("%s%s", "空指针异常!", e.getMessage()), e);
-            System.out.println("空指针异常!");
+            System.out.println("空指针异常!"+e.getLocalizedMessage());
+        }
+        //同样不允许,因为stringList1被用于了一个流操作当中
+        /*
+        List<String> stringList1 = Lists.newArrayList();
+        stringList.stream().forEach(s -> stringList1.add(String.valueOf(s.length())));
+        stringList1 = stringList1.stream().distinct();
+        */
+        //另外就是在使用skip,以及limit以及findFirst方法的时候元素为0可能也有可能处问题
+        //如
+        try {
+            String s = stringList.stream().findFirst().get();
+            System.out.println(s);
+        } catch (Exception e) {
+            System.out.println("空指针异常!"+e.getLocalizedMessage());
+        }
+        //最好的办法是进行一个元素是否为0的判断 如:
+        if (stringList.stream().count() >= 1){
+        }
+        if (!stringList.isEmpty()){
         }
     }
 
