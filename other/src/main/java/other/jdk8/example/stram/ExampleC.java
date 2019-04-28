@@ -46,7 +46,7 @@ public class ExampleC {
     }
 
     /**
-     * 统计,以及变量作用域
+     * 简单统计,以及变量作用域
      */
     @Test
     public void testB() {
@@ -88,7 +88,7 @@ public class ExampleC {
         try {
             stringList.stream().filter(s -> s.length() > 2).forEach(s -> System.out.println("---" + s));
         } catch (Exception e) {
-            System.out.println("空指针异常!"+e.getLocalizedMessage());
+            System.out.println("空指针异常!" + e.getLocalizedMessage());
         }
         //同样不允许,因为stringList1被用于了一个流操作当中
         /*
@@ -102,20 +102,34 @@ public class ExampleC {
             String s = stringList.stream().findFirst().get();
             System.out.println(s);
         } catch (Exception e) {
-            System.out.println("空指针异常!"+e.getLocalizedMessage());
+            System.out.println("空指针异常!" + e.getLocalizedMessage());
         }
         //最好的办法是进行一个元素是否为0的判断 如:
-        if (stringList.stream().count() >= 1){
+        if (stringList.stream().count() >= 1) {
         }
-        if (!stringList.isEmpty()){
+        if (!stringList.isEmpty()) {
         }
+    }
+
+    @Test
+    public void testC() {
+        Random random = new Random(System.currentTimeMillis());
+        final int num = (int) Math.floor(random.nextDouble() * 10) + Math.multiplyExact(random.nextInt(10), random.nextInt(20))+random.nextInt()+random.hashCode();
+        List<String> stringList = Arrays.asList(Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()));
+        stringList.stream().forEachOrdered(s -> {
+            System.out.println("number:"+s);
+        });
+        Stream<String> stringStream = stringList.stream().onClose(() -> toString());
+        stringStream.forEach(s -> System.out.println(s));
+        Stream<String> stringStream2 = stringList.stream().parallel();
+        stringStream2.forEach(s -> System.out.println(s));
     }
 
     /**
      * 函数接口使用
      */
     @Test
-    public void testC() {
+    public void testG() {
         fun((a, b) -> true);
         //或者
         fun((a, b) -> {
@@ -126,15 +140,15 @@ public class ExampleC {
         boolean b = biPredicate.test("3", "2");
         System.out.println("biPredicate.test(\"3\",\"3\"):" + b);
 
-        BiFunction<Integer,Integer,Integer> biFunction = (Integer::compareTo);
-        BiFunction<Integer,Integer,Integer> biFunction1 = (a1,a2) -> a1*a2;
-        Integer sum = biFunction1.apply(2,3);
+        BiFunction<Integer, Integer, Integer> biFunction = (Integer::compareTo);
+        BiFunction<Integer, Integer, Integer> biFunction1 = (a1, a2) -> a1 * a2;
+        Integer sum = biFunction1.apply(2, 3);
         //假如你不传具体类型在方法里面，则只有返回根对象，或者说基类对象
-        BiFunction biFunction2 = (b1,b2) -> new Object();
+        BiFunction biFunction2 = (b1, b2) -> new Object();
         //一共有43个初始函数式接口供我们使用
         //使用我们自己定义的这个函数接口
-        AddFun addFun = ((a, b1) -> a+b1);
-        addFun.add(2,5);
+        AddFun addFun = ((a, b1) -> a + b1);
+        addFun.add(2, 5);
 
     }
 
@@ -146,8 +160,8 @@ public class ExampleC {
 
     //定义函数接口的两个原则是FunctionalInterface注解然后是接口只能有一个方法,两个必须同时满足
     @FunctionalInterface
-    interface  AddFun{
-        public int add(int a,int b);
+    interface AddFun {
+        public int add(int a, int b);
     }
 
     /*
