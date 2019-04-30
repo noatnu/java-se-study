@@ -10,15 +10,7 @@
     <packaging>jar</packaging>
     <name>regex-se</name>
     <url>http://maven.apache.org</url>
-    <dependencies>
 
-        <dependency>
-            <artifactId>utils</artifactId>
-            <groupId>utils</groupId>
-            <version>1.0</version>
-        </dependency>
-
-    </dependencies>
     <build>
         <plugins>
             <!-- java编译插件 -->

@@ -20,15 +20,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-
-    <dependencies>
-        <dependency>
-            <artifactId>utils</artifactId>
-            <groupId>utils</groupId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <!-- java编译插件 -->

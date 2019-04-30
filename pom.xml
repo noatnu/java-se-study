@@ -13,7 +13,6 @@
         <module>algs</module>
         <module>thread</module>
         <module>other</module>
-        <module>utils</module>
     </modules>
 
 
@@ -26,6 +25,13 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>z-utils</groupId>
+            <artifactId>z-utils</artifactId>
+            <version>1.0</version>
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${project.basedir}/lib/z-utils.jar</systemPath>-->
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
