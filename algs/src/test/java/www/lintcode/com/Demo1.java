@@ -1,12 +1,47 @@
 package www.lintcode.com;
 
 
+import com.google.common.collect.Lists;
+import tool.array.ToArray;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @Author noatn
  * @Description
  * @createDate 2019/5/3
  **/
 public class Demo1 {
+
+
+    /**
+     * 二分查找
+     *
+     * @param arr    必须是有序数组
+     * @param target
+     * @return
+     */
+    public Integer binarySearch(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int guess = arr[mid];
+            //大了的情况
+            if (guess > target) {
+                high = mid - 1;
+            } else if (guess < target){
+                //小了的情况
+                low = mid + 1;
+                /*这里看起来好像用*/
+            }else {
+                return mid;
+            }
+        }
+        return null;
+    }
 
     /*反转一个3位整数*/
     public int reverseInteger(int number) {
@@ -70,7 +105,16 @@ public class Demo1 {
 
     @org.testng.annotations.Test
     public void test() {
-        System.out.println(aplusb(2, 4));
+        int[] arr = ToArray.toFinalArray();
+        List<Integer> integers = Lists.newArrayList();
+        for (int i : arr) {
+            integers.add(i);
+        }
+        integers = integers.stream().distinct().sorted().collect(Collectors.toList());
+        arr = integers.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(arr));
+        int target = binarySearch(arr, 85);
+        System.out.println(target);
     }
 
 }

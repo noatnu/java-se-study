@@ -1,5 +1,5 @@
 package org.ADT;
-
+//简单表
 public class ListV {
 
     private int init = 10;
