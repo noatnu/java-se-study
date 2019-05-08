@@ -11,6 +11,8 @@ import tool.help.Zhou_StdRandom;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
@@ -43,6 +45,30 @@ public class ExampleC {
         stringSet.stream();
         stringStringMap.entrySet().stream();
         stringStudentMultimap.entries().stream();
+        Stream<Double> streamA = Stream.of(1.2d, 2.3d);
+        Stream<Double> streamB = streamA.parallel();
+//        streamA.forEach(aDouble -> System.out.println(aDouble));
+        //已经被消费了
+        streamB.forEach(aDouble -> System.out.println(">> " + aDouble));
+        //无限长度
+        Stream<Double> streamC = Stream.generate(new Supplier<Double>() {
+            @Override
+            public Double get() {
+                return Math.random();
+            }
+        }).limit(7);//不加limit就是无限
+//        streamC.close();
+            streamC.forEach(aDouble -> System.out.println("<< " + aDouble));
+        Stream<Integer> streamD = Stream.iterate(2, new UnaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer) {
+                return integer;//这的integer就是2 相当于因子,因素
+            }
+        }).limit(20).skip(2);//同样如此
+
+//        System.out.println("size:" + streamD.count());
+        Stream<Integer> streamE = streamD.peek(integer -> Integer.valueOf(integer.intValue()*2));
+        streamE.forEach(integer -> System.out.println("dhsssss"+integer));
     }
 
     /**
@@ -114,10 +140,10 @@ public class ExampleC {
     @Test
     public void testC() {
         Random random = new Random(System.currentTimeMillis());
-        final int num = (int) Math.floor(random.nextDouble() * 10) + Math.multiplyExact(random.nextInt(10), random.nextInt(20))+random.nextInt()+random.hashCode();
+        final int num = (int) Math.floor(random.nextDouble() * 10) + Math.multiplyExact(random.nextInt(10), random.nextInt(20)) + random.nextInt() + random.hashCode();
         List<String> stringList = Arrays.asList(Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()), Double.toHexString(num * random.nextDouble()));
         stringList.stream().forEachOrdered(s -> {
-            System.out.println("number:"+s);
+            System.out.println("number:" + s);
         });
         Stream<String> stringStream = stringList.stream().onClose(() -> toString());
         stringStream.forEach(s -> System.out.println(s));
