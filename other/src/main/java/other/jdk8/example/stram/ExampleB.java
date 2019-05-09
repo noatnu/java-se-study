@@ -1,17 +1,17 @@
 package other.jdk8.example.stram;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import other.jdk8.entity.Student;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Author noatn
- * @Description
+ * @Description 末端操作
  * @createDate 2019/2/5
  **/
 public class ExampleB {
@@ -105,6 +105,46 @@ public class ExampleB {
     public void testG() throws Exception {
         Optional<Student> optStu = students.stream().filter(student -> "土木工程".equals(student.getMajor())).findFirst();
         System.out.println(optStu.get());
+    }
+
+    /**
+     * 归约 reduce接受两个参数
+     *
+     * @throws Exception
+     */
+    @org.testng.annotations.Test
+    public void testH() throws Exception {
+        List<Integer> integerList = students.stream().map(Student::getAge).collect(Collectors.toList());
+        Stream<Integer> integerStream = integerList.stream();
+        Integer sum = integerStream.reduce(new BinaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) {
+                return integer + integer2;
+            }
+        }).get();
+        System.out.println(StringUtils.join(integerList, ","));
+        System.out.println("sum:" + sum);
+
+        int product = integerList.stream().reduce(2, new BinaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) {
+                return integer + integer2;
+            }
+        });
+        //刚好把2加上去
+        System.out.println("product:" + product);
+    }
+
+    /**
+     * collect 收集
+     */
+    @org.testng.annotations.Test
+    public void testJ(){
+        //收集List
+        List<Integer> integerList = students.stream().map(Student::getAge).collect(Collectors.toList());
+
+        //收集set
+        Set<Long> longSet = students.stream().map(Student::getId).collect(Collectors.toSet());
     }
 
 }
