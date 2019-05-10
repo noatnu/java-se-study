@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -90,6 +91,14 @@ public class ExampleA {
         }).limit(20).skip(2);//不加limit就是无限,加上limit表示截取7个,而skip表示跳过2个元素
 
         System.out.println("size:" + integerStream.count());
+        /*
+        * iterate 跟 reduce 操作很像，接受一个种子值，和一个 UnaryOperator（例如 f）。
+        * 然后种子值成为 Stream 的第一个元素，f(seed) 为第二个，f(f(seed)) 第三个，以此类推。
+        * */
+        //生成一个等差数列
+        IntStream intStream = Stream.iterate(0,n -> n+3).limit(10).mapToInt(Integer::valueOf);
+//        intStream.sum();
+        intStream.forEachOrdered(System.out::println);
     }
 
     /**

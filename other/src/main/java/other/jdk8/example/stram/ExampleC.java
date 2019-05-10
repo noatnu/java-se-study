@@ -10,6 +10,7 @@ import tool.help.Zhou_StdRandom;
 import tool.help.Zhou_Word;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -77,24 +78,115 @@ public class ExampleC {
     @org.testng.annotations.Test
     public void testH() throws Exception {
         List<Integer> integerList = ExampleData.studentA.stream().map(Student::getAge).collect(Collectors.toList());
-        Stream<Integer> integerStream = integerList.stream();
-        Integer sum = integerStream.reduce(new BinaryOperator<Integer>() {
+        //要说明的是reduce一共有三个函数接口
+
+        /*(1) 单单BinaryOperator只是一个函数接口也是最简单的*/
+        Integer sum = integerList.stream().reduce(new BinaryOperator<Integer>() {
             @Override
             public Integer apply(Integer integer, Integer integer2) {
                 return integer + integer2;
             }
         }).get();
-        System.out.println(StringUtils.join(integerList, ","));
-        System.out.println("sum:" + sum);
+        System.out.println(StringUtils.join(integerList,","));
+        System.out.println("自己实现的 sum:" + sum);
 
-        int product = integerList.stream().reduce(2, new BinaryOperator<Integer>() {
+        Integer max = integerList.stream().reduce(new BinaryOperator<Integer>() {
             @Override
             public Integer apply(Integer integer, Integer integer2) {
-                return integer + integer2;
+                //integer >= integer2  ==> boolean
+                return integer >= integer2 ? integer : integer2;
             }
-        });
-        //刚好把2加上去
-        System.out.println("product:" + product);
+        }).get();
+        System.out.println("自己实现的 max:" + max);
+
+        /*(2) BinaryOperator一个函数接口并且带一个参数*/
+        Integer xxx = Stream.iterate(0,n -> n+2).limit(3).peek(integer -> System.out.println("____"+integer)).reduce(2, new BinaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) {
+                return integer+integer2;
+            }
+        }).intValue();
+        //这需要注意的是identity作为了初始参数，并且参与到了apply方法里面
+        System.out.println("xxx:"+xxx);//xxx:8 ==>打印的是0,2,4
+        //我们把identity的初始参数设为很大设为100
+        Integer yyy = Stream.iterate(0,n -> n+2).limit(3).peek(integer -> System.out.println("____"+integer)).reduce(100, new BinaryOperator<Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) {
+                return integer >= integer2 ? integer : integer2;
+            }
+        }).intValue();
+        System.out.println("yyy:"+yyy);//yyy:100 ==>打印的是0,2,4 我们可以看到出现了100,但是我们产生的流里压根就没有这个元素
+        //其计算过程使用Java代码表述如下
+        /**
+         U result = identity;
+         for (T element：a) {
+            result = accumulator.apply(result, element);
+         }
+         return result;
+         */
+        //(3) 第三个接口要慎用，慎用，然后复杂的流计算用并行流也要慎用
+        //当Stream是并行时，第三个参数就有意义了，它会将不同线程计算的结果调用combiner做汇总后返回。
+        System.out.println(Stream.of(1, 2, 3).parallel().reduce(4, new BiFunction<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+                        return integer + integer2;
+                    }
+                }
+                , new BinaryOperator<Integer>() {
+                    @Override
+                    public Integer apply(Integer integer, Integer integer2) {
+                        return integer + integer2;
+                    }
+                }));//https://blog.csdn.net/icarusliu/article/details/79504602 此地址专门对第三个接口实现了详细介绍
+
+        //-----------------------------------||------------------//
+        // 字符串连接，concat = "ABCD"
+        String concat = Stream.of("A", "B", "C", "D").reduce("", String::concat);
+        System.out.println("字符串连接 concat:"+concat);
+        //-----------------------------------||------------------//
+
+
+
+
+        //-----------------------------------||------------------//
+        // 收集
+        //Collectors
+        //取最大值
+        int max1 = Stream.iterate(1,n -> (n+n*2)).limit(10).peek(integer -> System.out.println("取最大值元素遍历 ===>"+integer)).collect(Collectors.maxBy((a,b) -> {
+            return a.compareTo(b);
+        })).get();
+        System.out.println("max1:"+max1);
+        //取最小值
+        double min = Stream.iterate(5.2d,n -> (n+2)*(n+1)).limit(3).peek(d -> System.out.println("取最小值遍历 ==>"+d)).collect(Collectors.minBy((a,b) -> {
+            Double x = (Double)a;
+            Double y = (Double)b;
+            return x.compareTo(y);
+        })).get().doubleValue();
+        System.out.println("min:"+min);
+        //取和
+        float f = (float) Stream.iterate(3.14f,n -> (n+0.1f)).limit(10).peek(aFloat -> System.out.println("取和 ==>"+aFloat)).collect(Collectors.summarizingDouble((value -> {
+            Float ff = (Float) value;
+            return ff;
+        }))).getSum();
+        System.out.println("取和 f:"+f);
+
+        int avgAge = Stream.iterate(1,n -> n+1).limit(10).peek(integer -> System.out.println("平均数"+integer)).collect(Collectors.averagingInt(value -> {
+            Integer integer = (Integer)value;
+            return integer;
+        })).intValue();
+        System.out.println("取平均数 avgAge:"+avgAge);
+
+        //使用reduce 取最大值
+        double minValue = Stream.iterate(2.0d,n -> n*n).limit(3).peek(aDouble -> System.out.println("使用reduce取最大值 遍历"+aDouble)).reduce(Double::max).get();
+        System.out.println("使用reduce 取最大值:"+minValue);
+        //使用reduce 取和
+        double sumValue = Stream.iterate(2.0d,n -> n*n).limit(3).peek(aDouble -> System.out.println("使用reduce求和 遍历"+aDouble)).reduce(Double::sum).get();
+        System.out.println("使用reduce 取和:"+sumValue);
+        //-----------------------------------||------------------//
+        //另外像mapToDouble,mapToInt,mapToLong可以直接计算和最大和最小以及平均 注意的是没有mapToFloat,没有就是没有
+        integerList.stream().mapToDouble(Integer::intValue).max();
+        integerList.stream().mapToInt(Integer::intValue).sum();
+        integerList.stream().mapToLong(Integer::longValue).average();
     }
 
     /**
