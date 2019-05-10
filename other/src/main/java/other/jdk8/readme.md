@@ -106,3 +106,20 @@ __findFirst__
 Optional<Student> optStu = students.stream().filter(student -> "土木工程".equals(student.getMajor())).findFirst();
 System.out.println(optStu.get());
 ```
+
+## 四:常见的操作可以归类如下
+
+__Intermediate(中间)__
+```
+map (mapToInt, flatMap 等)、 filter、 distinct、 sorted、 peek、 limit、 skip、 parallel、 sequential、 unordered
+```
+
+__Terminal(终端)__
+```
+forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator
+```
+
+__Short-circuiting(截取)__
+```
+anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit
+```

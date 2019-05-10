@@ -1,41 +1,38 @@
 package other.jdk8.example.stram;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
+import other.jdk8.entity.Person;
 import other.jdk8.entity.Student;
+import tool.help.Zhou_StdRandom;
 
-import java.util.*;
-import java.util.function.BinaryOperator;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * @Author noatn
- * @Description 末端操作
- * @createDate 2019/2/5
+ * @Description 中间操作
+ * @createDate 2019/2/4
  **/
 public class ExampleB {
 
-    // 初始化
-    List<Student> students = new ArrayList<Student>() {
-        {
-            add(new Student(20160002, "伯约", 21, 2, "信息安全", "武汉大学"));
-            add(new Student(20160001, "孔明", 20, 1, "土木工程", "武汉大学"));
-            add(new Student(20160003, "玄德", 22, 3, "经济管理", "武汉大学"));
-            add(new Student(20160004, "云长", 21, 2, "信息安全", "武汉大学"));
-            add(new Student(20161001, "翼德", 21, 2, "机械与自动化", "华中科技大学"));
-            add(new Student(20161002, "元直", 23, 4, "土木工程", "华中科技大学"));
-            add(new Student(20161003, "奉孝", 23, 4, "计算机科学", "华中科技大学"));
-            add(new Student(20162001, "仲谋", 22, 3, "土木工程", "浙江大学"));
-            add(new Student(20162002, "鲁肃", 23, 4, "计算机科学", "浙江大学"));
-            add(new Student(20163001, "丁奉", 24, 5, "土木工程", "南京大学"));
+    @Test
+    public void test() throws Exception {
+        List<Integer> numS = Lists.newArrayList();
+        for (int i = 0; i < 20; i++) {
+            numS.add(Zhou_StdRandom.uniform(1, 674));
         }
-    };
+//        List<Integer> evens = new ArrayList<>();
+//        for (final Integer num : numS) {
+//            if (num % 2 == 0) {
+//                evens.add(num);
+//            }
+//        }
 
-    public static void main(String[] args) {
-        double a = 86852572;
-        double b = 52872280;
-        System.out.println(a - b);
+        List<Integer> evens = numS.stream().filter(integer -> integer % 2 == 0).collect(Collectors.toList());
+        evens.stream().sorted().filter(integer -> true).forEach(integer -> System.out.println(integer));
     }
 
     /**
@@ -44,9 +41,36 @@ public class ExampleB {
      * @throws Exception
      */
     @Test
-    public void testA() throws Exception {
-        List<String> names = students.parallelStream().sorted().filter(student -> "计算机科学".equals(student.getMajor())).map(student -> student.getName()).collect(Collectors.toList());
+    public void testMap() throws Exception {
+        List<String> names = ExampleData.studentA.parallelStream().sorted().filter(student -> "计算机科学".equals(student.getMajor())).map(student -> student.getName()).collect(Collectors.toList());
         System.out.println(names);
+    }
+
+    /**
+     * 按照Java团队的说法，peek()方法存在的主要目的是用调试，通过peek()方法可以看到流中的数据经过每个处理点时的状态
+     * 和 Map类似
+     */
+    @Test
+    public void testPeek() {
+        Person a = new Person("a", 18);
+        Person b = new Person("b", 23);
+        Person c = new Person("c", 34);
+        Stream<Person> persons = Stream.of(a, b, c);
+        {
+//            persons.peek(person -> System.out.println("===>"+person));
+        }
+        {
+            //当加入某些中间操作后就可以看出状态了
+//            persons.filter(person -> person.getAge() > 2).peek(person -> System.out.println("<========"+person)).collect(Collectors.toList());
+            //通过输出结果来看，peek()方法确实能够帮助我们观察传递给每个操作的数据。
+        }
+        {
+            /*
+             * 除去用于调试，peek()在需要修改元素内部状态的场景也非常有用，比如我们想将所有Person的名字修改为大写，
+             * 当然也可以使用map()和flatMap实现，但是相比来说peek()更加方便，因为我们并不想替代流中的数据。
+             * */
+            persons.peek(person -> person.setName(person.getName().toUpperCase())).forEachOrdered(System.out::print);
+        }
     }
 
     /**
@@ -55,7 +79,7 @@ public class ExampleB {
      * @throws Exception
      */
     @Test
-    public void testB() throws Exception {
+    public void testFlatMap() throws Exception {
         String[] strs = {"java8", "is", "easy", "to", "use"};
         List<String> distinctStrs = Arrays.stream(strs)
                 .map(s -> s.split("")).flatMap(strings -> Arrays.stream(strings))// 映射成为Stream<String[]>
@@ -64,87 +88,55 @@ public class ExampleB {
     }
 
     /**
-     * allMatch用于检测是否全部都满足指定的参数行为，如果全部满足则返回true
+     * filter 过滤
      *
      * @throws Exception
      */
     @Test
-    public void testC() throws Exception {
-        boolean isAdult = students.parallelStream().allMatch(student -> student.getAge() >= 18);
-        System.out.println(isAdult ? "是" : "否");
+    public void testFilter() throws Exception {
+        List<Student> whuStudents = ExampleData.studentA.parallelStream().sorted().filter(student -> "武汉大学".equals(student.getSchool())).collect(Collectors.toList());
+        whuStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
     /**
-     * anyMatch则是检测是否存在一个或多个满足指定的参数行为，如果满足则返回true
+     * distinct 去除重复
      *
      * @throws Exception
      */
     @Test
-    public void testD() throws Exception {
-        boolean hasWhu = students.parallelStream().anyMatch(student -> "武汉大学".equals(student.getSchool()));
-        System.out.println(hasWhu ? "是" : "否");
+    public void testDistinct() throws Exception {
+        List<Integer> numS = Lists.newArrayList();
+        for (int i = 0; i < 1000; i++) {
+            numS.add(Zhou_StdRandom.uniform(1, 24));
+        }
+        List<Integer> evens = numS.parallelStream().sorted().filter(integer -> integer % 2 == 0).distinct().collect(Collectors.toList());
+        System.out.println(evens);
     }
 
     /**
-     * noneMatch用于检测是否不存在满足指定行为的元素，如果不存在则返回true
+     * limit返回包含前n个元素的流，当集合大小小于n时，则返回实际长度
      *
      * @throws Exception
      */
     @Test
-    public void testF() throws Exception {
-        boolean noneCs = students.parallelStream().noneMatch(student -> "计算机科学".equals(student.getMajor()));
-        System.out.println(noneCs ? "是" : "否");
+    public void testLimit() throws Exception {
+        List<Student> civilStudents = ExampleData.studentA.parallelStream().sorted().filter(student -> "土木工程".equals(student.getMajor())).limit(2).collect(Collectors.toList());
+        civilStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
     /**
-     * findFirst findFirst用于返回满足条件的第一个元素
+     * skip skip操作与limit操作相反，如同其字面意思一样，是跳过前n个元素
      *
      * @throws Exception
      */
     @Test
-    public void testG() throws Exception {
-        Optional<Student> optStu = students.stream().filter(student -> "土木工程".equals(student.getMajor())).findFirst();
-        System.out.println(optStu.get());
+    public void testSkip() throws Exception {
+        List<Student> civilStudents = ExampleData.studentA.parallelStream().sorted().filter(student -> "土木工程".equals(student.getMajor())).skip(2).collect(Collectors.toList());
+        civilStudents.parallelStream().forEach(student -> System.out.println(student));
     }
 
-    /**
-     * 归约 reduce接受两个参数
-     *
-     * @throws Exception
-     */
-    @org.testng.annotations.Test
-    public void testH() throws Exception {
-        List<Integer> integerList = students.stream().map(Student::getAge).collect(Collectors.toList());
-        Stream<Integer> integerStream = integerList.stream();
-        Integer sum = integerStream.reduce(new BinaryOperator<Integer>() {
-            @Override
-            public Integer apply(Integer integer, Integer integer2) {
-                return integer + integer2;
-            }
-        }).get();
-        System.out.println(StringUtils.join(integerList, ","));
-        System.out.println("sum:" + sum);
+    public void before() {
 
-        int product = integerList.stream().reduce(2, new BinaryOperator<Integer>() {
-            @Override
-            public Integer apply(Integer integer, Integer integer2) {
-                return integer + integer2;
-            }
-        });
-        //刚好把2加上去
-        System.out.println("product:" + product);
-    }
-
-    /**
-     * collect 收集
-     */
-    @org.testng.annotations.Test
-    public void testJ(){
-        //收集List
-        List<Integer> integerList = students.stream().map(Student::getAge).collect(Collectors.toList());
-
-        //收集set
-        Set<Long> longSet = students.stream().map(Student::getId).collect(Collectors.toSet());
     }
 
 }
