@@ -28,7 +28,27 @@ List<Integer> evens = numS.stream().filter(integer -> integer % 2 == 0).collect(
 
 > 以集合为例，一个流式处理的操作我们首先需要调用stream()函数将其转换成流，然后再调用相应的中间操作达到我们需要对集合进行的操作，比如筛选、转换等，最后通过终端操作对前面的结果进行封装，返回我们需要的形式。
 
-## 二:中间操作
+## 二:创建
++ 流的创建有多种方式
+* 从 Collection 和数组
+* Collection.stream()
+* Collection.parallelStream()
+* Arrays.stream(T array) or Stream.of()
+* 从 BufferedReader
+* java.io.BufferedReader.lines()
+* 静态工厂
+* java.util.stream.IntStream.range()
+* java.nio.file.Files.walk()
+* 自己构建
+* java.util.Spliterator
+* 其它
+* Random.ints()
+* BitSet.stream()
+* Pattern.splitAsStream(java.lang.CharSequence)
+* JarFile.stream()
+
+
+## 三:中间操作
 
 + 2.1 (过滤，顾名思义就是按照给定的要求对集合进行筛选满足条件的元素，java8提供的筛选操作包括：filter、distinct、limit、skip。)
 
@@ -79,7 +99,7 @@ List<String> distinctStrs = Arrays.stream(strs)
 System.out.println(distinctStrs);
 ```
 
-## 三:终端操作
+## 四:终端操作
 __allMatch__
 > allMatch用于检测是否全部都满足指定的参数行为，如果全部满足则返回true，例如我们希望检测是否所有的学生都已满18周岁，那么可以实现为
 ```
@@ -107,7 +127,7 @@ Optional<Student> optStu = students.stream().filter(student -> "土木工程".eq
 System.out.println(optStu.get());
 ```
 
-## 四:常见的操作可以归类如下
+## 五:常见的操作可以归类如下
 
 __Intermediate(中间)__
 ```
