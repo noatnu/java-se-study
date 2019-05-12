@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import tool.help.Zhou_StdRandom;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,6 +31,15 @@ public class StreamDemoA {
             doubleStream = doubleList.stream().sorted();
             doubleStream = doubleList.stream().sequential();
             doubleStream = doubleList.stream().unordered();
+        }
+        {
+            Stream stream = Stream.empty();
+        }
+        {
+            Stream<String> song = Stream.of("stream");
+        }
+        {
+            Stream<String> stream = Stream.generate(() -> UUID.randomUUID().toString()).limit(20);
         }
     }
 
