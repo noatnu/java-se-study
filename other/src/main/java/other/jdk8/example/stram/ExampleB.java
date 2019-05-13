@@ -50,7 +50,7 @@ public class ExampleB {
      * 按照Java团队的说法，peek()方法存在的主要目的是用调试，通过peek()方法可以看到流中的数据经过每个处理点时的状态
      * 和 Map类似
      */
-    @Test
+    @org.testng.annotations.Test
     public void testPeek() {
         Person a = new Person("a", 18);
         Person b = new Person("b", 23);
@@ -70,6 +70,16 @@ public class ExampleB {
              * 当然也可以使用map()和flatMap实现，但是相比来说peek()更加方便，因为我们并不想替代流中的数据。
              * */
             persons.peek(person -> person.setName(person.getName().toUpperCase())).forEachOrdered(System.out::print);
+        }
+        {
+            //根本不会执行peek方法,这是因为没有终端操作
+            Stream.iterate(2,n -> n*2).limit(5).peek(integer -> System.out.println("integer:"+integer));
+            //终端count()
+            Stream.iterate(2,n -> n*2).limit(5).peek(integer -> System.out.println("integerA:"+integer)).count();
+            //终端操作forEach()
+            Stream.iterate(2,n -> n*2).limit(5).peek(integer -> System.out.println("integerB:"+integer)).forEach(integer -> System.out.println());
+            //终端操作average()
+            Stream.iterate(2,n -> n*2).limit(5).peek(integer -> System.out.println("integerC:"+integer)).mapToInt(Integer::intValue).average();
         }
     }
 

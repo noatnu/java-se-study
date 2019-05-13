@@ -39,7 +39,7 @@ public class StreamDemoA {
             Stream<String> song = Stream.of("stream");
         }
         {
-            Stream<String> stream = Stream.generate(() -> UUID.randomUUID().toString()).limit(20);
+
         }
     }
 
