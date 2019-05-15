@@ -1,6 +1,8 @@
 package other.jdk8.example.stram;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.jupiter.api.Test;
 import other.jdk8.entity.Person;
 import other.jdk8.entity.Student;
@@ -88,13 +90,19 @@ public class ExampleB {
      *
      * @throws Exception
      */
-    @Test
+    @org.testng.annotations.Test
     public void testFlatMap() throws Exception {
         String[] strs = {"java8", "is", "easy", "to", "use"};
         List<String> distinctStrs = Arrays.stream(strs)
                 .map(s -> s.split("")).flatMap(strings -> Arrays.stream(strings))// 映射成为Stream<String[]>
                 .distinct().collect(Collectors.toList()); // 扁平化为Stream<String>
         System.out.println(distinctStrs);
+        Stream<Person> personStream = Stream.generate(() -> new Person(RandomStringUtils.randomAlphabetic(4), RandomUtils.nextInt(2,100))).limit(12);
+        Stream<String>  pS = personStream.flatMap(person -> {
+            //这转换为了流 数组 或者List类型等
+            return Arrays.stream(new String[]{Integer.toString(person.getAge()),person.getName()});
+        });
+        pS.forEachOrdered(System.out::println);
     }
 
     /**
