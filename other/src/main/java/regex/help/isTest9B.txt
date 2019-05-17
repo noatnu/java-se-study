@@ -1,0 +1,4 @@
+ http://sourceforge.net/projects/cglib/files/cglib3/3.0/cglib-3.0.jar/download
+ http://www.springsource.org/download 
+ https://jira.spring.io/browse/SPR
+ https://github.com/spring-projects/spring-framework#readme
