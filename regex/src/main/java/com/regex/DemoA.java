@@ -97,6 +97,7 @@ public class DemoA {
                 "M1B4F2\n" +
                 "90046\n" +
                 "H1H2H2");
+        System.out.println(builder.toString());
         Matcher m = Pattern.compile("[a-zA-Z0-9_][\\d][\\w][\\d][\\w]").matcher(builder.toString());
         while (m.find()) logger.info(m.group());
     }
@@ -126,6 +127,7 @@ public class DemoA {
                 "helper.setText(\"Thank you for ordering!\");\n" +
                 "\n" +
                 "sender.send(message);sggs g sn sdd@ffg.com.cn");
+        System.out.println(builder.toString());
         //假如字符中有点的情况主要对付多层域名的情况com.cn net.cn china.net等等
         m = Pattern.compile("\\w+@[\\w.]+\\.\\w+").matcher(builder.toString());
         while (m.find()) logger.info("--------->" + m.group());
