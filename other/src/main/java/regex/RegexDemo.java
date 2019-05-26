@@ -137,6 +137,13 @@ public class RegexDemo {
         handle("[a-zA-Z0-9_][\\d][\\w][\\d][\\w]",str);
     }
 
+    @Test
+    public void isTest8A()throws Exception{
+        String path = FileUtils.getMainDataDir(this.getClass(), "")+"help\\isTest8A.text" ;
+        String str = org.apache.commons.io.FileUtils.readFileToString(new File(path), CharEncoding.UTF_8);
+        handle("[\\W]+",str);
+    }
+
     /*
     Greedy 数量词
     X? X，一次或一次也没有
