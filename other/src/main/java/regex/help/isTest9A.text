@@ -1,7 +1,0 @@
-unsolicited email to spam@forta.com (wouldn't it be nico if it were that simple , huh?).or email info@pivotal.io.  All such requests should clearly specify:JavaMailSenderImpl sender = new JavaMailSenderImpl();
-sender.setHost("mail.host.com");
-
-MimeMessage message = sender.createMimeMessage();
-MimeMessageHelper helper = new MimeMessageHelper(message);
-信息: unsolicited email to spam@forta.com (wouldn't it be nico if it were that simple , huh?).
-helper.setTo("test@host.com");

@@ -91,7 +91,7 @@ public class RegexTestA {
         String _thisMethodName = new Exception().getStackTrace()[0].getMethodName();
         System.out.println("thisMethodName:" + _thisMethodName);
         Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
+        while (matcher.find()) {
             System.out.println(_methodName + ":" + matcher.group());
         }
     }

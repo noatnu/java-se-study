@@ -20,7 +20,7 @@ if (matcher.find()) {
 //在正则表达式里，特殊字符（或字符集和）用来给出要搜索的东西。 .字符可以匹配任何一个单个的字符
 Pattern pattern = Pattern.compile("Cannes.");
 Matcher matcher = pattern.matcher("Celebrities shine at the opening of Cannes。");
-if (matcher.find()) {
+while (matcher.find()) {//一定记得用while循环
     System.out.println(matcher.group());
 }
 ```

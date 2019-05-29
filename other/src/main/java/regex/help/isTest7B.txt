@@ -1,9 +1,0 @@
-    LightPink	    浅粉红	        #FFB6C1	255,182,193
-　	Pink	        粉红	            #FFC0CB	255,192,203
-　	Crimson	        猩红	            #DC143C	220,20,60
-　	LavenderBlush	脸红的淡紫色	    #FFF0F5	255,240,245
-　	PaleVioletRed	苍白的紫罗兰红色	#DB7093	219,112,147
-　	HotPink	        热情的粉红	    #FF69B4	255,105,180
-　	DeepPink	    深粉色	        #FF1493	255,20,147
-　	MediumVioletRed	适中的紫罗兰红色	#C71585	199,21,133
-　	Orchid	        兰花的紫色	    #DA70D6	218,112,214

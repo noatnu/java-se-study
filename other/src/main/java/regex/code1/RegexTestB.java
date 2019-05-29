@@ -57,7 +57,7 @@ public class RegexTestB {
     public void testE(){
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher("About China Daily");
-        if (matcher.find()) {
+        while (matcher.find()) {
             System.out.println(matcher.group());
             System.out.println( "length:" + matcher.group().length());
         }
@@ -100,7 +100,7 @@ public class RegexTestB {
         String _thisMethodName = new Exception().getStackTrace()[0].getMethodName();
         System.out.println("thisMethodName:" + _thisMethodName);
         Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
+        while (matcher.find()) {
             System.out.println(_methodName + ":" + matcher.group());
         }
     }

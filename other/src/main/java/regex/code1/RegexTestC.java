@@ -19,9 +19,6 @@ public class RegexTestC {
             "中国教育新闻网 中国学术前沿期刊","高教社网上书城","新华网",
             "人民网","全国高校思想政治工作网","高校辅导员网络培训中心","中教华影全国校园电影院线");
     /**
-     * 在Java中数量词 +和?比*好使 似乎*不怎么灵
-     */
-    /**
      * 边界匹配器
      * ^ 行的开头
      * $ 行的结尾
@@ -112,6 +109,7 @@ public class RegexTestC {
      * \G 上一个匹配的结尾 ps(这个毕竟复杂)
      * 参考https://blog.csdn.net/q107770540/article/details/6436973
      * 参考 https://www.yiibai.com/javaregex/javaregex_boundary_matcher_previous.html
+     * https://www.jb51.net/article/131947.htm
      */
     @Test
     public void testI(){
@@ -126,7 +124,7 @@ public class RegexTestC {
         String _thisMethodName = new Exception().getStackTrace()[0].getMethodName();
         System.out.println("thisMethodName:" + _thisMethodName);
         Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
+        while (matcher.find()) {
             System.out.println(_methodName + ":" + matcher.group());
         }
     }
