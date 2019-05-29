@@ -1,5 +1,6 @@
 package other.jdk8.v1;
 
+import com.google.common.collect.Lists;
 import org.testng.annotations.Test;
 import tool.help.Zhou_StdRandom;
 
@@ -39,7 +40,10 @@ public class StreamDemoA {
             Stream<String> song = Stream.of("stream");
         }
         {
-
+            List<Double> doubles = Lists.newArrayList();
+            doubles.stream().filter(aDouble -> aDouble>0).forEachOrdered(aDouble -> {
+                System.out.println("dg");
+            });
         }
     }
 

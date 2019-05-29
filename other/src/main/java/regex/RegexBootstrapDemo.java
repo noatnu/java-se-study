@@ -86,12 +86,25 @@ public class RegexBootstrapDemo {
         if (org.apache.commons.lang.math.NumberUtils.isNumber(text)) {
             return text;
         }
-        String regEx = "[^0-9]";
+        String regEx = "[^0-9][0-9]$";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(text);
-        String s = m.replaceAll("").trim();
-        return StringUtils.isNotBlank(s) ? s : null;
+        while (m.find()){
+            System.out.println(m.group());
+        }
+        String s = m.replaceFirst("").trim();
+        return  StringUtils.isNotEmpty(s)?s:null;
     }
+
+    @Test
+    public void init(){
+        String value = "sdsdjsj col-sm-1 col-sm-offset-5 fjsjss" ;
+        Pattern pattern = Pattern.compile("col-[a-z][a-z]-[0-9][0-9]? col-[a-z][a-z]-offset-[0-9][0-9]?");
+        Matcher matcher = pattern.matcher(value);
+        System.out.println(matcher.find(0)+matcher.group(0));
+        System.out.println(matcher.find(1)+matcher.group(1));
+    }
+
 
     private Multimap getMultimap() {
         Multimap<String, String> bootstraps = ArrayListMultimap.create();
