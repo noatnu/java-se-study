@@ -1,7 +1,8 @@
 package cn.task;
 
 
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 
 import java.util.Timer;
 import java.util.logging.Logger;

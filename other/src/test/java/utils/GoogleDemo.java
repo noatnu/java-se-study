@@ -3,7 +3,7 @@ package utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.apache.commons.collections.CollectionUtils;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.Collection;
 

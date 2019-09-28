@@ -1,8 +1,8 @@
 package cn.thread;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.Test;
 import tool.help.Zhou_String;
 
 public class ThreadDemo {
