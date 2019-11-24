@@ -2,6 +2,7 @@ package core.swing.afanihao.cn.java.p03.p0302;
 
 import core.swing.afanihao.cn.java.RunAbs;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.testng.annotations.Test;
 
 import javax.swing.*;
@@ -9,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.function.Consumer;
 
@@ -17,8 +17,8 @@ import java.util.function.Consumer;
  * 监听器 使用  简单使用
  */
 public class MyFrame extends JFrame {
-    private JLabel timeLabel = new JLabel(StringUtils.repeat("00:", 4));
-    private JButton button = new JButton("显示时间");
+    private volatile JLabel timeLabel = new JLabel(StringUtils.repeat("00:", 4));
+    private volatile JButton button = new JButton("显示时间");
 
     private MyFrame(String title) throws HeadlessException {
         super(title);//调用父类构造器
@@ -69,6 +69,7 @@ public class MyFrame extends JFrame {
             System.out.println("MyButtonKistener.actionPerformed");
 
             showTime();
+//            MyFrame.this.showTime();//内部类运行外部类方法
             System.out.println(e.getActionCommand());
             System.out.println(e.getModifiers());
             System.out.println(e.getID());
@@ -77,10 +78,8 @@ public class MyFrame extends JFrame {
     }
 
 
-    public void showTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        String str = sdf.format(new Date());
-        timeLabel.setText(str);
+    private void showTime() {
+        timeLabel.setText(DateFormatUtils.format(new Date(),DateFormatUtils.ISO_8601_EXTENDED_DATETIME_FORMAT.getPattern()));
     }
 
 }
