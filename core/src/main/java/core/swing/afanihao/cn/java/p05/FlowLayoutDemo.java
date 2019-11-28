@@ -78,7 +78,8 @@ public class FlowLayoutDemo extends RunAbs {
     }
 
     private JLabel getJLabelAttribute(JLabel label) {
-        label.setBackground(Color.PINK);
+        label.setBackground(getHSBColorRandom());
+//        label.setBackground(Color.PINK);
         label.setOpaque(true);
         label.setPreferredSize(new Dimension(60, 30));
         label.setHorizontalAlignment(SwingConstants.CENTER);
