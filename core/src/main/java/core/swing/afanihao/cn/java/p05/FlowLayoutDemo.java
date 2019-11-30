@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.function.Consumer;
 
+/**
+ * 卡片布局
+ */
 public class FlowLayoutDemo extends RunAbs {
 
     @Test
