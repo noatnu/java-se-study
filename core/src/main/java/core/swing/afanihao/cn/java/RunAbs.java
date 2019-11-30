@@ -1,9 +1,10 @@
 package core.swing.afanihao.cn.java;
 
 
+import core.swing.SwingUtils;
+
 import java.awt.*;
 import java.io.Serializable;
-import java.util.function.Function;
 
 //http://afanihao.cn/
 public abstract class RunAbs implements Serializable {
@@ -34,17 +35,7 @@ public abstract class RunAbs implements Serializable {
      * @return Color
      */
     public static Color getHSBColorRandom() {
-        float s = 100f-3f;
-        float b = 100f-2f;
-        float h = 360f-1f;
-        Function<Float, Float> function = new Function<Float, Float>() {
-            @Override
-            public Float apply(Float max) {
-                float min = 0.000000000000000000000000000000000000000000001f;
-                return org.apache.commons.lang3.RandomUtils.nextFloat(min,max);
-            }
-        };
-        return Color.getHSBColor(function.apply(s),function.apply(b),function.apply(h));
+        return SwingUtils.getHSBColorRandom();
     }
 
 }
