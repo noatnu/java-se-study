@@ -43,14 +43,16 @@ public class SwingUtils {
         return jFrame;
     }
 
-    public static JLabel getJLabel()
-    {
-        JLabel jLabel = new JLabel();
+    public static JLabel getJLabel() {
+        return getJLabel("");
+    }
+
+    public static JLabel getJLabel(String text) {
+        JLabel jLabel = new JLabel(text);
         jLabel.setOpaque(true);
         jLabel.setBackground(getHSBColorRandom());
         return jLabel;
     }
-
 
 
 }
