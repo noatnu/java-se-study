@@ -10,7 +10,7 @@ import java.io.Serializable;
 public abstract class RunAbs implements Serializable {
 
     public void end() {
-        long millis = 15 * 1000;
+        long millis = 150 * 1000;
         try {
             Thread.sleep(millis);
         } catch (Exception e) {
