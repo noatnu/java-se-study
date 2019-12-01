@@ -1,5 +1,5 @@
 
-> Swing 是新一代的图形界面工具。使用 Swing 来开发图形界面比 AWT 更加优秀，因为 Swing 是一种轻量级组件，它采用纯 Java 实现，不再依赖于本地平台的图形界面，所以可以在所有平台上保持相同的运行效果，对跨平台支持比较出色。除此之外，Swing 提供了比 AWT 更多的图形界面组件，因此可以开发出美观的图形界面程序。
+>Swing 是新一代的图形界面工具。使用 Swing 来开发图形界面比 AWT 更加优秀，因为 Swing 是一种轻量级组件，它采用纯 Java 实现，不再依赖于本地平台的图形界面，所以可以在所有平台上保持相同的运行效果，对跨平台支持比较出色。除此之外，Swing 提供了比 AWT 更多的图形界面组件，因此可以开发出美观的图形界面程序。
 
 # Swing 类库结构
 
@@ -10,13 +10,12 @@
 
 ![swing](./swing_java_info.gif)
 
-+ 从图 1 可以看出，Swing 组件除了 AbstmctButton 类之外都以 J 开头。Swing 容器组件直接继承 AWT 类库中的容器组件类，其他大部分组件都是继承 JComponet 组件。组件可以划分为容器组件和非容器组件，容器组件包括 JFmme 和 JDialog。其中 JComponent 定义了非容器类的轻量级组件（JBntton、JPanel、JMenu 等）。
+* 从图 1 可以看出，Swing 组件除了 AbstmctButton 类之外都以 J 开头。Swing 容器组件直接继承 AWT 类库中的容器组件类，其他大部分组件都是继承 JComponet 组件。组件可以划分为容器组件和非容器组件，容器组件包括 JFmme 和 JDialog。其中 JComponent 定义了非容器类的轻量级组件（JBntton、JPanel、JMenu 等）。
 
-
-+ 表1 Swing常用包
+* 表1 Swing常用包
 
 |     包名称                      |                  描述                                                 |
-|      :-----:                    |               :----:                                                 |
+|      :----:                    |               :---:                                                 |
 |       javax.swing               |         提供一组“轻量级”组件，尽量让这些组件在所有平台上的工作方式都相同  |
 |       javax.swing.border               |          提供围绕 Swing 组件绘制特殊边框的类和接口  |
 |       javax.swing.event               |          提供 Swing 组件触发的事件  |
@@ -24,6 +23,14 @@
 |       javax.swing.table               |          提供用于处理 javax.swing.JTable 的类和接口  |
 |       javax.swing.text               |          提供类 HTMLEditorKit 和创建 HTML 文本编辑器的支持类  |
 |       javax.swing.tree               |          提供处理 javax.swingJTree 的类和接口  |
+
+> 
+
+
+|123|234|345|
+|:---|:---:|---:|
+|abc|bcd|cde|
+
 
 
 
@@ -62,3 +69,8 @@
 ```
 http://c.biancheng.net/view/1206.html
 ```
+
+
+
+
+
