@@ -1,5 +1,5 @@
 
->Swing 是新一代的图形界面工具。使用 Swing 来开发图形界面比 AWT 更加优秀，因为 Swing 是一种轻量级组件，它采用纯 Java 实现，不再依赖于本地平台的图形界面，所以可以在所有平台上保持相同的运行效果，对跨平台支持比较出色。除此之外，Swing 提供了比 AWT 更多的图形界面组件，因此可以开发出美观的图形界面程序。
+> Swing 是新一代的图形界面工具。使用 Swing 来开发图形界面比 AWT 更加优秀，因为 Swing 是一种轻量级组件，它采用纯 Java 实现，不再依赖于本地平台的图形界面，所以可以在所有平台上保持相同的运行效果，对跨平台支持比较出色。除此之外，Swing 提供了比 AWT 更多的图形界面组件，因此可以开发出美观的图形界面程序。
 
 # Swing 类库结构
 
@@ -25,16 +25,7 @@
 |       javax.swing.tree               |          提供处理 javax.swingJTree 的类和接口  |
 
 > 
-
-
-|123|234|345|
-|:---|:---:|---:|
-|abc|bcd|cde|
-
-
-
-
-+ javax.swing.event 包中定义了事件和事件监听器类，javax.swing.event 包与 AWT 的 event 包类似。Java.awt.event 和 javax.swing.event 都包含事件类和监听器接口，它们分别响应由 AWT 组件和 Swing 组件触发的事件。
+* javax.swing.event 包中定义了事件和事件监听器类，javax.swing.event 包与 AWT 的 event 包类似。Java.awt.event 和 javax.swing.event 都包含事件类和监听器接口，它们分别响应由 AWT 组件和 Swing 组件触发的事件。
 
 + 例如，当在树组件中需要节点扩展（或折叠）的通知时，则要实现 Swing 的 TreeExpansionListener 接口，并把一个 TreeExpansionEvent 实例传送给 TreeExpansionListener 接口中定义的方法，而 TreeExpansionListener 和 TreeExpansionEvent 都是在 swing.event 包中定义的。
 
