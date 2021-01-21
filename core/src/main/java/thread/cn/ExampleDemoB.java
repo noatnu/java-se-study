@@ -1,7 +1,7 @@
 package thread.cn;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import tool.utils.DateUtils;
+import org.apache.tools.ant.util.DateUtils;
 
 import java.util.Date;
 import java.util.Timer;
@@ -22,7 +22,7 @@ public class ExampleDemoB {
             }
         }, 1000);
         while (true){
-            System.out.println(DateUtils.format(new Date(),DateUtils.DATETIME_PATTERN));
+            System.out.println(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

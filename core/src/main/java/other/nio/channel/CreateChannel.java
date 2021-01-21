@@ -2,7 +2,8 @@ package other.nio.channel;
 
 
 import org.junit.jupiter.api.Test;
-import tool.log.LogUtilA;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -11,11 +12,9 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.WritableByteChannel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CreateChannel {
-    private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
+    private final Logger loggerA = LoggerFactory.getLogger(getClass());
     String path = PathEnum.PATH_ENUM.getVar();
 
     //通道的创建
@@ -28,7 +27,7 @@ public class CreateChannel {
             ReadableByteChannel readableByteChannel = inputStream.getChannel();
             loggerA.info(readableByteChannel.isOpen() + "");
         } catch (IOException e) {
-            loggerA.warning("" + e.getMessage());
+            loggerA.warn("" + e.getMessage());
         }
     }
 
@@ -40,7 +39,7 @@ public class CreateChannel {
             WritableByteChannel writableByteChannel = outputStream.getChannel();
             loggerA.info(writableByteChannel.isOpen() + "");
         } catch (IOException e) {
-            loggerA.warning("" + e.getMessage());
+            loggerA.warn("" + e.getMessage());
         }
     }
 
@@ -52,7 +51,7 @@ public class CreateChannel {
             FileChannel fileChannel = accessFile.getChannel();
             loggerA.info("" + fileChannel.isOpen());
         } catch (IOException e) {
-            loggerA.warning("" + e.getMessage());
+            loggerA.warn("" + e.getMessage());
         }
     }
 
@@ -64,7 +63,7 @@ public class CreateChannel {
             SocketChannel socketChannel = socket.getChannel();
             loggerA.info("is " + socketChannel.isOpen());
         } catch (Exception e) {
-            loggerA.warning("" + e.getMessage());
+            loggerA.warn("" + e.getMessage());
         }
     }
 }

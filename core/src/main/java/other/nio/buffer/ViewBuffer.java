@@ -2,17 +2,16 @@ package other.nio.buffer;
 
 
 import org.junit.jupiter.api.Test;
-import tool.log.LogUtilA;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.CharBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ViewBuffer {
-    private final Logger loggerA = LogUtilA.setLoggerHanlder(Level.ALL);
+    private final Logger loggerA = LoggerFactory.getLogger(getClass());
 
     /**
      * 视图缓冲区通过已存在的缓冲区对象实例的工厂方法来创建。这种视图对象维护它自己的

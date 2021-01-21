@@ -1,8 +1,8 @@
 package www.lintcode.com;
 
 
+import array.ToArray;
 import com.google.common.collect.Lists;
-import tool.array.ToArray;
 
 import java.util.Arrays;
 import java.util.List;
