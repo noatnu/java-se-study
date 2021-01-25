@@ -1,7 +1,6 @@
 package tool.utils;
 
 
-
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -37,32 +36,57 @@ public class ListUtils {
 
     /**
      * 随机排序
+     *
      * @param list
      * @return
      */
-    public static List<Object>  randomSoft(List<?> list){
-        if (list == null || list.size() == 0){
+    public static List<Object> randomSoft2(List<?> list) {
+        if (list == null || list.size() == 0) {
             return null;
         }
         int size = list.size();
         List<Object> aList = new ArrayList<>(size);
-        int[] filterArr = new int[size] ;
-        for (int i = 0; i < size-1; i++) {
-            int index = getRandomNumber(size,filterArr) ;
-            Object o = list.get(index);
-            filterArr[i] = index ;
+        final int[] filterArr = new int[size];
+        for (int i = 0; i < size; i++) {
+            int index = 0;
+            do {
+                index = RandomUtils.nextInt(0, size + 1);
+            } while (ArrayUtils.contains(filterArr, index));
+
+            //取得的索引减一是因为多加了1
+            Object o = list.get(index - 1);
+            filterArr[i] = index;
             aList.add(o);
         }
         return aList;
     }
 
-    private static int getRandomNumber(int max,int[] filterArr){
-        int nextInt = RandomUtils.nextInt(0, max);
-        if (ArrayUtils.contains(filterArr,nextInt)){
-            return getRandomNumber(max, filterArr);
-        }else {
-            return nextInt;
+    public static List<Object> randomSoft(List<?> list) {
+        if (list == null || list.size() == 0) {
+            return null;
         }
+        int size = list.size();
+        List<Object> aList = new ArrayList<>(size);
+        final int[] filterArr = new int[size];
+        for (int i = 0; i < size; i++) {
+            //+1 是因为RandomUtils 不能取到0
+            int index = getRandomNumber(size + 1, filterArr);
+            //取得的索引减一是因为多加了1
+            Object o = list.get(index - 1);
+            filterArr[i] = index;
+            aList.add(o);
+        }
+        return aList;
+    }
+
+    private static int getRandomNumber(final int max, int[] filterArr) {
+        int nextInt = RandomUtils.nextInt(0, max);
+        for (int n : filterArr) {
+            if (n == nextInt) {
+                return getRandomNumber(max, filterArr);
+            }
+        }
+        return nextInt;
     }
 
 
@@ -72,7 +96,7 @@ public class ListUtils {
      *
      * @param list
      * @param sortnameArr list元素的属性名称
-     * @param isAsc    true升序，false降序
+     * @param isAsc       true升序，false降序
      */
     public static <E> void sort(List<E> list, final boolean isAsc, final String... sortnameArr) {
         Collections.sort(list, new Comparator<E>() {
