@@ -21,10 +21,14 @@ public class HandleGoHuGoFileAppend {
         String oldPath = null;
         String newPath = null;
 
-        head = "123";
+        head = "---\n" +
+                "title: \"_\"\n" +
+                "date: 2021-01-22T15:32:46+08:00\n" +
+                "draft: false\n" +
+                "---";
 
         oldPath = "D:\\IdeaProjects\\studyDoc";
-        newPath = "D:\\temp\\two";
+        newPath = "D:\\GitHub\\Hugo\\Sites\\mysite\\content\\post";
 
         List<String> extensions = new ArrayList<>(1);
         extensions.add("md");
