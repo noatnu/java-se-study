@@ -15,7 +15,7 @@ public class ListDemo {
     @Test
     public void runB() {
         ArrayList<Integer> integerList = new ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100000; i++) {
             integerList.add(i);
         }
         integerList.forEach(o -> System.out.print(o + ","));

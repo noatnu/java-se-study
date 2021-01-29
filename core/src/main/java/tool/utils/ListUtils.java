@@ -1,6 +1,7 @@
 package tool.utils;
 
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -100,7 +101,6 @@ public class ListUtils {
      */
     public static <E> void sort(List<E> list, final boolean isAsc, final String... sortnameArr) {
         Collections.sort(list, new Comparator<E>() {
-
             public int compare(E a, E b) {
                 int ret = 0;
                 try {
